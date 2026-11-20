@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href^='#']");if(!a)return;e.preventDefault();var h=a.getAttribute("href");if(location.hash!==h)location.hash=h;else window.dispatchEvent(new HashChangeEvent("hashchange"))},true);try{if(window.parent!==window)Object.defineProperty(window,"claude",{configurable:true,get:function(){try{return window.parent.claude}catch(e){return undefined}}})}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ABS Local Structural Scantlings</title>
+<style>
+:root{
+  /* layout: dark sidebar with section tabs and file/print tools; main column of cards; print = A4 report of every section */
+  --bg:#f3f5f8;--card:#fff;--ink:#16202e;--mut:#5d6b7e;--line:#d9e0ea;--line2:#e9eef4;--acc:#0b5c8a;--accbg:#e4f1f9;--sb:#0f2a43;--sbt:#cfdbe8;--inp:#fffbe6;
+  --ok:#146c43;--okbg:#dcf1e4;--no:#b3261e;--nobg:#f9dfdb;--warn:#9a5b00;--warnbg:#fff3d6;--sea:#2a78d6;--wave:#eb6834;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--f-disp:Georgia,"Times New Roman",serif;--f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#0d141c;--card:#151f2b;--ink:#e6edf5;--mut:#98a7b9;--line:#26354a;--line2:#1d2a3a;--acc:#58b4e8;--accbg:#12293b;--sb:#08121c;--sbt:#a9bacd;--inp:#2a2712;--ok:#5fd39a;--okbg:#14301f;--no:#ff8a80;--nobg:#3a1a17;--warn:#f0b64e;--warnbg:#332713;--sea:#3987e5;--wave:#d95926}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#0d141c;--card:#151f2b;--ink:#e6edf5;--mut:#98a7b9;--line:#26354a;--line2:#1d2a3a;--acc:#58b4e8;--accbg:#12293b;--sb:#08121c;--sbt:#a9bacd;--inp:#2a2712;--ok:#5fd39a;--okbg:#14301f;--no:#ff8a80;--nobg:#3a1a17;--warn:#f0b64e;--warnbg:#332713;--sea:#3987e5;--wave:#d95926}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--f-body);display:flex;min-height:100vh}
+#sb{width:268px;flex:none;background:var(--sb);color:var(--sbt);position:sticky;top:0;height:100vh;overflow:auto;padding:22px 16px;display:flex;flex-direction:column;gap:14px}
+#sb h1{font:700 19px/1.2 var(--f-disp);color:#fff;margin:0}
+#sb .sub{font-size:12px;margin:6px 0 0;opacity:.85}
+#sb nav a{display:block;color:var(--sbt);text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px}
+#sb nav a:hover{background:rgba(255,255,255,.1);color:#fff}#sb nav a.on{background:rgba(255,255,255,.16);color:#fff;font-weight:600}
+#sb button{width:100%;padding:9px;border-radius:7px;border:1px solid #3a5876;background:transparent;color:#fff;cursor:pointer;font:inherit;font-size:13px;margin-bottom:6px}
+#sb button:hover{background:rgba(255,255,255,.12)}
+#sb .pf{display:grid;grid-template-columns:1fr 1fr;gap:0 6px}#sb .pf button{font-size:12px;padding:7px 4px}
+#sb .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin:0 0 6px}
+#sb .rg{border:1px solid #2c4560;border-radius:8px;padding:8px 10px;font-size:12px}#sb .rg b{display:block;color:#fff;font-size:13px}
+.credit{font-size:11.5px;opacity:.8;border-top:1px solid #2c4560;padding-top:10px}.bd{display:flex;align-items:center;gap:10px}
+main{flex:1;min-width:0;padding:22px 26px 40px;max-width:1240px}
+.ph,.pfoot,.tabh,.ponly{display:none}
+h2,h3{margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:16px;overflow:hidden;min-width:0}
+.card>header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:10px 16px;background:var(--accbg);border-bottom:1px solid var(--line)}
+.card>header h2,.card>h2{font-size:14px;letter-spacing:.03em;color:var(--acc)}
+.card>h2{padding:10px 16px;background:var(--accbg);border-bottom:1px solid var(--line)}
+.cb{padding:12px 16px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}
+.grid2>.card{margin-bottom:0}
+.mono,.num,td.n,th.n{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+.muted{color:var(--mut)}
+.ref{font-size:11.5px;color:var(--mut)}
+button{font:inherit}
+.bt{padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:13px;cursor:pointer}
+.bt:hover{border-color:var(--acc);color:var(--acc)}.bt.pri{background:var(--acc);border-color:var(--acc);color:#fff}.bt.pri:hover{color:#fff;filter:brightness(1.08)}
+.bt.sm{padding:3px 9px;font-size:12.5px}.bt.danger:hover{border-color:var(--no);color:var(--no)}
+.tools{display:flex;flex-wrap:wrap;gap:6px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+/* project strip */
+.stk{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.r{display:grid;gap:8px;align-items:center;padding:7px 16px;border-bottom:1px solid var(--line)}
+.r:last-child{border-bottom:0}.r.pj{grid-template-columns:70px 1fr 70px 1fr}
+.r input,.f input,.f select{width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--inp);color:var(--ink);font:inherit;font-size:13.5px;min-width:0}
+.f select{background:var(--card)}
+.f input::placeholder,.r input::placeholder{color:var(--mut);opacity:.75}
+/* forms */
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px 12px}
+.f{display:flex;flex-direction:column;gap:3px;min-width:0}
+.f>label{font-size:12px;color:var(--mut);display:flex;justify-content:space-between;gap:6px}
+.f>label i{font-style:normal;font-size:11.5px;white-space:nowrap}
+.f.span2{grid-column:span 2}
+.f.chk{flex-direction:row;align-items:center;gap:7px;padding-top:17px}
+.f.chk input{width:auto;accent-color:var(--acc)}
+.f.chk label{font-size:13px;color:var(--ink)}
+.fsec{grid-column:1/-1;margin-top:6px;padding:5px 0 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.fsec h3{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600}
+.fsec small{color:var(--mut);font-size:11.5px}
+/* key results */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.kr>div{padding:9px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kr .k{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.kr .kv{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.kr .kv small{font-size:12px;font-weight:400;color:var(--mut)}
+.kr .ks{font-size:12px;color:var(--mut)}
+/* regime */
+.regime{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:12px}
+.regime div{padding:8px 10px;border-right:1px solid var(--line);background:var(--bg);color:var(--mut);font-size:12.5px}
+.regime div:last-child{border-right:0}
+.regime b{display:block;font-size:13.5px}
+.regime div.on{background:var(--accbg);color:var(--ink);box-shadow:inset 0 3px 0 var(--acc)}.regime div.on b{color:var(--acc)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.seg button{padding:6px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer;font-size:13px}
+.seg button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.alerts{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.alert{padding:7px 12px;border-radius:7px;background:var(--warnbg);color:var(--warn);font-size:12.5px}
+.alert.info{background:var(--accbg);color:var(--ink)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+.stat{padding:8px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.stat b{font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.stat b small{font-weight:400;color:var(--mut);font-size:11.5px}
+/* figures */
+.fig{width:100%;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:420px}
+#figMember svg{max-width:380px;margin:0 auto}
+#figSection svg,#figProfile svg{max-width:900px;margin:0 auto}
+svg text{font:10.5px var(--f-body);fill:var(--mut)}
+svg .lbl{fill:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--mut);margin-top:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+/* member table */
+.mbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
+.ftabs{display:flex;gap:4px;flex-wrap:wrap}
+.ftabs button{padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);font-size:12.5px;cursor:pointer}
+.ftabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{font-size:11px;font-weight:600;color:var(--mut);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:bottom}
+td{padding:6px 8px;border-bottom:1px solid var(--line2);vertical-align:middle}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.grp td{background:var(--bg);font-weight:700;font-size:12.5px;letter-spacing:.02em;color:var(--acc)}
+tr.grp td span{color:var(--mut);font-weight:400;margin-left:8px;font-size:12px}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover td{background:var(--bg)}
+tbody tr.row.sel td{background:var(--accbg)}
+tbody tr.row.sel td:first-child{box-shadow:inset 3px 0 0 var(--acc)}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.pill.ok{background:var(--okbg);color:var(--ok)}.pill.bad{background:var(--nobg);color:var(--no)}.pill.warn{background:var(--warnbg);color:var(--warn)}.pill.na{background:var(--bg);color:var(--mut)}
+.ub{display:inline-block;width:56px;height:5px;background:var(--line);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:6px}
+.ub i{display:block;height:100%;background:var(--ok)}.ub.warn i{background:var(--warn)}.ub.bad i{background:var(--no)}
+.sumbar{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px}
+/* editor + sheet */
+.edhead{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.edhead select{padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit;font-size:13px;max-width:260px}
+.sheet{font-size:13px}
+.sheet h4{font-size:11.5px;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.sheet h4:first-child{margin-top:0}
+.eq{font-family:var(--f-mono);font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:nowrap}
+.kvl{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2px 16px}
+.kvl div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:3px 0}
+.kvl div span{color:var(--mut)}.kvl div b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin-top:8px}
+.res div{border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.res div span{display:block;font-size:11.5px;color:var(--mut)}
+.res div b{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.res div b small{font-size:11.5px;color:var(--mut);font-weight:400}
+.res div.key{border-color:var(--acc);background:var(--accbg)}
+.checks{display:flex;flex-direction:column}
+.chk-row{display:grid;grid-template-columns:20px 140px 1fr;gap:6px;align-items:baseline;padding:3px 0;border-bottom:1px dotted var(--line)}
+.chk-row .ic{font-weight:700}.chk-row.ok .ic{color:var(--ok)}.chk-row.bad .ic{color:var(--no)}.chk-row.warn .ic{color:var(--warn)}
+tr.gov td{background:var(--accbg);font-weight:600}
+.sheet th{font-size:11px}
+.notes{margin:0;padding:12px 16px 12px 34px;color:var(--mut);font-size:12.5px}
+.notes li{margin:5px 0}.notes b{color:var(--ink)}
+.cb .notes{padding:0 0 0 18px}
+section.tab{display:none}section.tab.on{display:block}
+.mod{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}
+.mod.on{display:flex}
+.mod>div{background:var(--card);color:var(--ink);max-width:820px;width:100%;max-height:86vh;overflow:auto;border-radius:12px;padding:18px 22px}
+.mod h3{margin:0 0 10px;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.mod p{margin:0 0 9px;font-size:13px}.mod p b{color:var(--acc)}
+.mod h4{margin:14px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.mod textarea{width:100%;margin:8px 0;min-height:180px;font-family:var(--f-mono);font-size:12px;background:var(--inp);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px}
+.x{padding:2px 7px;border:0;background:none;color:var(--mut);cursor:pointer;font-size:16px;line-height:1}.x:hover{color:var(--no)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;display:none;z-index:30}
+@media screen and (max-width:1100px){.grid2{grid-template-columns:1fr}.grid2>.card{margin-bottom:0}}
+@media screen and (max-width:820px){body{display:block}#sb{position:static;width:auto;height:auto}main{padding:14px}.r.pj{grid-template-columns:60px 1fr}.chk-row{grid-template-columns:20px 1fr}.chk-row span:last-child{grid-column:2}.regime{grid-template-columns:1fr}.regime div{border-right:0;border-bottom:1px solid var(--line)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+sub,sup{font-size:72%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.45em}
+
+#sb h1.ttl{display:flex;align-items:stretch;gap:8px}#sb h1.ttl .big{font:800 50px/0.86 var(--f-disp);letter-spacing:-1px;display:flex;align-items:center}#sb h1.ttl .stk3{display:flex;flex-direction:column;justify-content:center;font:700 15px/1.12 var(--f-disp)}
+
+</style>
+<style id="pcss" media="print">
+@page{size:A4;margin:11mm 10mm 12mm}
+:root:root:root:root{color-scheme:light;--bg:#f4f6f8;--card:#fff;--ink:#000;--mut:#444;--line:#b9c2cc;--line2:#d5dbe2;--acc:#0b5c8a;--accbg:#e8f1f7;--inp:#fff;--ok:#146c43;--okbg:#dcf1e4;--no:#b3261e;--nobg:#f9dfdb;--warn:#7a4800;--warnbg:#fff3d6;--sea:#2a78d6;--wave:#eb6834}
+body{display:block;background:#fff;font-size:10.5px}
+#sb,.noprint,.mod,.toast,.stk,.seg button:not(.on),.bt,.ftabs{display:none!important}
+main{padding:0;max-width:none}
+.ph{display:block;margin-bottom:8px;border-bottom:2px solid #000;padding-bottom:5px}
+.ph h2{margin:0;font:700 15px Georgia,"Times New Roman",serif}
+.ph table{width:100%;border-collapse:collapse;font-size:10px;margin-top:4px}.ph td{padding:1px 6px 1px 0;border:0}.ph td b{font-weight:600}
+.pfoot{display:flex;justify-content:space-between;margin-top:10px;border-top:1px solid #000;padding-top:4px;font-size:9.5px}
+.ponly{display:block}
+section.tab{display:block!important}
+.tabh{display:block;font:700 13px Georgia,"Times New Roman",serif;margin:12px 0 6px;padding-bottom:2px;border-bottom:1px solid #000;break-after:avoid}
+#t-members .tabh,#t-member .tabh,#t-basis .tabh{break-before:page}
+.grid2{display:block}.grid2>.card{margin-bottom:8px}
+.card{border-color:#999;border-radius:0;margin-bottom:8px;overflow:visible}
+.card>header,.card>h2{padding:4px 8px;break-after:avoid}
+.card>header h2,.card>h2{font-size:11.5px}
+.cb{padding:6px 8px}
+.av,.kr,.msheet .blk{break-inside:avoid}
+.fields{grid-template-columns:repeat(4,minmax(0,1fr));gap:3px 10px}
+.f>label{font-size:9.5px}
+.f input,.f select,.r input{border:0;background:none;appearance:none;-webkit-appearance:none;padding:0;font-weight:600;font-size:10.5px}
+.f.chk{padding-top:0}
+.regime{margin-top:6px}.regime div{padding:4px 6px;font-size:9.5px}
+.alert{padding:3px 8px;font-size:9.5px}
+.stat{padding:4px 8px}.stat b{font-size:11px}
+.kr>div{padding:4px 8px}.kr .kv{font-size:12.5px}
+.fig svg{min-width:0!important}
+#figSection svg{max-width:150mm;margin:0 auto}
+table{font-size:9px}th,td{padding:2px 4px}th{font-size:8.5px}
+tr{break-inside:avoid}thead{display:table-header-group}
+tbody tr.row.sel td{background:none}tbody tr.row.sel td:first-child{box-shadow:none}
+.ub{width:34px}
+.msheet{border:1px solid #999;margin:0 0 8px;break-inside:auto}
+.msheet>h3{font:700 11.5px Georgia,"Times New Roman",serif;background:var(--accbg);padding:4px 8px;border-bottom:1px solid #999;display:flex;justify-content:space-between;break-after:avoid}
+.msheet .mbody{display:grid;grid-template-columns:1fr 62mm;gap:8px;padding:6px 8px}
+.msheet .mfig svg{width:100%;min-width:0}
+.sheet{font-size:9.5px}.sheet h4{font-size:9px;margin:7px 0 3px}
+.eq{font-size:9px;padding:3px 6px;white-space:normal}
+.kvl{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 10px}.kvl div{padding:1px 0}
+.res{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin-top:4px}.res div{padding:3px 6px}.res div b{font-size:12px}
+.chk-row{grid-template-columns:14px 110px 1fr;padding:1px 0}
+.notes{padding:6px 8px 6px 22px;font-size:9.5px}.notes li{margin:2px 0}
+.pv{font-weight:600}
+#memTbl td:nth-child(2),#memTbl th:nth-child(2),#memTbl td:nth-child(5),#memTbl th:nth-child(5){display:none}
+#memTbl tr.grp td{display:table-cell!important}
+#memTbl td{white-space:normal}#memTbl td.n{white-space:nowrap}
+#memTbl .ub{display:none}
+
+</style>
+</head>
+<body>
+<aside id="sb">
+  <div>
+    <div class="bd"><h1 class="ttl"><span class="big">ABS</span><span class="stk3"><span>Local</span><span>Structural</span><span>Scantlings</span></span></h1></div>
+    <p class="sub">Shell · decks · double bottom · framing · bulkheads · tanks · superstructures<br>ABS Marine Vessel Rules Pt.3 Ch.2 (2026) and Steel Barge Rules (2026)<br>all ship types and lengths, plus barges</p>
+  </div>
+  <nav id="nav">
+    <a href="#ship">1 · Ship &amp; hull girder</a>
+    <a href="#members">2 · Members summary</a>
+    <a href="#member">3 · Member calculation</a>
+    <a href="#basis">4 · Basis &amp; references</a>
+  </nav>
+  <div class="rg" id="sbRegime"></div>
+  <div style="margin-top:auto">
+    <p class="lbl">Project file</p>
+    <div class="pf"><button id="bSave">Save</button><button id="bOpen">Open</button><button id="bEx40" title="Example: 40 m double skin tank barge, Barge Rules">Ex: 40 m barge</button><button id="bEx62" title="Example: 62 m offshore support vessel, Marine Vessel Rules">Ex: 62 m</button><button id="bEx130" title="Example: 130 m general cargo vessel, Marine Vessel Rules">Ex: 130 m</button><button id="bClear">New</button></div>
+    <input type="file" id="fileIn" accept=".json,application/json" hidden>
+    <button id="bPrint" style="margin-top:8px">🖨 Print / Save PDF</button>
+    <button id="bRef">📖 Rule Reference</button>
+  </div>
+  <div class="credit">Developed by Ansal Faris - Naval Architect</div>
+</aside>
+<main>
+  <div class="ph"><h2>Local Structural Scantlings – ABS</h2><table id="pp"></table></div>
+  <div class="card stk">
+    <div class="r pj"><div>Project</div><input id="m_project" data-k="meta.project" placeholder="Project / Yard No."><div>Vessel</div><input id="m_vessel" data-k="meta.vessel" placeholder="Vessel name"></div>
+    <div class="r pj"><div>Doc. no.</div><input id="m_doc" data-k="meta.doc" placeholder="Document no."><div>Prepared</div><input id="m_by" data-k="meta.by" placeholder="Prepared by"></div>
+  </div>
+  <div class="card av"><h2>Key results</h2><div class="kr" id="kr"></div></div>
+
+  <section class="tab" id="t-ship"><div class="tabh">1 · Ship &amp; hull girder</div>
+    <section class="card av"><header><h2>Rule set</h2><span class="ref">choose the ABS rules that apply to the vessel</span></header>
+      <div class="cb"><div class="regime" id="ruleSel"></div><div class="alerts" id="ruleAlerts"></div></div>
+    </section>
+    <div class="grid2">
+      <section class="card av"><header><h2>Ship particulars</h2><span class="ref" id="shipRef">3-1-1 definitions</span></header><div class="cb" id="shipForm"></div></section>
+      <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+        <section class="card av"><header><h2>Hull girder strength</h2><span class="ref" id="hgRef">3-2-1</span></header><div class="cb" id="hgForm"></div></section>
+        <section class="card av"><header><h2>Hull girder results</h2><span class="ref">required vs offered (midship section)</span></header><div class="cb" id="hgRes"></div></section>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-members"><div class="tabh">2 · Members summary</div>
+    <section class="card av"><header><h2>Ship profile and member positions</h2><span class="ref noprint">click a marker to open that member</span></header>
+      <div class="cb"><div class="fig" id="figProfile"></div>
+        <div class="legend"><span><i style="background:var(--sea)"></i>design / scantling draft</span><span><i style="background:var(--acc);opacity:.4"></i>0,4 L amidships</span><span><i style="background:var(--wave);opacity:.4"></i>0,1 L at ends</span><span><i style="background:var(--ok)"></i>OK</span><span><i style="background:var(--warn)"></i>check</span><span><i style="background:var(--no)"></i>not OK</span><span>▬ plate&nbsp; ● stiffener&nbsp; ◆ primary member&nbsp; ▲ special item</span></div>
+      </div>
+    </section>
+    <section class="card"><header><h2>Members – required vs offered</h2><div class="sumbar" id="summary"></div></header>
+      <div class="mbar noprint">
+        <div class="ftabs" id="tabs"><button data-act="tab" data-v="all">All</button><button data-act="tab" data-v="plate">Plating</button><button data-act="tab" data-v="stiff">Stiffeners</button><button data-act="tab" data-v="psm">Primary members</button><button data-act="tab" data-v="spec">Special items</button></div>
+        <div class="tools"><button class="bt sm" data-act="add" data-v="plate">+ Plate</button><button class="bt sm" data-act="add" data-v="stiff">+ Stiffener</button><button class="bt sm" data-act="add" data-v="psm">+ Primary member</button><button class="bt sm" data-act="add" data-v="spec">+ Special item</button><button class="bt sm" data-act="tsv">Copy table for Excel</button></div>
+      </div>
+      <div class="tblwrap"><table id="memTbl"><tbody id="tbody"></tbody></table></div>
+      <div class="cb ref">ABS gross scantlings. Plating: rule thickness + owner's margin, rounded to the nearest 0,5 mm. Stiffeners: section modulus with attached plating of width s; primary members: attached plating of width min(spacing; 0,33 ℓ). Utilisation is the highest ratio of required to offered over all checks. Click a row to open its calculation.</div>
+    </section>
+  </section>
+
+  <section class="tab" id="t-member"><div class="tabh">3 · Member calculations</div>
+    <div class="grid2 noprint" id="editor">
+      <section class="card">
+        <header><div class="edhead"><h2 id="elTitle">Member</h2></div><div class="tools"><select id="memSel" class="bt sm" aria-label="Select member"></select><button class="bt sm" data-act="dup">Duplicate</button><button class="bt sm danger" data-act="del">Delete</button></div></header>
+        <div class="cb"><div id="elForm"></div><div class="fig" id="figMember" style="margin-top:12px"></div></div>
+      </section>
+      <section class="card"><header><h2>Calculation sheet</h2><span class="ref" id="sheetRef">selected member</span></header><div class="cb" id="sheet"></div></section>
+    </div>
+    <div class="ponly" id="allSheets"></div>
+  </section>
+
+  <section class="tab" id="t-basis"><div class="tabh">4 · Basis &amp; references</div>
+    <section class="card"><h2>Basis of calculation</h2>
+      <ul class="notes">
+        <li><b>Scope.</b> Prescriptive local scantlings of ABS steel vessels and barges. Two rule sets: the <b>Marine Vessel Rules</b> Part 3 Chapter 2 (2026), which since 2024 cover all self-propelled steel vessels of any length – the former Steel Vessel, Steel Vessels under 90 m and OSV rules – with their length-dependent and OSV-specific formulas; and the <b>Steel Barge Rules</b> Part 3 Chapter 2 with the Part 5 requirements for deck cargo barges, dry cargo barges and single / double skin tank barges.</li>
+        <li><b>Gross scantlings.</b> ABS rule scantlings already include the corrosion margin. An owner's extra margin can be entered on the ship tab (all plating) or per plate. Required plate thickness is rounded to the nearest 0,5 mm before comparison, as in the reference workbook.</li>
+        <li><b>Length bands (MVR).</b> L &lt; 61 m: hull girder SM by the small vessel C1 table, no wave moments; 61–90 m: C1 = 0,044 L + 3,75; ≥ 90 m: 10,75 curve. Side shell: OSV formula, vessels under 90 m (s √h / 268 + 2,5) or vessels 90 m and over ((s/645)√((L − 15,2) ds/Ds) + 2,5, L ≤ 305 m; (s/828) form to 427 m). Bottom shell transverse / longitudinal for all lengths with ds/Ds ≥ 0,67 (OSV) or 0,0433 L/Ds. Frames, beams, webs and superstructures switch at 90 m as the rules do.</li>
+        <li><b>Heads.</b> MVR: freeboard / bulkhead deck heads for framing and watertight bulkheads (0,8 h + 1,22 below 6,1 m), Table 2 deck heads interpolated in L, deep tank head = greatest of the overflow, Table 2 column e, load line and 2/3 bulkhead deck heads, relief valve and SG &gt; 1,05 corrections. Barges: void spaces to the deck at side; ballast tanks to 2/3 of the overflow height, ≥ 0,915 m; cargo tanks h1 = ρ ht + ha with ha = max(1,22 / 0,02 L / 2,44 ; 9,95 pv) (5-2-1/3).</li>
+        <li><b>Higher-strength steel.</b> Q = 0,78 (32), 0,72 (36), 0,68 (40). Bottom plating (t − 4,3) Q + 4,3; side plating (t − 4,3)(Q + 2√Q)/3 + 4,3; decks per 3-2-3/7 with the 0,92/√Q factor not less than 1; bulkhead plating with q = 235/Y; section moduli × Q. MVR deck beams and deck girders are taken without Q.</li>
+        <li><b>Superstructure and deckhouse bulkheads.</b> h = a (b f − y) c (IACS UR S3, 3-2-11/3.5), t = 3 s √h, SM = 3,5 s ℓ² h, with the minimum heads and the 2026 minimum thicknesses for OSVs, towing vessels and other vessels.</li>
+        <li><b>Hull girder.</b> MVR: SM = max(SMmin ; Mt / 17,5) with Mt from the still water moments entered and the rule wave moments, I ≥ L SM / 33,3. Barges: SMR = K SMb, K = 0,629 + Ms/(fp SMb) ≥ 1, I = 0,03 SMR L. Required SM is multiplied by Q of the deck and bottom material.</li>
+        <li><b>Section modulus offered.</b> Built from the profile and attached plating (FB, HP bulb as equivalent angle, L, T or entered value). Effective plating: s for stiffeners, min(spacing ; 0,33 ℓ) for girders and webs, as in the reference workbook. Primary member web depth and thickness proportions are checked.</li>
+      </ul>
+    </section>
+    <section class="card av"><h2>Not covered by this sheet</h2>
+      <ul class="notes">
+        <li>Hull girder section properties are entered, not calculated; shear strength (3-2-1/3.9), buckling (3-2-A4) and fatigue; SafeHull / Part 5C direct strength for tankers, bulk carriers and container carriers of 150 m and above (these vessels also need Part 5C).</li>
+        <li>Ice strengthening, special docking arrangements, sea chests, hatch covers, doors, bulwarks, rudders and appendages; aluminium superstructures (3-2-11/13).</li>
+        <li>Bottom shell reduction factor Rb, slot depth proportions, bracket and knee table checks, end connections and weld sizes.</li>
+        <li>Specific Part 5 barge notations (crane, pipe-lay, accommodation, hopper, liquefied gas) beyond the common items here.</li>
+      </ul>
+    </section>
+    <section class="card av"><h2>Rule references</h2>
+      <ul class="notes">
+        <li>ABS Rules for Building and Classing Marine Vessels 2026, Part 3 Hull Construction and Equipment (July 2026): 3-1-1 definitions, 3-2-1 hull girder, 3-2-2 shell, 3-2-3 decks, 3-2-4 bottom structures, 3-2-5 frames, 3-2-6 web frames and stringers, 3-2-7 beams, 3-2-8 pillars and girders, 3-2-9 watertight bulkheads, 3-2-10 deep tanks, 3-2-11 superstructures and deckhouses, 3-2-12/13 stem and keel.</li>
+        <li>ABS Rules for Building and Classing Steel Barges 2026 (January 2026): Part 3 Ch.2 Sec.1–8 and Part 5 Ch.1–2 (deck cargo, dry cargo, single and double skin tank barges).</li>
+        <li>Reference calculation: P4062 GTO 50 scantling workbook (40 m double skin tank barge) by Ansal Faris.</li>
+        <li>Scantlings are subject to approval by ABS. This sheet is a design aid.</li>
+      </ul>
+    </section>
+  </section>
+  <div class="pfoot"><span id="pfL">ABS local structural scantlings</span><span>Developed by Ansal Faris - Naval Architect</span></div>
+</main>
+
+<div class="mod" id="ref"><div>
+  <h3>Rule reference – ABS <button class="x" data-close="ref" aria-label="Close">✕</button></h3>
+  <h4>Marine Vessel Rules – shell (3-2-2)</h4>
+  <p>Side, OSV: (s/645)√((L − 15,2) ds/Ds) + 2,5 ; 0,035 (L + 29) + 0,009 s ; ≥ 8,5 · L &lt; 90 m: s √h / 268 + 2,5, h = Ds ≥ 0,1 L, 1,18 ds · L ≥ 90 m: (s/645)√((L − 15,2) ds/Ds) + 2,5 (L ≤ 305) ; (s/828)√((L + 175) ds/Ds) + 2,5</p>
+  <p>Bottom: transverse (s/519)√((L − 19,8) ds/Ds) + 2,5 ; longitudinal (s/671)√((L − 18,3) ds/Ds) + 2,5 (L ≤ 122), (s/508)√((L − 62,5) ds/Ds) + 2,5 (≤ 305), (s/661)√((L + 105) ds/Ds) + 2,5 · minimum s(L + 45,73)/(25 L + 6082) trans., s(L − 18,3)/(42 L + 1070) long. · keel + 1,5 (L ≥ 90)</p>
+  <p>Ends: 0,0455 L + 0,009 s (L &lt; 90) ; 0,035 (L + 29) + 0,009 s · immersed bow 0,05 (L + 20) + 0,009 s · bottom forward 0,0046 s √((0,005 L1² − 1,3 df²)/df) · thruster tunnel 0,008 d + 3,3</p>
+  <h4>Decks (3-2-3 Table 1)</h4>
+  <p>1a 0,01 s + 2,3 / 0,0066 s + 4,9 · 1b s(L + 45,73)/(25 L + 6082) · 2a 0,009 s + 2,4 / 0,006 s + 4,7 · 2b s(L + 48,76)/(26 L + 8681) · 3 0,01 s + 0,9 / 0,0067 s + 3,4 · 4 0,01 s + 0,25 / 0,0043 s + 4,6 · 5 0,009 s + 0,8 / 0,0039 s + 4,3 · 6 0,00394 s √h + 1,5 · 7 0,0058 s + 1,0 · wheel t = 8,05 K n √(C W)</p>
+  <h4>Bottom structure, frames, beams, girders</h4>
+  <p>Centre girder 0,056 L + 5,5 · floors / side girders 0,036 L + 4,7 + c · inner bottom 0,037 L + 0,009 s − c · bottom longitudinals 7,8 c h s ℓ² Q, c = 1,3 · side longitudinals 7,8 c h s ℓ² Q, c = 0,915 / 0,95 · transverse frames s ℓ² (h + b h1/30)(7 + 45/ℓ³) Q · beams 7,8 c h s ℓ² · web frames 4,74 · 1,5 s ℓ² (h + b h1/(45 K)) Q · stringers 4,74 c h s ℓ² Q · deck girders 4,74 c b h ℓ² · pillars Wa = (k − n ℓ/r) A, W = 7,01 b h s</p>
+  <h4>Bulkheads and tanks</h4>
+  <p>Watertight t = s k √(q h)/c + 1,5 (c 254 collision, 290 other) ≥ 6, s/200 + 2,5 · SM = 7,8 k c h s ℓ² Q · tank t = s k √(q h)/254 + 2,5 ≥ 6,5, s/150 + 2,5 · SM = 7,8 c h s ℓ² Q · girders 4,74 c h s ℓ² Q</p>
+  <h4>Superstructures (3-2-11, UR S3)</h4>
+  <p>h = a (b f − y) c · t = 3 s √h · SM = 3,5 s ℓ² h</p>
+  <h4>Steel Barge Rules</h4>
+  <p>Side 0,07 L + 0,007 s (L ≤ 150) ; 0,03 L + 0,007 s + 6 · bottom 0,045 L + 0,007 s + 1,8 (L ≤ 123) ; 0,08 L + 0,007 s − 2,5 ; + 0,75 transverse · ends 0,055 L + 0,007 s + 1,0 (L ≤ 76) ; 0,015 L + 0,01 s + 2,2 · bottom forward 0,055 L + 0,01 s + 1,0 · deck 2.1.1 / 2.1.2 / 2.1.3 / 2.1.4 / 2.1.5 as MVR equations, ends 0,01 s</p>
+  <p>Deck beams 7,8 c h s ℓ², c 0,585 / 1/(1,709 − 0,651 k), h 0,02 L + 0,76 · frames 7,8 c h s ℓ² Q, c 1,25 side, 1,34 bottom long. · girders and transverses 4,74 c h s ℓ² Q, c 1,0–2,2 · tank head h1 = ρ ht + ha · web t ≥ depth/100 + 3 and L1/36 + 7,0 (tanks)</p>
+</div></div>
+<div class="mod" id="dlg"><div>
+  <h3><span id="dlgTitle"></span><button class="x" data-close="dlg" aria-label="Close">✕</button></h3>
+  <p id="dlgNote" style="color:var(--mut)"></p>
+  <textarea id="dlgText" spellcheck="false" readonly></textarea>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px"><button class="bt" data-close="dlg">Close</button></div>
+</div></div>
+<div class="mod" id="pdlg"><div>
+  <h3>Print / Save PDF<button class="x" data-close="pdlg" aria-label="Close">✕</button></h3>
+  <p>Printing is blocked inside this viewer. Save a print copy and open it in your browser: it opens the print dialog with all sections and a calculation sheet for every member on A4. Choose your printer or <b>Save as PDF</b>.</p>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px"><button class="bt" data-close="pdlg">Cancel</button><button class="bt pri" id="bPrintCopy">Save print copy (.html)</button></div>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ABS local structural scantlings engine — Marine Vessel Rules Pt.3 Ch.2 (2026) and Steel Barge Rules (2026)
+   Developed by Ansal Faris - Naval Architect */
+window.ABS = (function () {
+  'use strict';
+  const { max, min, sqrt, pow, abs, exp, round } = Math;
+  const has = v => v !== '' && v != null && isFinite(+v), num = (v, d) => has(v) ? +v : d;
+  const clamp = (v, a, b) => max(a, min(b, v));
+  const r05 = v => round(v * 2 + 1e-9) / 2;            // nearest 0.5 mm (as the reference Excel)
+  const f2 = (v, d) => (v == null || !isFinite(v)) ? '–' : Number(v).toFixed(d == null ? 2 : d);
+
+  const GRADES = {
+    A: { label: 'Ordinary strength, Y 235', Y: 235, Q: 1.00, pk: 12.09, pn: 4.44 },
+    AH32: { label: 'AH/DH/EH32, Y 315', Y: 315, Q: 0.78, pk: 16.11, pn: 7.47 },
+    AH36: { label: 'AH/DH/EH36, Y 355', Y: 355, Q: 0.72, pk: 18.12, pn: 9.00 },
+    AH40: { label: 'AH/DH/EH40, Y 390', Y: 390, Q: 0.68, pk: 19.13, pn: 9.76 }
+  };
+  const gradeOf = k => GRADES[k] || GRADES.A;
+
+  const RULES = {
+    mvr: { label: 'Marine Vessel Rules', short: 'ABS MVR Pt.3', ref: 'ABS Rules for Building and Classing Marine Vessels, Part 3 Ch.2 (July 2026)' },
+    barge: { label: 'Steel Barge Rules', short: 'ABS Barge Rules', ref: 'ABS Rules for Building and Classing Steel Barges, Part 3 Ch.2 and Part 5 (January 2026)' }
+  };
+  const TYPES = {
+    general: { label: 'General cargo / multipurpose', r: 'mvr' },
+    bulk: { label: 'Bulk carrier', r: 'mvr', bulk: 1 },
+    tanker: { label: 'Oil / chemical tanker', r: 'mvr' },
+    container: { label: 'Container carrier', r: 'mvr' },
+    roro: { label: 'Ro-ro / vehicle carrier', r: 'mvr' },
+    passenger: { label: 'Passenger vessel / ferry', r: 'mvr' },
+    osv: { label: 'Offshore support vessel (OSV)', r: 'mvr', osv: 1 },
+    tug: { label: 'Tug / towing vessel', r: 'mvr', tug: 1 },
+    fishing: { label: 'Fishing vessel', r: 'mvr' },
+    other: { label: 'Other self-propelled vessel', r: 'mvr' },
+    b_deck: { label: 'Deck cargo barge (5-1-1)', r: 'barge', deckcargo: 1 },
+    b_hold: { label: 'Dry cargo barge, holds below deck (5-1-2)', r: 'barge' },
+    b_tank1: { label: 'Single skin tank barge (5-2-1)', r: 'barge', tank: 1 },
+    b_tank2: { label: 'Double skin tank barge (5-2-2)', r: 'barge', tank: 1 },
+    b_other: { label: 'Other barge (crane, accommodation, pipe-lay …)', r: 'barge' }
+  };
+
+  /* ---------------- ship ---------------- */
+  function deriveShip(sh) {
+    sh = sh || {};
+    const type = TYPES[sh.type] ? sh.type : 'general', T0 = TYPES[type], rules = T0.r;
+    const L = clamp(num(sh.L, 100), 6, 500), B = clamp(num(sh.B, 16), 1, 80), D = clamp(num(sh.D, 8), 0.5, 40);
+    const d = clamp(num(sh.d, 0.7 * D), 0.1, D), ds = clamp(num(sh.ds, d), 0.1, 1.5 * D), Cb = clamp(num(sh.Cb, 0.7), 0.3, 1);
+    const Ds = clamp(num(sh.Ds, D), 0.5, 40), Dfb = clamp(num(sh.Dfb, D), 0.5, 40);
+    const S = { type, T0, rules, L, B, D, d, ds, Cb, Ds, Dfb, osv: !!T0.osv, tug: !!T0.tug, bulk: !!T0.bulk, small: L < 90, notes: [] };
+    S.L1b = min(L, 225); S.L2 = min(L, 300);
+    S.s0 = L <= 270 ? 2.08 * L + 438 : 1000;
+    S.hovf = num(sh.hovf, 0.76);            // overflow / air pipe top above deck at side (barge tank heads)
+    S.pv = num(sh.pv, 0);                   // PV valve setting, bar
+    S.rho = num(sh.rho, 1.025);             // cargo specific gravity (tanks)
+    S.ha1 = L <= 61 ? 1.22 : L <= 122 ? 0.02 * L : 2.44; S.ha = max(S.ha1, 9.95 * S.pv);
+    S.df = num(sh.df, NaN);                 // forward draft, ballast (bottom slamming)
+    S.hDB = num(sh.hDB, NaN);
+    S.margin = num(sh.margin, 0);
+    S.gDeck = gradeOf(sh.gDeck); S.gBot = gradeOf(sh.gBot);
+    S.zNA = num(sh.zNA, NaN); S.Ioff = num(sh.Ioff, NaN); S.SMdk = num(sh.SMdk, NaN); S.SMbt = num(sh.SMbt, NaN);
+    S.MsH = num(sh.MsH, NaN); S.MsS = num(sh.MsS, NaN);
+    // double bottom depth 3-2-4/3.1 (MVR)
+    S.dDBreq = clamp(32 * B + 190 * sqrt(d), 760, 2000);
+    hullGirder(S);
+    return S;
+  }
+  function C1wave(L) { return L < 90 ? 0.044 * L + 3.75 : L <= 300 ? 10.75 - pow((300 - L) / 100, 1.5) : L <= 350 ? 10.75 : 10.75 - pow((L - 350) / 150, 1.5); }
+  function C1small(L) { return L < 18 ? 30.67 - 0.98 * L : L < 24 ? 22.40 - 0.52 * L : L < 35 ? 15.20 - 0.22 * L : L < 45 ? 11.35 - 0.11 * L : 6.40; }
+  function C1barge(L) { return L < 45 ? 4.11 : L < 95 ? 16.33 * pow(L / 100, 2) - 15.47 * (L / 100) + 7.77 : C1wave(max(L, 95)); }
+  function hullGirder(S) {
+    const { L, B, Cb } = S, st = [];
+    if (S.rules === 'mvr') {
+      const cb = max(Cb, 0.6);
+      if (L < 61) {
+        S.C1 = C1small(L); S.SMmin = S.C1 * 0.01 * L * L * B * (cb + 0.7);
+        st.push(['C1 (3-2-1/3.7.1, L < 61 m)', f2(S.C1, 3)], ['SMmin = C1 · 0,01 · L² B (Cb + 0,7), Cb ≥ 0,6', f2(S.SMmin, 0) + ' cm²·m']);
+        S.Mws = S.Mwh = NaN;
+      } else {
+        S.C1 = C1wave(L); S.SMmin = S.C1 * 0.01 * L * L * B * (cb + 0.7);
+        S.Mws = -110 * S.C1 * L * L * B * (Cb + 0.7) * 1e-3; S.Mwh = 190 * S.C1 * L * L * B * Cb * 1e-3;
+        st.push(['C1 (3-2-1/3.5.1)', f2(S.C1, 3)], ['SMmin = C1 C2 L² B (Cb + 0,7), C2 = 0,01, Cb ≥ 0,6', f2(S.SMmin, 0) + ' cm²·m'],
+          ['Mws = −110 C1 L² B (Cb + 0,7) · 10⁻³', f2(S.Mws, 0) + ' kN·m'], ['Mwh = +190 C1 L² B Cb · 10⁻³', f2(S.Mwh, 0) + ' kN·m']);
+      }
+      S.SMstress = NaN;
+      if (L >= 61 && (has(S.MsH) || has(S.MsS))) {
+        const Mt = max(has(S.MsH) ? S.MsH + S.Mwh : S.Mwh, has(S.MsS) ? abs(S.MsS) + abs(S.Mws) : abs(S.Mws));
+        S.Mt = Mt; S.SMstress = Mt / 17.5;
+        st.push(['Mt = max(Msw-h + Mwh ; Msw-s + |Mws|)', f2(Mt, 0) + ' kN·m'], ['SM = Mt / fp, fp = 17,5 kN/cm²', f2(S.SMstress, 0) + ' cm²·m']);
+      }
+      S.SMR = max(S.SMmin, has(S.SMstress) ? S.SMstress : 0);
+      S.Ireq = L >= 61 ? L * S.SMR / 33.3 : NaN;
+      if (L >= 61) st.push(['I ≥ L · SM / 33,3 (3-2-1/3.7.2)', f2(S.Ireq, 0) + ' cm²·m²']);
+      S.hgRef = '3-2-1';
+    } else {
+      S.C1 = C1barge(L); S.SMb = S.C1 * 0.01 * L * L * B * (Cb + 0.7);
+      const Ms = max(has(S.MsH) ? abs(S.MsH) : 0, has(S.MsS) ? abs(S.MsS) : 0);
+      S.K = (Ms > 0) ? max(0.629 + Ms / (17.5 * S.SMb), 1) : 1;
+      S.SMR = S.K * S.SMb; S.Ireq = 0.03 * S.SMR * L;
+      st.push(['C1 (Barge 3-2-1/3.1)', f2(S.C1, 3)], ['SMb = C1 C2 L² B (Cb + 0,7), C2 = 0,01', f2(S.SMb, 0) + ' cm²·m'],
+        ['K = 0,629 + Ms / (fp SMb) ≥ 1,0' + (Ms > 0 ? '' : ' (Ms not entered: K = 1)'), f2(S.K, 3)], ['SMR = K · SMb', f2(S.SMR, 0) + ' cm²·m'], ['I = 0,03 · SMR · L', f2(S.Ireq, 0) + ' cm²·m²']);
+      if (L < 30) S.notes.push('Barge length below 30 m: the hull girder section modulus of 3-2-1/3.1 is shown for information (C1 = 4,11).');
+      S.hgRef = 'Barge 3-2-1';
+    }
+    S.SMreqDk = S.SMR * S.gDeck.Q; S.SMreqBt = S.SMR * S.gBot.Q;
+    S.hgSteps = st;
+    S.hgChecks = [];
+    if (has(S.SMdk)) S.hgChecks.push({ lbl: 'Hull girder SM at deck', req: S.SMreqDk, off: S.SMdk, u: 'cm²·m' });
+    if (has(S.SMbt)) S.hgChecks.push({ lbl: 'Hull girder SM at bottom', req: S.SMreqBt, off: S.SMbt, u: 'cm²·m' });
+    if (has(S.Ioff) && has(S.Ireq)) S.hgChecks.push({ lbl: 'Hull girder moment of inertia', req: S.Ireq, off: S.Ioff, u: 'cm²·m²' });
+    if (has(S.hDB) && S.rules === 'mvr') S.hgChecks.push({ lbl: 'Double bottom depth dDB = 32 B + 190 √d', req: S.dDBreq, off: S.hDB, u: 'mm' });
+  }
+
+  /* ---------------- section properties ---------------- */
+  function props(parts) {
+    let A = 0, Ay = 0, I = 0, top = 0;
+    for (const p of parts) { if (!(p.b > 0 && p.h > 0)) continue; A += p.b * p.h; Ay += p.b * p.h * p.y; top = max(top, p.y + p.h / 2); }
+    if (A <= 0) return { A: 0, yna: 0, I: 0, top: 0 };
+    const yna = Ay / A; for (const p of parts) { if (!(p.b > 0 && p.h > 0)) continue; I += p.b * pow(p.h, 3) / 12 + p.b * p.h * pow(p.y - yna, 2); }
+    return { A, yna, I, top };
+  }
+  function profile(pr) {
+    pr = pr || {}; const type = pr.type || 'L', hw0 = num(pr.hw, 0), tw0 = num(pr.tw, 0), bf0 = num(pr.bf, 0), tf0 = num(pr.tf, tw0);
+    if (type === 'FB') return { type, hw: hw0, tw: tw0, bf: 0, tf: 0, flanged: false, depth: hw0, label: 'FB ' + hw0 + '×' + tw0 };
+    if (type === 'HP') { const al = hw0 <= 120 ? 1.1 + pow(120 - hw0, 2) / 3000 : 1; return { type, hw: hw0 - hw0 / 9.2 + 2, tw: tw0, bf: al * (tw0 + hw0 / 6.7 - 2), tf: hw0 / 9.2 - 2, flanged: true, depth: hw0, label: 'HP ' + hw0 + '×' + tw0 }; }
+    if (type === 'L') return { type, hw: max(hw0 - tf0, 0), tw: tw0, bf: bf0, tf: tf0, flanged: true, depth: hw0, label: 'L ' + hw0 + '×' + bf0 + '×' + tw0 + (tf0 !== tw0 ? '/' + tf0 : '') };
+    return { type: 'T', hw: hw0, tw: tw0, bf: bf0, tf: tf0, flanged: bf0 > 0 && tf0 > 0, depth: hw0 + tf0, label: 'T ' + hw0 + '×' + tw0 + ' + FL ' + bf0 + '×' + tf0 };
+  }
+  function withPlate(np, bp, tp) {
+    const parts = [{ b: bp, h: tp, y: tp / 2 }, { b: np.tw, h: np.hw, y: tp + np.hw / 2 }];
+    if (np.flanged) parts.push({ b: np.bf, h: np.tf, y: tp + np.hw + np.tf / 2 });
+    const p = props(parts), vf = p.top - p.yna;
+    return { A: p.A / 100, I: p.I / 1e4, yna: p.yna, top: p.top, Z: (vf > 0 && p.yna > 0) ? p.I / max(vf, p.yna) / 1000 : 0, Zf: vf > 0 ? p.I / vf / 1000 : 0 };
+  }
+
+  /* ---------------- helpers for heads ---------------- */
+  const K_ASPECT = a => (a >= 1 && a <= 2) ? (3.075 * sqrt(a) - 2.077) / (a + 0.272) : 1;
+  const qOf = g => 235 / g.Y;
+  function endsT(S, s) { const L = S.L; return L < 90 ? 0.0455 * L + 0.009 * s : L <= 305 ? 0.035 * (L + 29) + 0.009 * s : (11.70 + 0.009 * s) * sqrt(S.D / 35); }
+  function endsTxt(S) { return S.L < 90 ? '0,0455 L + 0,009 s' : S.L <= 305 ? '0,035 (L + 29) + 0,009 s' : '(11,70 + 0,009 s)(D/35)^0,5'; }
+  // MVR deep tank head 3-2-10/3.1
+  function mvrTankHead(c, z, el) {
+    const S = c.S, zTop = num(el.zTop, S.D), hov = num(el.hov, S.hovf), sg = num(el.sg, 1.025);
+    const a = zTop - z + 2 / 3 * hov, eMin = S.L < 90 ? max(0.01 * S.L + 0.15, 0.46) : 0;
+    const e = zTop - z + max(beamH(S, 'e'), eMin), ll = S.d - z, bd = 2 / 3 * (S.Dfb - z);
+    let h = max(a, e, ll, bd, 0);
+    c.st('h1 to 2/3 of the overflow height above the tank top', 'zTop − z + 2/3 hov = ' + f2(zTop) + ' − ' + f2(z) + ' + 2/3 · ' + f2(hov), a, 'm');
+    c.st('h2 tank top + Table 2 column e head' + (S.L < 90 ? ' (≥ 0,01 L + 0,15 ≥ 0,46)' : ''), 'zTop − z + ' + f2(max(beamH(S, 'e'), eMin)), e, 'm');
+    c.st('h3 to the load line', 'd − z', ll, 'm'); c.st('h4 2/3 of the distance to the bulkhead deck', '2/3 (Dbd − z)', bd, 'm');
+    if (has(el.pvs) && +el.pvs > 0) { const hp = sg / 1.025 * (zTop - z) + 2 / 3 * (sg / 1.025 * num(el.hs, 0) + 9.95 * +el.pvs); c.st('h5 with relief valve setting Ps', 'ρ ht + 2/3 (ρ hs + 9,95 Ps)', hp, 'm'); h = max(h, hp); }
+    if (sg > 1.05) { h *= sg / 1.05; c.st('Specific gravity > 1,05: h × SG / 1,05', '', h, 'm'); }
+    return h;
+  }
+  // Barge tank heads 5-2-1/3 (cargo tank) and ballast / void heads of Part 5
+  function bargeHead(c, z, el, kind) {
+    const S = c.S, zTop = num(el.zTop, S.D), sp = el.space || 'void';
+    if (sp === 'cargo') {
+      const sg = num(el.sg, S.rho), rho = sg > 1.05 ? sg : 1.0;
+      const ht = max(zTop - z, 0), h1 = rho * ht + S.ha;
+      c.st('ha = max(ha1 ; 9,95 pv), ha1 = ' + (S.L <= 61 ? '1,22 m (L ≤ 61)' : S.L <= 122 ? '0,02 L' : '2,44 m'), '', S.ha, 'm');
+      c.st('Cargo tank head h1 = ρ ht + ha (5-2-1/3), ρ = ' + f2(rho), f2(rho) + ' · ' + f2(ht) + ' + ' + f2(S.ha), h1, 'm');
+      let h = h1;
+      if (has(el.hs) && has(el.Ps) && +el.Ps > 0) { const h0 = 2 / 3 * (rho * +el.hs + 9.95 * +el.Ps); c.st('Spill valve head h0 = 2/3 (ρ hs + 9,95 Ps)', '', h0, 'm'); h = max(h, h0); }
+      return h;
+    }
+    if (sp === 'ballast') {
+      const h = max(zTop - z + 2 / 3 * S.hovf, 0.915);
+      c.st('Ballast / deep tank: to 2/3 of the distance from the tank top to the overflow top, ≥ 0,915 m', f2(zTop) + ' − ' + f2(z) + ' + 2/3 · ' + f2(S.hovf), h, 'm');
+      return h;
+    }
+    const h = max(S.D - z, 0);
+    c.st('Void / dry space: to the deck at side', 'D − z = ' + f2(S.D) + ' − ' + f2(z), h, 'm');
+    return h;
+  }
+  // MVR Table 2 deck heads, interpolated by L
+  const TBL2 = { L: [30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 122], a: [1.36, 1.56, 1.76, 1.96, 2.16, 2.36, 2.56, 2.76, 2.90, 2.90, 2.90], b: [1.06, 1.26, 1.46, 1.66, 1.86, 2.06, 2.26, 2.29, 2.29, 2.29, 2.29], c: [0.91, 1.01, 1.11, 1.21, 1.31, 1.41, 1.51, 1.69, 1.90, 1.98, 1.98], d: [0.60, 0.70, 0.80, 0.90, 1.00, 1.10, 1.20, 1.30, 1.44, 1.64, 1.68], e: [0.45, 0.55, 0.65, 0.75, 0.85, 0.95, 1.05, 1.15, 1.15, 1.27, 1.30], f: [0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.91, 0.91, 0.91, 0.91], g: [0.46, 0.46, 0.46, 0.46, 0.46, 0.46, 0.46, 0.46, 0.46, 0.46, 0.46] };
+  function beamH(S, col) { const X = TBL2.L, Y = TBL2[col] || TBL2.d, L = clamp(S.L, 30, 122); for (let i = 1; i < X.length; i++) if (L <= X[i]) return Y[i - 1] + (Y[i] - Y[i - 1]) * (L - X[i - 1]) / (X[i] - X[i - 1]); return Y[Y.length - 1]; }
+  const BEAMLOC = {
+    fb0: ['Freeboard deck, no decks below', 'a'], fb1: ['Freeboard deck, with decks below', 'b'], low: ['Lower decks', 'c'],
+    fc1: ['Forecastle / bridge deck, 1st tier', 'c'], fc2: ['Forecastle / bridge deck, 2nd tier and above; short bridge', 'd'],
+    poop1: ['Poop deck, 1st tier', 'd'], poop2: ['Poop deck, 2nd tier and above', 'e'],
+    ls1f: ['Long superstructure 1st tier, forward of midship half-length', 'b'], ls1m: ['Long superstructure 1st tier, amidships', 'c'], ls1a: ['Long superstructure 1st tier, aft 3/5', 'd'],
+    s2f: ['Superstructure 2nd tier, forward', 'c'], s2m: ['Superstructure 2nd tier, amidships', 'd'], s3: ['Superstructure 3rd tier and above; accommodation decks', 'f'],
+    ss: ['Superstructure decks (other)', 'd'], ht1: ['House top, 1st tier', 'd'], ht2: ['House top, 2nd tier', 'e'], ht2s: ['House top, 2nd tier, shelter only', 'f'], ht3: ['House top, 3rd tier and above', 'f'], ht3s: ['House top, 3rd tier and above, shelter only', 'g']
+  };
+
+  /* ---------------- calc context ---------------- */
+  function ctx(S, el) {
+    const g = gradeOf(el.grade), c = { S, el, g, Q: g.Q, steps: [], checks: [], notes: [], warn: [] };
+    c.st = (d, f, v, u) => { c.steps.push({ d, f: f || '', v, u: u || '' }); return v; };
+    c.note = t => c.notes.push(t);
+    return c;
+  }
+  const sOf = el => clamp(num(el.s, 600), 50, 6000), lOf = el => clamp(num(el.l, 2), 0.05, 60), zOf = el => num(el.z, 0);
+  const tank = (el) => el.space === 'cargo' || el.space === 'ballast';
+
+  /* ---------------- items ---------------- */
+  const PLATE = 'plate', STIFF = 'stiff', PSM = 'psm', SPEC = 'spec';
+  const yes = v => v === true || v === 'yes' || v === 1 || v === '1';
+  const SPACE_B = [['void', 'Void / dry space'], ['ballast', 'Ballast / deep tank'], ['cargo', 'Cargo tank (5-2-1/3 head)']];
+  const FRAMING = [['long', 'Longitudinal'], ['trans', 'Transverse']];
+  const hssSide = (c, t) => { if (c.Q >= 1) return t; const v = (t - 4.3) * (c.Q + 2 * sqrt(c.Q)) / 3 + 4.3; return c.st('Higher-strength steel: tms − 4,3)(Q + 2√Q)/3 + 4,3, Q = ' + f2(c.Q), '', v, 'mm'); };
+  const hssBot = (c, t) => { if (c.Q >= 1) return t; const v = (t - 4.3) * c.Q + 4.3; return c.st('Higher-strength steel: (tms − 4,3) Q + 4,3, Q = ' + f2(c.Q), '', v, 'mm'); };
+  function tankPlate(c, s, h, label) {
+    const el = c.el, a = max(lOf(el) * 1000 / s, s / (lOf(el) * 1000)), k = K_ASPECT(a), q = qOf(c.g);
+    c.st('Aspect ratio α = longer / shorter edge', f2(lOf(el) * 1000, 0) + ' / ' + f2(s, 0), a, '');
+    c.st('k = (3,075 √α − 2,077)/(α + 0,272) for 1 ≤ α ≤ 2, else 1', '', k, '');
+    c.st('q = 235 / Y', '235 / ' + c.g.Y, q, '');
+    const t1 = c.st(label || 't = s k √(q h) / 254 + 2,5', f2(s, 0) + ' · ' + f2(k, 3) + ' √(' + f2(q, 3) + ' · ' + f2(h, 3) + ') / 254 + 2,5', s * k * sqrt(q * h) / 254 + 2.5, 'mm');
+    const t2 = c.st('Minimum s/150 + 2,5 and 6,5 mm', '', max(s / 150 + 2.5, 6.5), 'mm');
+    return max(t1, t2);
+  }
+
+  const ITEMS = {};
+  const add = (k, o) => { o.key = k; ITEMS[k] = o; };
+
+  /* ===== MVR shell ===== */
+  add('m_side', {
+    r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Side shell plating amidships', ref: '3-2-2/3.9',
+    fields: S => [['framing', 'Framing', { opts: FRAMING }], ['hOver', 'Head h (only L < 90 m, blank = rule)', { unit: 'm' }], ['fender', 'In way of fenders / towing (+25 %)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), L = S.L; let t;
+      const r = max(S.ds / S.Ds, S.osv ? 0.67 : 0.0433 * L / S.Ds);
+      if (S.osv) {
+        c.st('ds/Ds ≥ 0,67 (OSV)', f2(S.ds) + ' / ' + f2(S.Ds), r, '');
+        const t1 = c.st('t1 = (s/645) √((L − 15,2) ds/Ds) + 2,5', '', s / 645 * sqrt(max(L - 15.2, 0) * r) + 2.5, 'mm');
+        const t2 = c.st('t2 = 0,035 (L + 29) + 0,009 s', '', 0.035 * (L + 29) + 0.009 * s, 'mm');
+        t = max(t1, t2, c.st('Minimum for OSV', '', 8.5, 'mm'));
+      } else if (L < 90) {
+        const dsx = max(S.ds, 0.066 * L), h = has(el.hOver) ? +el.hOver : max(S.Ds, 0.1 * L, 1.18 * dsx);
+        c.st('h = Ds, not less than 0,1 L or 1,18 ds (ds ≥ 0,066 L)' + (has(el.hOver) ? ' – entered' : ''), 'max(' + f2(S.Ds) + ' ; ' + f2(0.1 * L) + ' ; ' + f2(1.18 * dsx) + ')', h, 'm');
+        const t1 = c.st('t1 = s √h / 268 + 2,5', f2(s, 0) + ' √' + f2(h, 3) + ' / 268 + 2,5', s * sqrt(h) / 268 + 2.5, 'mm');
+        const t2 = c.st('Not less than shell at ends 5.1: ' + endsTxt(S), '', endsT(S, s), 'mm');
+        t = max(t1, t2);
+      } else {
+        c.st('ds/Ds ≥ 0,0433 L/Ds', '', r, '');
+        const t1 = L <= 305 ? c.st('t1 = (s/645) √((L − 15,2) ds/Ds) + 2,5', '', s / 645 * sqrt((L - 15.2) * r) + 2.5, 'mm') : c.st('t1 = (s/828) √((L + 175) ds/Ds) + 2,5', '', s / 828 * sqrt((L + 175) * r) + 2.5, 'mm');
+        const t2 = c.st('Not less than 5.1 with s = 610 mm: ' + endsTxt(S), '', endsT(S, 610), 'mm');
+        t = max(t1, t2);
+      }
+      if (S.bulk && el.framing === 'trans') t = max(t, c.st('Bulk carrier hold frames: t ≥ √L', '', sqrt(L), 'mm'));
+      t = hssSide(c, t);
+      if (yes(el.fender) && (S.osv || L < 90)) t = c.st('In way of fenders: × 1,25', '', t * 1.25, 'mm');
+      return { t };
+    }
+  });
+  function mvrBottom(c) {
+    const { S, el } = c, s = sOf(el), L = S.L, r = max(S.ds / S.Ds, S.osv ? 0.67 : 0.0433 * L / S.Ds);
+    c.st('ds/Ds, not less than ' + (S.osv ? '0,67 (OSV)' : '0,0433 L/Ds'), f2(S.ds) + ' / ' + f2(S.Ds), r, '');
+    let t1;
+    if (el.framing === 'trans') { t1 = c.st('t = (s/519) √((L − 19,8) ds/Ds) + 2,5 (transverse framing' + (L > 183 ? ', formula for L ≤ 183 m' : '') + ')', '', s / 519 * sqrt(max(L - 19.8, 0) * r) + 2.5, 'mm'); if (L > 183) c.note('Transverse bottom framing beyond 183 m is outside the rule formula.'); }
+    else if (L <= 122) t1 = c.st('t = (s/671) √((L − 18,3) ds/Ds) + 2,5 (longitudinal, L ≤ 122 m)', '', s / 671 * sqrt(max(L - 18.3, 0) * r) + 2.5, 'mm');
+    else if (L <= 305) t1 = c.st('t = (s/508) √((L − 62,5) ds/Ds) + 2,5 (longitudinal, 122–305 m)', '', s / 508 * sqrt((L - 62.5) * r) + 2.5, 'mm');
+    else t1 = c.st('t = (s/661) √((L + 105) ds/Ds) + 2,5 (longitudinal, > 305 m)', '', s / 661 * sqrt((L + 105) * r) + 2.5, 'mm');
+    let tm;
+    if (el.framing === 'trans') { const ss = max(s, S.s0); tm = c.st('Minimum (3.15.2) s(L + 45,73)/(25 L + 6082), s ≥ standard spacing ' + f2(S.s0, 0), '', ss * (L + 45.73) / (25 * L + 6082), 'mm'); }
+    else { const ss = max(s, min(0.88 * S.s0, 813)); tm = c.st('Minimum (3.15.2) s(L − 18,3)/(42 L + 1070), s ≥ min(0,88 S ; 813)', '', ss * max(L - 18.3, 0) / (42 * L + 1070), 'mm'); }
+    const te = c.st('Not less than 5.1 with s = 610 mm: ' + endsTxt(S), '', endsT(S, 610), 'mm');
+    return hssBot(c, max(t1, tm, te));
+  }
+  add('m_bottom', { r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Bottom shell plating amidships', ref: '3-2-2/3.15', fields: S => [['framing', 'Framing', { opts: FRAMING }]], calc(c) { return { t: mvrBottom(c) }; } });
+  add('m_keel', {
+    r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Flat keel plate', ref: '3-2-2/3.17', fields: S => [['framing', 'Framing', { opts: FRAMING }], ['clear', 'Docking blocks clear of the keel', { chk: 1 }]],
+    calc(c) { let t = mvrBottom(c); if (c.S.L >= 90 && !yes(c.el.clear)) t = c.st('Flat keel: bottom + 1,5 mm (L ≥ 90 m)', '', t + 1.5, 'mm'); else c.note('Keel = bottom plating (L < 90 m or docking blocks clear of the keel).'); return { t }; }
+  });
+  add('m_ends', {
+    r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Shell plating at ends (0,1 L)', ref: '3-2-2/5.1', fields: S => [['stem', 'Within 0,025 L of the stem (× 1,25)', { chk: 1 }]],
+    calc(c) { let t = c.st('t = ' + endsTxt(c.S), '', endsT(c.S, sOf(c.el)), 'mm'); if (yes(c.el.stem)) t = c.st('Forward 0,025 L: × 1,25', '', t * 1.25, 'mm'); return { t }; }
+  });
+  add('m_bow', {
+    r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Immersed bow plating', ref: '3-2-2/5.5', fields: S => [['tSide', 'Side shell amidships (upper limit)', { unit: 'mm' }]],
+    calc(c) { let t = c.st('t = 0,05 (L + 20) + 0,009 s', '', 0.05 * (c.S.L + 20) + 0.009 * sOf(c.el), 'mm'); if (has(c.el.tSide)) t = c.st('Need not exceed side shell amidships', '', min(t, +c.el.tSide), 'mm'); return { t }; }
+  });
+  add('m_bfwd', {
+    r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Bottom forward (slamming)', ref: '3-2-2/5.3',
+    fields: S => [],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), L = S.L, df = S.df;
+      if (L < 61) { c.note('L < 61 m: bottom forward requirement not applicable.'); return { t: 0, na: 1 }; }
+      if (!has(df)) { c.warn.push('Enter the forward draft in ballast df on the ship tab.'); return { t: NaN }; }
+      if (df >= 0.04 * L) { c.note('df ≥ 0,04 L: bottom forward slamming plating not required; shell at ends applies.'); return { t: c.st('Shell at ends 5.1', '', endsT(S, s), 'mm') }; }
+      const L1 = min(L, 214); c.st('L1 = L ≤ 214 m', '', L1, 'm');
+      const t = c.st('t = 0,0046 s √((0,005 L1² − 1,3 df²)/df)', '', 0.0046 * s * sqrt(max(0.005 * L1 * L1 - 1.3 * df * df, 0) / df), 'mm');
+      return { t: max(t, c.st('Not less than shell at ends', '', endsT(S, s), 'mm')) };
+    }
+  });
+  add('m_tunnel', {
+    r: 'mvr', cat: PLATE, grp: 'Shell plating', label: 'Thruster tunnel plating', ref: '3-2-2/5.11', fields: S => [['dt', 'Tunnel inner diameter d', { unit: 'mm' }]],
+    calc(c) { const d = max(num(c.el.dt, 968), 968); c.st('d, not less than 968 mm', '', d, 'mm'); return { t: c.st('t = 0,008 d + 3,3', '', 0.008 * d + 3.3, 'mm') }; }
+  });
+
+  /* ===== MVR decks ===== */
+  function deckEq(S, s, eq, h) {
+    const L = S.L, big = s > 760;
+    switch (eq) {
+      case '1a': return [big ? '0,0066 s + 4,9' : '0,01 s + 2,3', big ? 0.0066 * s + 4.9 : 0.01 * s + 2.3];
+      case '1b': return ['s (L + 45,73)/(25 L + 6082)', s * (L + 45.73) / (25 * L + 6082)];
+      case '2a': return [big ? '0,006 s + 4,7' : '0,009 s + 2,4', big ? 0.006 * s + 4.7 : 0.009 * s + 2.4];
+      case '2b': return L <= 183 ? ['s (L + 48,76)/(26 L + 8681)', s * (L + 48.76) / (26 * L + 8681)] : ['24,38 s/(1615,4 − 1,1 L)', 24.38 * s / (1615.4 - 1.1 * L)];
+      case '3': return [big ? '0,0067 s + 3,4' : '0,01 s + 0,9', big ? 0.0067 * s + 3.4 : 0.01 * s + 0.9];
+      case '4': return [big ? '0,0043 s + 4,6' : '0,01 s + 0,25', big ? 0.0043 * s + 4.6 : 0.01 * s + 0.25];
+      case '5': return [big ? '0,0039 s + 4,3' : '0,009 s + 0,8', big ? 0.0039 * s + 4.3 : 0.009 * s + 0.8];
+      case '6': return ['0,00394 s √h + 1,5 ≥ 5,0', max(0.00394 * s * sqrt(max(h, 0)) + 1.5, 5)];
+      case '6b': return ['0,00395 s √h + 1,5 ≥ 5,0', max(0.00395 * s * sqrt(max(h, 0)) + 1.5, 5)];
+      case '7': return ['0,0058 s + 1,0 ≥ 4,5', max(0.0058 * s + 1.0, 4.5)];
+    }
+  }
+  const MDECK = [['A', 'A – Strength deck outside line of openings'], ['B', 'B – Exposed strength deck within line of openings'], ['C', 'C – Enclosed strength deck within line of openings'], ['D2', 'D – Second deck'], ['D3', 'D – Third deck'], ['E', 'E – Forecastle deck'], ['F', 'F – Poop deck'], ['G', 'G – Decks above poop / forecastle'], ['H', 'H – House tops, decks in enclosed superstructures'], ['I', 'I – Platform deck in enclosed cargo space'], ['J', 'J – Accommodation deck']];
+  add('m_deck', {
+    r: 'mvr', cat: PLATE, grp: 'Decks', label: 'Deck plating (Table 1)', ref: '3-2-3/1 Table 1',
+    fields: S => [['deck', 'Deck', { opts: MDECK }], ['framing', 'Framing', { opts: FRAMING }], ['hTw', 'Tween deck height h (platform deck)', { unit: 'm' }], ['p', 'Uniform cargo load p (blank = none)', { unit: 'kN/m²' }], ['house', 'Within a steel deckhouse (−1 mm)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), dk = el.deck || 'A', lon = el.framing !== 'trans';
+      const hp = has(el.p) ? +el.p / 7.01 : num(el.hTw, 2.5);
+      let eqs;
+      if (dk === 'A') eqs = lon ? ['2a', '2b'] : ['1a', '1b'];
+      else if (dk === 'B') eqs = ['3']; else if (dk === 'C') eqs = ['5'];
+      else if (dk === 'D2') eqs = [S.Ds > 15.2 ? '1a' : S.Ds >= 12.8 ? '2a' : '3'];
+      else if (dk === 'D3') eqs = [S.Ds > 17.7 ? '1a' : S.Ds >= 13.4 ? '2a' : S.Ds >= 9.8 ? '3' : '4'];
+      else if (dk === 'E') eqs = [S.L > 122 ? '2a' : '3']; else if (dk === 'F') eqs = [S.L > 100 ? '3' : '5'];
+      else if (dk === 'G') eqs = ['4']; else if (dk === 'H') eqs = ['5']; else if (dk === 'I') eqs = ['6']; else eqs = ['7'];
+      let t = 0, t2b = 0;
+      for (const e of eqs) {
+        const [f, v] = deckEq(S, s, e, hp); c.st('Eq. ' + e + ': t = ' + f + (e === '6' ? ', h = ' + f2(hp) + ' m' : ''), '', v, 'mm');
+        if (c.Q < 1 && (e === '2b' || (dk === 'A' && !lon))) { const fq = max(0.92 / sqrt(c.Q), 1); t2b = max(t2b, c.st('  HSS: (0,92/√Q)(tms2 − 4,3) + 4,3, factor ≥ 1', '', fq * (v - 4.3) + 4.3, 'mm')); }
+        else if (c.Q < 1 && dk === 'A') t = max(t, c.st('  HSS: (tms1 − 4,3) Q + 4,3', '', (v - 4.3) * c.Q + 4.3, 'mm'));
+        else t = max(t, v);
+      }
+      t = max(t, t2b);
+      if (has(el.p) && +el.p > 0) t = max(t, c.st('Deck cargo: s √h / 254 + 1,5, h = p/7,01 = ' + f2(+el.p / 7.01), '', s * sqrt(+el.p / 7.01) / 254 + 1.5, 'mm'));
+      const tmin = (dk === 'H' || dk === 'J') ? 4.5 : 5.0;
+      t = max(t, c.st('General minimum', '', tmin, 'mm'));
+      if (yes(el.house) && dk === 'A') t = c.st('Within a steel deckhouse: − 1 mm', '', max(t - 1, tmin), 'mm');
+      return { t };
+    }
+  });
+  add('m_wheel', {
+    r: 'both', cat: PLATE, grp: 'Decks', label: 'Deck plating under wheel loads', ref: '3-2-3/5 (MVR), 3-2-3/17 (Barge)',
+    fields: S => [['W', 'Static wheel (tyre print) load W', { unit: 'kN' }], ['wa', 'Tyre print a (parallel to longer panel edge)', { unit: 'mm' }], ['wb', 'Tyre print b (parallel to shorter edge)', { unit: 'mm' }], ['wPort', 'Condition', { opts: [['sea', 'At sea (C = 1,5)'], ['port', 'In port only (C = 1,1)']] }], ['wDeck', 'Deck', { opts: [['str', 'Strength deck (× 1,1)'], ['oth', 'Other deck (× 1,0)'], ['plat', 'Platform deck (× 0,9)']] }]],
+    calc(c) {
+      const { el } = c, s = sOf(el), lng = lOf(el) * 1000, W = num(el.W, 0), a = min(num(el.wa, 300), lng), b = min(num(el.wb, 200), s);
+      const as = a / s, bs = b / s, ls = lng / s, C = el.wPort === 'port' ? 1.1 : 1.5;
+      c.st('a/s, b/s, ℓ/s', f2(as, 3) + ', ' + f2(bs, 3) + ', ' + f2(ls, 2), as, '');
+      const K = c.st('K = [21,99 + 0,316 (a/s)² − 5,328 (a/s) + 2,6 (a/s)(b/s) − 0,895 (b/s)² − 7,624 (b/s)] 10⁻²', '', (21.99 + 0.316 * as * as - 5.328 * as + 2.6 * as * bs - 0.895 * bs * bs - 7.624 * bs) * 1e-2, '');
+      const n = c.st('n = 1,0 for ℓ/s ≥ 2; 0,85 for ℓ/s = 1; interpolated', '', ls >= 2 ? 1 : ls <= 1 ? 0.85 : 0.85 + 0.15 * (ls - 1), '');
+      let t = c.st('t = 8,05 K n √(C W), C = ' + f2(C, 1), '', 8.05 * K * n * sqrt(C * W), 'mm');
+      const fd = el.wDeck === 'plat' ? 0.9 : el.wDeck === 'oth' ? 1.0 : 1.1; t = c.st('Deck factor', '× ' + f2(fd, 1), t * fd, 'mm');
+      if (c.g.Y > 235) t = c.st('Higher-strength steel: × √q', '', t * sqrt(qOf(c.g)), 'mm');
+      if (!(W > 0)) { c.warn.push('Enter the wheel load W.'); return { t: NaN }; }
+      return { t };
+    }
+  });
+
+  /* ===== MVR double bottom ===== */
+  add('m_cg', { r: 'mvr', cat: PLATE, grp: 'Double bottom', label: 'Centre girder', ref: '3-2-4/3.3', fields: S => [['endz', 'Outside 0,4 L amidships (85 %)', { chk: 1 }]], calc(c) { let t = c.st('t = 0,056 L + 5,5', '', 0.056 * c.S.L + 5.5, 'mm'); if (yes(c.el.endz)) t = c.st('At ends: 85 %', '', 0.85 * t, 'mm'); return { t }; } });
+  add('m_floor', {
+    r: 'mvr', cat: PLATE, grp: 'Double bottom', label: 'Solid floors and side girders', ref: '3-2-4/3.5, 3.9', fields: S => [['mem', 'Member', { opts: [['floorL', 'Floor, longitudinally framed bottom'], ['floorT', 'Floor, transversely framed bottom'], ['sg', 'Side girder']] }]],
+    calc(c) { const cc = c.el.mem === 'floorL' ? 1.5 : 0; const t = c.st('t = 0,036 L + 4,7 + c, c = ' + f2(cc, 1), '', 0.036 * c.S.L + 4.7 + cc, 'mm'); return { t: c.st('Need not exceed 14 mm', '', min(t, 14), 'mm') }; }
+  });
+  add('m_ib', {
+    r: 'mvr', cat: PLATE, grp: 'Double bottom', label: 'Inner bottom plating', ref: '3-2-4/9', fields: S => [['framing', 'Framing', { opts: FRAMING }], ['eng', 'In engine space (L < 90 m)', { chk: 1 }], ['p', 'Cargo load on inner bottom p', { unit: 'kN/m²' }], ['space', 'Tank below', { opts: [['void', 'Double bottom tank (normal)'], ['deep', 'Deep tank head (3-2-10)']] }], ['zTop', 'Deep tank: top of tank zTop', { unit: 'm' }], ['margin2', 'Vertical margin plate (+2 mm)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), L = S.L;
+      const cc = L < 90 ? (yes(el.eng) ? -1.5 : 0.5) : (el.framing === 'trans' ? 0.5 : 1.5);
+      let t = c.st('t = 0,037 L + 0,009 s − c, c = ' + f2(cc, 1), '', 0.037 * L + 0.009 * s - cc, 'mm');
+      if (has(el.p) && +el.p > 0) t = max(t, c.st('Cargo: s √h / 254 + 1,5, h = p/7,01', '', s * sqrt(+el.p / 7.01) / 254 + 1.5, 'mm'));
+      if (el.space === 'deep') { const h = mvrTankHead(c, zOf(el), el); t = max(t, tankPlate(c, s, h) + c.st('Tank top: + 1 mm', '', 1, 'mm')); }
+      if (yes(el.margin2)) t = c.st('Vertical margin plate: + 2 mm', '', t + 2, 'mm');
+      return { t };
+    }
+  });
+
+  /* ===== MVR stiffeners ===== */
+  add('m_blong', {
+    r: 'mvr', cat: STIFF, grp: 'Bottom framing', label: 'Bottom longitudinal', ref: '3-2-4/11.3', fields: S => [['strut', 'Effective struts to inner bottom (c = 0,715)', { chk: 1 }], ['hOver', 'Head h (blank = rule)', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = max(lOf(el), 1.83), cc = yes(el.strut) ? 0.715 : 1.3;
+      const h = has(el.hOver) ? +el.hOver : c.st('h = max(ds ; 2/3 of the distance to the bulkhead deck)', 'max(' + f2(S.ds) + ' ; ' + f2(2 / 3 * S.Dfb) + ')', max(S.ds, 2 / 3 * S.Dfb), 'm');
+      c.st('ℓ, not less than 1,83 m', '', l, 'm');
+      return { SM: c.st('SM = 7,8 c h s ℓ² Q, c = ' + cc, '7,8 · ' + cc + ' · ' + f2(h, 3) + ' · ' + f2(s, 3) + ' · ' + f2(l, 3) + '² · ' + f2(c.Q), 7.8 * cc * h * s * l * l * c.Q, 'cm³') };
+    }
+  });
+  add('m_iblong', {
+    r: 'mvr', cat: STIFF, grp: 'Bottom framing', label: 'Inner bottom longitudinal', ref: '3-2-4/11.5', fields: S => [['strut', 'Effective struts (bottom c = 0,715)', { chk: 1 }], ['hCargo', 'Cargo head h on inner bottom (blank = none)', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = max(lOf(el), 1.83), cc = yes(el.strut) ? 0.715 : 1.3, h = max(S.ds, 2 / 3 * S.Dfb);
+      const sb = c.st('Bottom longitudinal requirement 7,8 c h s ℓ² Q (c = ' + cc + ', h = ' + f2(h) + ')', '', 7.8 * cc * h * s * l * l * c.Q, 'cm³');
+      let SM = c.st('Inner bottom longitudinal: 0,85 × bottom', '', 0.85 * sb, 'cm³');
+      if (has(el.hCargo)) SM = max(SM, c.st('Cargo: 7,8 c h s ℓ² Q, c = 0,60', '', 7.8 * 0.6 * +el.hCargo * s * l * l * c.Q, 'cm³'));
+      return { SM };
+    }
+  });
+  add('m_slong', {
+    r: 'mvr', cat: STIFF, grp: 'Side framing', label: 'Side longitudinal', ref: '3-2-5/3.17', fields: S => [['fwd', 'Forward of 0,125 L from FP (+25 %)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), z = zOf(el), L = S.L, cc = L < 90 ? 0.915 : 0.95;
+      let h;
+      if (L < 90) h = c.st('h = distance to the freeboard deck, ≥ 0,02 L + 0,46', 'max(' + f2(S.Dfb - z) + ' ; ' + f2(0.02 * L + 0.46) + ')', max(S.Dfb - z, 0.02 * L + 0.46), 'm');
+      else if (z > 0.5 * S.D) h = c.st('Above 0,5 D: distance to the bulkhead / freeboard deck, ≥ 2,1 m', '', max(S.Dfb - z, 2.1), 'm');
+      else h = c.st('At / below 0,5 D: 0,75 × distance to the deck, ≥ 0,5 Ds', '', max(0.75 * (S.Dfb - z), 0.5 * S.Ds), 'm');
+      let SM = c.st('SM = 7,8 c h s ℓ² Q, c = ' + cc, '', 7.8 * cc * h * s * l * l * c.Q, 'cm³');
+      if (yes(el.fwd)) SM = c.st('Forward of 0,125 L: + 25 %', '', SM * 1.25, 'cm³');
+      return { SM };
+    }
+  });
+  add('m_sframe', {
+    r: 'mvr', cat: STIFF, grp: 'Side framing', label: 'Transverse side frame (hold / main frame)', ref: '3-2-5/3.1',
+    fields: S => [['bS', 'b – frame to first row of deck supports', { unit: 'm' }], ['h1', 'h1 = hFB + ΣhC + hE + 0,5 ΣhP (≥ 2,44)', { unit: 'm' }], ['tween', 'Frames with tween decks (L < 90 m)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), zm = zOf(el), b = num(el.bS, S.B / 4), h1 = max(num(el.h1, 2.44), 2.44);
+      c.st('b', '', b, 'm'); c.st('h1 ≥ 2,44 m', '', h1, 'm');
+      if (S.osv || S.L >= 90) {
+        const ll = max(l, 2.1); c.st('ℓ ≥ 2,1 m', '', ll, 'm');
+        const h = c.st('h = distance from mid ℓ to the scantling draft, ≥ 0,4 ℓ', '', max(S.ds - zm, 0.4 * ll), 'm');
+        return { SM: c.st('SM = s ℓ² (h + b h1/30)(7 + 45/ℓ³) Q', '', s * ll * ll * (h + b * h1 / 30) * (7 + 45 / pow(ll, 3)) * c.Q, 'cm³') };
+      }
+      const cc = yes(el.tween) ? 0.90 + 5.8 / pow(l, 3) : 0.915; c.st('c = ' + (yes(el.tween) ? '0,90 + 5,8/ℓ³' : '0,915'), '', cc, '');
+      const h = c.st('h = (to LWL or 0,4 ℓ) + b h1/33, ≥ 0,02 L + 0,46', '', max(max(S.ds - zm, 0.4 * l) + b * h1 / 33, 0.02 * S.L + 0.46), 'm');
+      return { SM: c.st('SM = 7,8 c h s ℓ² Q', '', 7.8 * cc * h * s * l * l * c.Q, 'cm³') };
+    }
+  });
+  add('m_tween', {
+    r: 'mvr', cat: STIFF, grp: 'Side framing', label: 'Tween-deck / superstructure frame', ref: '3-2-5/5, 3-2-11/3.5', fields: S => [['K', 'Frame type', { opts: [['A', 'Type A: 0,022 L − 0,47 (aft / superstructure aft)'], ['B', 'Type B: 0,034 L − 0,56 (forward)'], ['C', 'Type C: 0,036 L − 0,09 / 0,031 L + 0,83'], ['D', 'Type D: 0,029 L + 1,78']] }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), L = S.L, k = el.K || 'A';
+      const K = c.st('K (type ' + k + ')', '', k === 'A' ? 0.022 * L - 0.47 : k === 'B' ? 0.034 * L - 0.56 : k === 'C' ? (L <= 180 ? 0.036 * L - 0.09 : 0.031 * L + 0.83) : 0.029 * L + 1.78, '');
+      return { SM: c.st('SM = (7 + 45/ℓ³) s ℓ² K Q', '', (7 + 45 / pow(l, 3)) * s * l * l * max(K, 0) * c.Q, 'cm³') };
+    }
+  });
+  add('m_beam', {
+    r: 'mvr', cat: STIFF, grp: 'Deck framing', label: 'Deck beam / deck longitudinal', ref: '3-2-7/3',
+    fields: S => [['bloc', 'Deck location (Table 1 head)', { opts: Object.keys(BEAMLOC).map(k => [k, BEAMLOC[k][0] + ' (' + BEAMLOC[k][1] + ')']) }], ['btype', 'Beam', { opts: [['long', 'Longitudinal, other decks'], ['lstr', 'Longitudinal, strength deck'], ['trans', 'Transverse beam'], ['tank', 'Deep / double bottom tank top']] }], ['kfac', 'k = SMR y / IA (blank = from hull girder, else 1)', {}], ['p', 'Cargo load p (blank = Table 2 head)', { unit: 'kN/m²' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), bt = el.btype || 'long';
+      let k = num(el.kfac, NaN);
+      if (!has(k)) { k = (has(S.Ioff) && has(S.zNA)) ? S.SMR * abs(S.D - S.zNA) / S.Ioff : 1; }
+      let cc, ct;
+      if (bt === 'lstr') { cc = 1 / (1.709 - 0.651 * k); ct = '1/(1,709 − 0,651 k), k = ' + f2(k, 3); }
+      else if (bt === 'tank') { cc = S.L < 90 ? 1.0 : 0.90; ct = S.L < 90 ? '1,0 (tank top)' : '0,90 (deep tank top)'; }
+      else if (bt === 'trans') { cc = S.L < 90 ? 0.60 : 0.540; ct = S.L < 90 ? '0,60' : '0,540'; }
+      else { cc = S.L < 90 ? 0.70 : 0.585; ct = S.L < 90 ? '0,70' : '0,585'; }
+      c.st('c = ' + ct, '', cc, '');
+      let h;
+      if (has(el.p) && +el.p > 0) h = c.st('h = p / 7,01', '', +el.p / 7.01, 'm');
+      else { const bl = BEAMLOC[el.bloc] || BEAMLOC.fb1; h = c.st('h, Table 2 column ' + bl[1] + ' (' + bl[0].toLowerCase() + '), L = ' + f2(S.L, 1), '', beamH(S, bl[1]), 'm'); }
+      if (bt === 'tank') { const ht = mvrTankHead(c, zOf(el), el); h = max(h, ht); }
+      return { SM: c.st('SM = 7,8 c h s ℓ²', '7,8 · ' + f2(cc, 3) + ' · ' + f2(h, 3) + ' · ' + f2(s, 3) + ' · ' + f2(l, 3) + '²', 7.8 * cc * h * s * l * l, 'cm³') };
+    }
+  });
+
+  /* ===== MVR primary members ===== */
+  function webChecks(c, prof, l, dFac, dTxt, tA, tB, tCap) {
+    const pr = profile(prof); if (!(pr.depth > 0)) return;
+    const dReq = dFac * l * 1000, tw = pr.tw, twReq = min(pr.depth / 100 + tA, tCap || 99);
+    c.checks.push({ lbl: 'Web depth ≥ ' + dTxt, req: dReq, off: pr.depth, u: 'mm' });
+    c.checks.push({ lbl: 'Web thickness ≥ depth/100 + ' + tA + (tCap ? ' (need not exceed ' + tCap + ')' : ''), req: max(twReq, tB || 0), off: tw, u: 'mm' });
+  }
+  add('m_web', {
+    r: 'mvr', cat: PSM, grp: 'Primary members', label: 'Side web frame', ref: '3-2-6/3',
+    fields: S => [['bS', 'b – frame to first row of deck supports', { unit: 'm' }], ['h1', 'h1 = hFB + ΣhC + hE + 0,5 ΣhP (≥ 2,44)', { unit: 'm' }], ['Kn', 'K (1 long. deck with transverses; else frame spaces between webs)', {}], ['fwd', 'Forward of 0,875 L, no sheer (+25 %)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, Sw = num(el.S, 2), l = lOf(el), zm = zOf(el), b = num(el.bS, S.B / 4), h1 = max(num(el.h1, 2.44), 2.44), K = max(num(el.Kn, 1), 1);
+      const h = c.st('h = mid ℓ to scantling draft, ≥ 0,5 ℓ', '', max(S.ds - zm, 0.5 * l), 'm');
+      let SM = c.st('SM = 4,74 c s ℓ² (h + b h1/(45 K)) Q, c = 1,5', '4,74 · 1,5 · ' + f2(Sw) + ' · ' + f2(l) + '² (' + f2(h) + ' + ' + f2(b) + ' · ' + f2(h1) + '/(45 · ' + f2(K, 0) + '))', 4.74 * 1.5 * Sw * l * l * (h + b * h1 / (45 * K)) * c.Q, 'cm³');
+      if (yes(el.fwd)) SM = c.st('Forward: + 25 %', '', 1.25 * SM, 'cm³');
+      if ((S.osv || S.L < 90) && yes(el.imp)) SM *= 1.25;
+      webChecks(c, el.prof, l, 0.125, '0,125 ℓ', 3.5, 0, S.L >= 90 ? 14 : 11.5);
+      return { SM };
+    }
+  });
+  add('m_stringer', {
+    r: 'mvr', cat: PSM, grp: 'Primary members', label: 'Side stringer', ref: '3-2-6/5',
+    fields: S => [['fp', 'In the forepeak (c = 1,85, L ≥ 61 m)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, Sw = num(el.S, 2), l = lOf(el), zm = zOf(el), cc = yes(el.fp) && S.L >= 61 ? 1.85 : 1.5;
+      const h = c.st('h = max(to scantling draft ; to 2/3 Dbd ; 1,8 m)', '', max(S.ds - zm, 2 / 3 * S.Dfb - zm, 1.8), 'm');
+      const SM = c.st('SM = 4,74 c h s ℓ² Q, c = ' + cc + ', s = sum of half frame lengths', '', 4.74 * cc * h * Sw * l * l * c.Q, 'cm³');
+      webChecks(c, el.prof, l, 0.125, '0,125 ℓ', 3.5, 0, S.L >= 90 ? 14 : 11.5);
+      return { SM };
+    }
+  });
+  add('m_dgirder', {
+    r: 'mvr', cat: PSM, grp: 'Primary members', label: 'Deck girder / deck transverse', ref: '3-2-8/5',
+    fields: S => [['bloc', 'Deck location (beam head, Table 1)', { opts: Object.keys(BEAMLOC).map(k => [k, BEAMLOC[k][0] + ' (' + BEAMLOC[k][1] + ')']) }], ['p', 'Cargo load p (blank = Table 2 head)', { unit: 'kN/m²' }], ['intank', 'In a tank (c = 1,5)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, b = num(el.S, 2), l = lOf(el), it = yes(el.intank), cc = it ? 1.5 : 1.0;
+      const bl = BEAMLOC[el.bloc] || BEAMLOC.fb1;
+      const h = has(el.p) && +el.p > 0 ? c.st('h = p / 7,01', '', +el.p / 7.01, 'm') : c.st('h, Table 2 column ' + bl[1], '', beamH(S, bl[1]), 'm');
+      const SM = c.st('SM = 4,74 c b h ℓ², c = ' + cc + ', b = mean breadth supported', '', 4.74 * cc * b * h * l * l, 'cm³');
+      webChecks(c, el.prof, l, it ? 0.0833 : 0.0583, it ? '0,0833 ℓ (tanks)' : '0,0583 ℓ', 4, S.L >= 90 ? 8.5 : 0);
+      return { SM };
+    }
+  });
+
+  /* ===== bulkheads (both rule sets) ===== */
+  const BHT = [['wt', 'Watertight bulkhead'], ['coll', 'Collision bulkhead'], ['nt', 'Non-tight bulkhead']];
+  add('x_wtpl', {
+    r: 'both', cat: PLATE, grp: 'Bulkheads and tanks', label: 'Watertight bulkhead plating', ref: '3-2-9/5.1 (MVR), 3-2-6/5.1 (Barge)',
+    fields: S => [['bht', 'Bulkhead', { opts: BHT }], ['z', 'Lower edge of plate above BL z', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), z = zOf(el);
+      if (el.bht === 'nt' && S.rules === 'mvr') return { t: c.st('Non-tight bulkhead: s/150 ≥ 4,0', '', max(s / 150, 4), 'mm') };
+      const a = max(lOf(el) * 1000 / s, s / (lOf(el) * 1000)), k = K_ASPECT(a), q = qOf(c.g), cc = el.bht === 'coll' ? 254 : 290;
+      const h = c.st('h = lower edge of plate to the bulkhead / freeboard deck', f2(S.Dfb) + ' − ' + f2(z), max(S.Dfb - z, 0), 'm');
+      c.st('α, k', f2(a, 2) + ', ' + f2(k, 3), k, ''); c.st('q = 235/Y', '', q, '');
+      let t = c.st('t = s k √(q h)/c + 1,5, c = ' + cc, '', s * k * sqrt(q * h) / cc + 1.5, 'mm');
+      t = max(t, c.st('Minimum 6,0 mm and s/200 + 2,5', '', max(6, s / 200 + 2.5), 'mm'));
+      if (S.rules === 'mvr' && S.L < 30.5) c.note('L < 30,5 m: the reductions of 3-2-9/5.1 for small vessels may be applied (not included).');
+      return { t };
+    }
+  });
+  const ENDC = [['bb', 'Effective brackets both ends'], ['bc', 'Bracket one end, clip / girder other'], ['cc', 'Clips both ends or girders'], ['nn', 'No end attachments']];
+  add('x_wtst', {
+    r: 'both', cat: STIFF, grp: 'Bulkheads and tanks', label: 'Watertight bulkhead stiffener', ref: '3-2-9/5.3 (MVR), 3-2-6/5.3 (Barge)',
+    fields: S => [['bht', 'Bulkhead', { opts: BHT }], ['endc', 'End connection', { opts: S.rules === 'mvr' ? ENDC : [['cc', 'Both ends attached (0,56)'], ['nn', 'No end attachments / between girders (0,60)'], ['hl', 'Horizontal stiffener on longitudinal bulkhead (0,70)']] }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), zm = zOf(el), e = el.endc || 'cc';
+      let cc;
+      if (S.rules === 'mvr') { const T = S.L < 46 ? { bb: 0.29, bc: 0.38, cc: 0.46, nn: 0.58 } : { bb: 0.30, bc: 0.43, cc: 0.56, nn: 0.60 }; cc = T[e] || T.cc; }
+      else cc = { cc: 0.56, nn: 0.60, hl: 0.70 }[e] || 0.56;
+      const k = el.bht === 'coll' ? 1.25 : 1.0;
+      let h = c.st('h = mid ℓ to the bulkhead / freeboard deck', '', max(S.Dfb - zm, 0), 'm');
+      if (h < 6.1) h = c.st('h < 6,1 m: h = 0,8 h + 1,22', '', 0.8 * h + 1.22, 'm');
+      let SM = c.st('SM = 7,8 ' + (S.rules === 'mvr' ? 'k ' : '') + 'c h s ℓ² Q, c = ' + cc + (k > 1 ? ', collision × 1,25' : ''), '', 7.8 * k * cc * h * s * l * l * c.Q, 'cm³');
+      if (el.bht === 'nt') SM = c.st('Non-tight: 50 %', '', 0.5 * SM, 'cm³');
+      return { SM };
+    }
+  });
+  add('x_wtgd', {
+    r: 'both', cat: PSM, grp: 'Bulkheads and tanks', label: 'Watertight bulkhead girder / web', ref: '3-2-9/5.5 (MVR), 3-2-6/5.5 (Barge)',
+    fields: S => [['bht', 'Bulkhead', { opts: BHT }], ['chan', 'Channel construction (c = 1,1, barges)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, Sw = num(el.S, 2), l = lOf(el), zm = zOf(el), k = el.bht === 'coll' ? 1.25 : 1.0, cc = S.rules === 'barge' && yes(el.chan) ? 1.1 : 1.0;
+      let h = c.st('h = mid of the supported area to the bulkhead / freeboard deck', '', max(S.Dfb - zm, 0), 'm');
+      if (h < 6.1) h = c.st('h < 6,1 m: h = 0,8 h + 1,22', '', 0.8 * h + 1.22, 'm');
+      let SM = c.st('SM = 4,74 ' + (k > 1 ? 'k ' : '') + 'c h s ℓ² Q, c = ' + cc, '', 4.74 * k * cc * h * Sw * l * l * c.Q, 'cm³');
+      if (el.bht === 'nt') SM = c.st('Non-tight: 50 %', '', 0.5 * SM, 'cm³');
+      if (S.rules === 'mvr') webChecks(c, el.prof, l, 0.0832, '0,0832 ℓ', 3, 0, 11.5); else bargeWeb(c, l, 'bhd');
+      return { SM };
+    }
+  });
+  add('x_tkpl', {
+    r: 'both', cat: PLATE, grp: 'Bulkheads and tanks', label: 'Deep tank / tank bulkhead plating', ref: '3-2-10/3.1 (MVR), 3-2-7/3.1 (Barge)',
+    fields: S => S.rules === 'mvr' ? [['z', 'Lower edge of plate above BL z', { unit: 'm' }], ['zTop', 'Top of tank zTop', { unit: 'm' }], ['hov', 'Overflow height above the tank top', { unit: 'm' }], ['sg', 'Specific gravity of contents', {}], ['pvs', 'Relief valve setting Ps (blank = none)', { unit: 'bar' }], ['ttop', 'Tank top plating (+1 mm)', { chk: 1 }]]
+      : [['z', 'Lower edge of plate above BL z', { unit: 'm' }], ['space', 'Tank', { opts: SPACE_B.slice(1) }], ['zTop', 'Deck at side / trunk top above the tank zTop', { unit: 'm' }], ['sg', 'Specific gravity of cargo', {}], ['strake', 'Longitudinal bulkhead strake', { opts: [['', 'Normal'], ['top', 'Top strake (0,0521 L + 4,8)'], ['second', 'Second strake (0,0347 L + 5,3)']] }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), z = zOf(el);
+      if (S.rules === 'mvr') { const h = mvrTankHead(c, z, el); let t = tankPlate(c, s, h); if (yes(el.ttop)) t = c.st('Tank top: + 1 mm', '', t + 1, 'mm'); return { t }; }
+      if (!tank(el)) el.space = 'cargo';
+      const h = bargeHead(c, z, el); let t = tankPlate(c, s, h, 't = s k √(q h)/254 + 2,5');
+      if (el.strake === 'top') t = max(t, c.st('Top strake of effective longitudinal bulkhead: 0,0521 L + 4,8', '', 0.0521 * S.L + 4.8, 'mm'));
+      if (el.strake === 'second') t = max(t, c.st('Second strake: 0,0347 L + 5,3', '', 0.0347 * S.L + 5.3, 'mm'));
+      return { t };
+    }
+  });
+  add('x_tkst', {
+    r: 'both', cat: STIFF, grp: 'Bulkheads and tanks', label: 'Deep tank / tank bulkhead stiffener', ref: '3-2-10/3.3 (MVR), 3-2-7/3.3 (Barge)',
+    fields: S => S.rules === 'mvr' ? [['endc', 'End connection', { opts: [['bb', 'Brackets both ends (0,594)'], ['bc', 'Bracket one end (0,747)'], ['cc', 'Clips both ends (0,900)'], ['gg', 'Supported by girders both ends (1,00)']] }], ['zTop', 'Top of tank zTop', { unit: 'm' }], ['hov', 'Overflow height above the tank top', { unit: 'm' }], ['sg', 'Specific gravity', {}], ['pvs', 'Relief valve setting Ps', { unit: 'bar' }]]
+      : [['space', 'Tank', { opts: SPACE_B.slice(1) }], ['zTop', 'Deck at side / trunk top zTop', { unit: 'm' }], ['sg', 'Specific gravity of cargo', {}], ['orient', 'Stiffener', { opts: [['tb', 'On transverse bulkhead, or vertical on longitudinal (c = 1,00)'], ['hl', 'Horizontal on longitudinal bulkhead (c = 0,90)']] }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), zm = zOf(el);
+      if (S.rules === 'mvr') { const cc = { bb: 0.594, bc: 0.747, cc: 0.900, gg: 1.00 }[el.endc || 'cc']; const h = mvrTankHead(c, zm, el); return { SM: c.st('SM = 7,8 c h s ℓ² Q, c = ' + cc, '', 7.8 * cc * h * s * l * l * c.Q, 'cm³') }; }
+      if (!tank(el)) el.space = 'cargo';
+      const cc = el.orient === 'hl' ? 0.9 : 1.0, h = bargeHead(c, zm, el);
+      return { SM: c.st('SM = 7,8 c h s ℓ² Q, c = ' + cc, '7,8 · ' + cc + ' · ' + f2(h, 3) + ' · ' + f2(s, 3) + ' · ' + f2(l, 3) + '²', 7.8 * cc * h * s * l * l * c.Q, 'cm³') };
+    }
+  });
+  add('x_tkgd', {
+    r: 'both', cat: PSM, grp: 'Bulkheads and tanks', label: 'Tank bulkhead girder / stringer / web', ref: '3-2-10/5 (MVR), 3-2-7/3.5 (Barge)',
+    fields: S => S.rules === 'mvr' ? [['zTop', 'Top of tank zTop', { unit: 'm' }], ['hov', 'Overflow height above the tank top', { unit: 'm' }], ['sg', 'Specific gravity', {}], ['strut', 'Effective struts / cross ties', { chk: 1 }]]
+      : [['space', 'Tank', { opts: SPACE_B.slice(1) }], ['zTop', 'Deck at side / trunk top zTop', { unit: 'm' }], ['sg', 'Specific gravity', {}], ['chan', 'Channel construction (c = 1,65)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, Sw = num(el.S, 2), l = lOf(el), zm = zOf(el);
+      if (S.rules === 'mvr') { const h = mvrTankHead(c, zm, el); const SM = c.st('SM = 4,74 c h s ℓ² Q, c = 1,5', '', 4.74 * 1.5 * h * Sw * l * l * c.Q, 'cm³'); webChecks(c, el.prof, l, yes(el.strut) ? 0.0833 : 0.145, yes(el.strut) ? '0,0833 ℓ (struts)' : '0,145 ℓ', 3); return { SM }; }
+      if (!tank(el)) el.space = 'cargo';
+      const cc = yes(el.chan) ? 1.65 : 1.5, h = bargeHead(c, zm, el);
+      const SM = c.st('SM = 4,74 c h s ℓ² Q, c = ' + cc, '4,74 · ' + cc + ' · ' + f2(h, 3) + ' · ' + f2(Sw) + ' · ' + f2(l) + '²', 4.74 * cc * h * Sw * l * l * c.Q, 'cm³');
+      bargeWeb(c, l, 'bhd'); return { SM };
+    }
+  });
+
+  /* ===== MVR superstructures ===== */
+  add('m_ssside', {
+    r: 'mvr', cat: PLATE, grp: 'Superstructures and deckhouses', label: 'Superstructure side plating', ref: '3-2-11/3.1',
+    fields: S => [['pos', 'Position', { opts: [['mid', 'Within 0,4 L amidships'], ['aft', 'Aft 0,1 L'], ['fwd', 'Forward 0,025 L'], ['fwd2', '0,025–0,1 L from FP; deckhouses forward']] }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), L = S.L, Ss = S.s0, p = el.pos || 'mid';
+      if (p === 'mid') {
+        if (L < 90) { const h = max(S.Ds, 0.1 * L); c.st('h', '', h, 'm'); return { t: c.st('t = s √h / 268 + 2,5', '', s * sqrt(h) / 268 + 2.5, 'mm') }; }
+        const r = max(S.ds / S.Ds, 0.0433 * L / S.Ds);
+        return { t: max(c.st('(s/645) √((L − 15,2) ds/Ds) + 2,5', '', s / 645 * sqrt((L - 15.2) * r) + 2.5, 'mm'), c.st('0,035 (L + 29) + 5,4', '', 0.035 * (L + 29) + 5.4, 'mm')) };
+      }
+      if (p === 'aft') return { t: L >= 90 ? c.st('t = 0,0315 (L + 150) + 0,006 (s − S), S = ' + f2(Ss, 0), '', 0.0315 * (L + 150) + 0.006 * (s - Ss), 'mm') : c.st('t = 0,0296 (L + 39,5) + 0,006 s', '', 0.0296 * (L + 39.5) + 0.006 * s, 'mm') };
+      if (p === 'fwd') return { t: c.st('t = 1,25 × shell at ends (' + endsTxt(S) + ')', '', 1.25 * endsT(S, s), 'mm') };
+      return { t: L < 106.5 ? c.st('t = 0,05 (L + 76) + 0,006 (s − S)', '', 0.05 * (L + 76) + 0.006 * (s - Ss), 'mm') : c.st('t = 0,035 (L + 154) + 0,006 (s − S)', '', 0.035 * (L + 154) + 0.006 * (s - Ss), 'mm') };
+    }
+  });
+  const WALL = [['uf', 'Unprotected front'], ['pf', 'Protected front'], ['sd', 'Side'], ['af', 'Aft end']];
+  function wallHead(c) {
+    const { S, el } = c, L = S.L, L2 = S.L2, tier = clamp(round(num(el.tier, 1)), 1, 9), x = num(el.x, 0.5 * L), w = el.wall || 'uf';
+    const xl = clamp(x / L, 0, 1.1), cb = clamp(S.Cb, 0.6, 0.8);
+    let a, at;
+    if (w === 'uf') { if (tier === 1) { a = 2 + L2 / 120; at = '2 + L2/120'; } else if (tier === 2) { a = 1 + L2 / 120; at = '1 + L2/120'; } else { a = 0.5 + L2 / 150; at = '0,5 + L2/150'; } }
+    else if (w === 'af') { if (xl <= 0.5) { a = 0.7 + L2 / 1000 - 0.8 * xl; at = '0,7 + L2/1000 − 0,8 x/L'; } else { a = 0.5 + L2 / 1000 - 0.4 * xl; at = '0,5 + L2/1000 − 0,4 x/L'; } }
+    else { a = 0.5 + L2 / 150; at = '0,5 + L2/150'; }
+    c.st('a = ' + at + ' (tier ' + tier + ')', '', a, '');
+    const b = c.st('b = 1 + ' + (xl <= 0.45 ? '' : '1,5 ') + '((x/L − 0,45)/(Cb + 0,2))², x/L = ' + f2(xl, 3) + ', Cb = ' + f2(cb, 2), '', 1 + (xl <= 0.45 ? 1 : 1.5) * pow((xl - 0.45) / (cb + 0.2), 2), '');
+    const f = c.st('f (L = ' + f2(L, 1) + ')', L <= 150 ? '(L/10) e^(−L/300) − [1 − (L/150)²]' : L <= 300 ? '(L/10) e^(−L/300)' : '11,03', L <= 150 ? L / 10 * exp(-L / 300) - (1 - pow(L / 150, 2)) : L <= 300 ? L / 10 * exp(-L / 300) : 11.03, '');
+    const B1 = num(el.B1, S.B), b1 = num(el.b1, B1), cfac = c.st('c = 0,3 + 0,7 b1/B1, b1/B1 ≥ 0,25' + (yes(el.casing) ? ', ≥ 1 (casing)' : ''), '', yes(el.casing) ? 1 : 0.3 + 0.7 * max(b1 / B1, 0.25), '');
+    const y = c.st('y = z − d (from summer load line to mid of the panel / stiffener)', f2(zOf(el)) + ' − ' + f2(S.d), zOf(el) - S.d, 'm');
+    let h = c.st('h = a (b f − y) c', '', a * (b * f - y) * cfac, 'm');
+    const hlow = L <= 50 ? 3 : L < 250 ? 2.5 + L / 100 : 5;
+    const hmin = tier >= 4 ? 1.25 : (w === 'uf' && tier === 1) ? hlow : hlow / 2;
+    h = c.st('h not less than ' + (tier >= 4 ? '1,25 m (tier ≥ 4)' : (w === 'uf' && tier === 1) ? 'lowest-tier front value' : 'half the lowest-tier front value'), '', max(h, hmin), 'm');
+    return { h, tier, w, L2 };
+  }
+  const WALLF = S => [['wall', 'Bulkhead', { opts: WALL }], ['tier', 'Tier (1 = lowest)', {}], ['x', 'x of bulkhead from AP', { unit: 'm' }], ['b1', 'Breadth of house b1', { unit: 'm' }], ['B1', 'Breadth of vessel at the position B1', { unit: 'm' }], ['casing', 'Machinery casing (c ≥ 1)', { chk: 1 }]];
+  add('m_wallpl', {
+    r: 'both', cat: PLATE, grp: 'Superstructures and deckhouses', label: 'Superstructure / deckhouse end and side bulkhead plating', ref: '3-2-11/3.3 (UR S3)', fields: WALLF,
+    calc(c) {
+      const { S, el } = c, s = sOf(el), H = wallHead(c), L2 = H.L2;
+      let t = c.st('t = 3 s √h (s in m)', '', 3 * s / 1000 * sqrt(H.h), 'mm'), tm, tt;
+      if (H.tier === 1) {
+        if (S.osv) { tm = H.w === 'uf' || H.w === 'pf' ? max(6 + 0.01 * L2, 7.5) : max(5 + 0.01 * L2, 6.5); tt = S.osv && (H.w === 'uf' || H.w === 'pf') ? 'OSV front 6 + 0,01 L2 ≥ 7,5' : 'OSV side / end 5 + 0,01 L2 ≥ 6,5'; }
+        else if (S.tug) { tm = max(5 + 0.01 * L2, S.L < 61 ? 6.0 : 6.5); tt = 'Towing vessel lowest tier 5 + 0,01 L2 ≥ ' + (S.L < 61 ? '6,0' : '6,5'); }
+        else if (L2 >= 65) { tm = max(5 + 0.01 * L2, 6.5); tt = 'Lowest tier 5 + 0,01 L2 ≥ 6,5'; }
+        else { tm = H.w === 'uf' ? 5.0 : 4.0; tt = 'Lowest tier, L2 < 65 m'; }
+      } else { tm = L2 >= 65 ? max(4 + 0.01 * L2, 5) : 4.0; tt = 'Other tiers ' + (L2 >= 65 ? '4 + 0,01 L2 ≥ 5,0' : '4,0'); }
+      return { t: max(t, c.st('Minimum: ' + tt, '', tm, 'mm')) };
+    }
+  });
+  add('m_wallst', {
+    r: 'both', cat: STIFF, grp: 'Superstructures and deckhouses', label: 'Superstructure / deckhouse bulkhead stiffener', ref: '3-2-11/3.5 (UR S3)', fields: WALLF,
+    calc(c) { const s = sOf(c.el) / 1000, l = lOf(c.el), H = wallHead(c); return { SM: c.st('SM = 3,5 s ℓ² h', '', 3.5 * s * l * l * H.h, 'cm³') }; }
+  });
+
+  /* ===== special items (both) ===== */
+  add('x_pillar', {
+    r: 'both', cat: SPEC, grp: 'Special items', label: 'Pillar / strut', ref: '3-2-8/3 (MVR), 3-2-4 / 5-1-1/15 (Barge)',
+    fields: S => [['pType', 'Section', { opts: [['pipe', 'Pipe (OD × t)'], ['man', 'Other: enter A and r']] }], ['OD', 'Pipe outside diameter', { unit: 'mm' }], ['tp', 'Pipe wall thickness', { unit: 'mm' }], ['A', 'Area A (other section)', { unit: 'cm²' }], ['rg', 'Least radius of gyration r (other section)', { unit: 'cm' }], ['l', 'Unsupported length ℓ', { unit: 'm' }], ['bS', 'Breadth of area supported b', { unit: 'm' }], ['sS', 'Length of area supported s', { unit: 'm' }], ['hP', 'Head h (deck load / 7,01)', { unit: 'm' }], ['Wd', 'Or calculated load W directly', { unit: 'kN' }]],
+    calc(c) {
+      const { el, g } = c, l = lOf(el);
+      let A, r, lbl;
+      if (el.pType === 'man') { A = num(el.A, 0); r = num(el.rg, 0); lbl = 'A ' + f2(A, 1) + ' cm², r ' + f2(r, 2) + ' cm'; }
+      else { const D0 = num(el.OD, 168.3), t = min(num(el.tp, 7.1), D0 / 2), Di = D0 - 2 * t; A = Math.PI / 4 * (D0 * D0 - Di * Di) / 100; r = sqrt(D0 * D0 + Di * Di) / 4 / 10; lbl = 'Pipe ' + f2(D0, 1) + ' × ' + f2(t, 1); }
+      c.st('Section ' + lbl + ': A, r', f2(A, 2) + ' cm², ' + f2(r, 3) + ' cm', A, 'cm²');
+      const W = has(el.Wd) ? c.st('Calculated load W (entered)', '', +el.Wd, 'kN') : c.st('W = 7,01 b h s', '7,01 · ' + f2(num(el.bS, 2)) + ' · ' + f2(num(el.hP, 2.5)) + ' · ' + f2(num(el.sS, 2)), 7.01 * num(el.bS, 2) * num(el.hP, 2.5) * num(el.sS, 2), 'kN');
+      const sl = l * 100 / max(r, 1e-6);
+      c.checks.push({ lbl: 'Slenderness ℓ/r < 130 (same units)', req: 130, off: sl, u: '', inv: 1 });
+      const Wa = c.st('Wa = (k − n ℓ/r) A, k = ' + g.pk + ', n = ' + g.pn + ' (ℓ in m, r in cm)', '(' + g.pk + ' − ' + g.pn + ' · ' + f2(l) + '/' + f2(r, 3) + ') · ' + f2(A, 2), (g.pk - g.pn * l / max(r, 1e-6)) * A, 'kN');
+      return { spec: 1, req: W, off: Wa, u: 'kN', reqTxt: 'W ' + f2(W, 1) + ' kN', offTxt: 'Wa ' + f2(Wa, 1) + ' kN', label: lbl, title: 'Pillar' };
+    }
+  });
+  add('m_stem', {
+    r: 'mvr', cat: SPEC, grp: 'Special items', label: 'Stem (plate or bar)', ref: '3-2-13 / 3-2-12',
+    fields: S => [['stType', 'Stem', { opts: [['plate', 'Plate stem'], ['bar', 'Bar stem']] }], ['t', 'Offered thickness', { unit: 'mm' }], ['w', 'Offered bar width', { unit: 'mm' }]],
+    calc(c) {
+      const { S, el } = c, L = S.L;
+      if (el.stType === 'bar') {
+        const t = c.st('Bar stem thickness t = 0,625 L + 6,35', '', 0.625 * L + 6.35, 'mm'), w = c.st('Bar stem width w = 1,25 L + 90', '', 1.25 * L + 90, 'mm');
+        c.checks.push({ lbl: 'Bar width', req: w, off: num(el.w, 0), u: 'mm' });
+        return { spec: 1, req: t, off: num(el.t, 0), u: 'mm', reqTxt: f2(t, 1) + ' × ' + f2(w, 0), offTxt: f2(num(el.t, 0), 1) + ' × ' + f2(num(el.w, 0), 0), label: 'Bar ' + (el.w || '?') + ' × ' + (el.t || '?'), title: 'Bar stem' };
+      }
+      const t = c.st('Plate stem t = 1,5 + (L/12) √q' + (L > 245 ? ' (formula for L ≤ 245 m)' : ''), '', 1.5 + L / 12 * sqrt(qOf(c.g)), 'mm');
+      return { spec: 1, req: r05(t), off: num(el.t, 0), u: 'mm', reqTxt: f2(r05(t), 1) + ' mm', offTxt: f2(num(el.t, 0), 1) + ' mm', label: 'PL ' + (el.t || '?'), title: 'Plate stem' };
+    }
+  });
+
+  /* ===== BARGE items ===== */
+  function bargeEnds(S, s) { const L = S.L1b; return S.L <= 76 ? 0.055 * L + 0.007 * s + 1.0 : 0.015 * L + 0.01 * s + 2.2; }
+  const bEndsTxt = S => S.L <= 76 ? '0,055 L + 0,007 s + 1,0' : '0,015 L + 0,01 s + 2,2';
+  function shellTank(c, t) { const el = c.el; if (!tank(el)) return t; const h = bargeHead(c, zOf(el), el); return max(t, tankPlate(c, sOf(el), h, 'Tank boundary (3-2-2/2, 3-2-7/3.1): s k √(q h)/254 + 2,5')); }
+  add('b_side', {
+    r: 'barge', cat: PLATE, grp: 'Shell plating', label: 'Side shell plating (0,4 L)', ref: 'Barge 3-2-2/3.1', fields: S => [['lbhd', 'Longitudinal bulkheads within 0,2 B (− 0,5 mm)', { chk: 1 }], ['space', 'Space inside', { opts: SPACE_B }], ['z', 'Lower edge above BL z', { unit: 'm' }], ['zTop', 'Tank top / deck at side zTop', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), L = S.L;
+      let t = L <= 150 ? c.st('t = 0,07 L + 0,007 s', '', 0.07 * L + 0.007 * s, 'mm') : c.st('t = 0,03 L + 0,007 s + 6,0', '', 0.03 * L + 0.007 * s + 6, 'mm');
+      if (yes(el.lbhd)) t = c.st('Longitudinal bulkheads fitted: − 0,5 mm', '', t - 0.5, 'mm');
+      t = max(t, c.st('Not less than 5.1 (ends): ' + bEndsTxt(S), '', bargeEnds(S, s), 'mm'));
+      return { t: hssSide(c, shellTank(c, t)) };
+    }
+  });
+  add('b_bottom', {
+    r: 'barge', cat: PLATE, grp: 'Shell plating', label: 'Bottom shell plating (0,4 L)', ref: 'Barge 3-2-2/3.5', fields: S => [['framing', 'Framing', { opts: FRAMING }], ['space', 'Space inside', { opts: SPACE_B }], ['zTop', 'Tank top / deck at side zTop', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), L = S.L1b;
+      let t = S.L <= 123 ? c.st('t = 0,045 L + 0,007 s + 1,8', '', 0.045 * L + 0.007 * s + 1.8, 'mm') : c.st('t = 0,08 L + 0,007 s − 2,5 (L ≤ 225 m)', '', 0.08 * L + 0.007 * s - 2.5, 'mm');
+      if (el.framing === 'trans') t = c.st('Transverse framing: + 0,75 mm', '', t + 0.75, 'mm');
+      t = max(t, c.st('Not less than 5.1 (ends): ' + bEndsTxt(S), '', bargeEnds(S, s), 'mm'));
+      return { t: hssBot(c, shellTank(c, t)) };
+    }
+  });
+  add('b_ends', { r: 'barge', cat: PLATE, grp: 'Shell plating', label: 'Shell plating at ends (0,1 L)', ref: 'Barge 3-2-2/5.1', fields: S => [], calc(c) { return { t: c.st('t = ' + bEndsTxt(c.S) + ' (L ≤ 225 m)', '', bargeEnds(c.S, sOf(c.el)), 'mm') }; } });
+  add('b_bfwd', {
+    r: 'barge', cat: PLATE, grp: 'Shell plating', label: 'Bottom forward plating', ref: 'Barge 3-2-2/5.3', fields: S => [],
+    calc(c) { const { S } = c, s = sOf(c.el), L = S.L1b; const t = S.L <= 110 ? c.st('t = 0,055 L + 0,01 s + 1,0', '', 0.055 * L + 0.01 * s + 1, 'mm') : c.st('t = 0,085 L + 0,01 s − 2,3', '', 0.085 * L + 0.01 * s - 2.3, 'mm'); return { t: c.st('Need not exceed 25,4 mm', '', min(t, 25.4), 'mm') }; }
+  });
+  add('b_bow', { r: 'barge', cat: PLATE, grp: 'Shell plating', label: 'Immersed bow plating (ship-shape bow)', ref: 'Barge 3-2-2/5.5', fields: S => [['tSide', 'Side shell amidships (upper limit)', { unit: 'mm' }]], calc(c) { let t = c.st('t = 0,05 L + 0,009 s + 1,0', '', 0.05 * c.S.L + 0.009 * sOf(c.el) + 1, 'mm'); if (has(c.el.tSide)) t = c.st('Need not exceed side shell amidships', '', min(t, +c.el.tSide), 'mm'); return { t }; } });
+  add('b_tunnel', { r: 'barge', cat: PLATE, grp: 'Shell plating', label: 'Thruster tunnel plating', ref: 'Barge 3-2-2/7', fields: S => [['dt', 'Tunnel inner diameter d', { unit: 'mm' }]], calc(c) { const d = num(c.el.dt, 968); return { t: c.st('t = 0,008 d + 3,0', '', 0.008 * d + 3, 'mm') }; } });
+  add('b_trunk', { r: 'barge', cat: PLATE, grp: 'Decks', label: 'Trunk side plating', ref: 'Barge 3-2-3/3', fields: S => [], calc(c) { const L = c.S.L; return { t: c.st('8,5 mm (L ≤ 30 m) to 11 mm (L ≥ 225 m), interpolated', '', L <= 30 ? 8.5 : L >= 225 ? 11 : 8.5 + 2.5 * (L - 30) / 195, 'mm') }; } });
+  const BDECK = [['S', 'Strength deck outside line of openings'], ['O', 'Exposed strength deck within openings; forecastle (L ≤ 122 m)'], ['F', 'Forecastle deck, L > 122 m'], ['P', 'Platform deck in enclosed cargo space'], ['E', 'Enclosed platform deck not for cargo'], ['END', 'Deck at ends (outside 0,1 L from the ends)']];
+  add('b_deck', {
+    r: 'barge', cat: PLATE, grp: 'Decks', label: 'Deck plating', ref: 'Barge 3-2-3/2',
+    fields: S => [['deck', 'Deck', { opts: BDECK }], ['framing', 'Framing', { opts: FRAMING }], ['hTw', 'Tween height h (platform deck)', { unit: 'm' }], ['p', 'Uniform deck cargo p (blank = none)', { unit: 'kN/m²' }], ['house', 'Within a steel deckhouse (− 1 mm)', { chk: 1 }], ['fbfwd', 'Exposed freeboard deck forward of 0,05 L', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), dk = el.deck || 'S', lon = el.framing !== 'trans', L = S.L;
+      let eqs;
+      if (dk === 'S') eqs = lon ? ['2a', '2b'] : (L > 91.5 ? ['1a', '1b'] : ['2a', '1b']);
+      else if (dk === 'O') eqs = ['3']; else if (dk === 'F') eqs = ['2a']; else if (dk === 'P') eqs = ['6b']; else if (dk === 'E') eqs = ['7']; else eqs = [];
+      const hp = has(el.p) && +el.p > 0 ? +el.p / 7.07 : num(el.hTw, 2.5);
+      let t = 0;
+      for (const e of eqs) { const [f, v] = deckEq(S, s, e, hp); const lab = { '1a': '2.1.1(a)', '1b': '2.1.1(b)', '2a': '2.1.2(a)', '2b': '2.1.2(b)', '3': '2.1.3', '6b': '2.1.4', '7': '2.1.5' }[e];
+        let vv = v; if (c.Q < 1 && (e === '2b' || !lon) && dk === 'S') vv = c.st('  HSS: (0,92/√Q)(t − 4,3) + 4,3, factor ≥ 1', '', max(0.92 / sqrt(c.Q), 1) * (v - 4.3) + 4.3, 'mm'); else if (c.Q < 1 && dk === 'S') vv = (v - 4.3) * c.Q + 4.3;
+        c.st(lab + ': t = ' + f + (e === '6b' ? ', h = ' + f2(hp) : ''), '', v, 'mm'); t = max(t, vv); }
+      if (dk === 'END') t = c.st('t = 0,01 s', '', 0.01 * s, 'mm');
+      if (has(el.p) && +el.p > 0 && dk !== 'P') t = max(t, c.st('In way of deck cargo (2.5): platform deck 0,00395 s √h + 1,5 ≥ 5, h = p/7,07', '', max(0.00395 * s * sqrt(+el.p / 7.07) + 1.5, 5), 'mm'));
+      if (yes(el.fbfwd)) t = max(t, c.st('Exposed freeboard deck forward of 0,05 L: 0,03 L + 0,0036 s + 2,8', '', 0.03 * L + 0.0036 * s + 2.8, 'mm'));
+      if (yes(el.house) && dk === 'S') t = c.st('Within a steel deckhouse: − 1 mm', '', t - 1, 'mm');
+      if (tank(el)) { const h = bargeHead(c, zOf(el), el); t = max(t, tankPlate(c, s, h, 'Tank top (3-2-3/5): s k √(q h)/254 + 2,5')); }
+      return { t };
+    }
+  });
+  add('b_db', {
+    r: 'barge', cat: PLATE, grp: 'Double bottom', label: 'Double bottom girders and floors', ref: 'Barge 5-1-2/5', fields: S => [['mem', 'Member', { opts: [['cg', 'Centre girder 0,056 L + 5,5'], ['sg', 'Side girder 0,036 L + 4,5'], ['flL', 'Floor, longitudinal framing 0,036 L + 6,0'], ['flT', 'Floor, transverse framing 0,036 L + 4,5']] }], ['space', 'Tank boundary (3-2-7)', { opts: SPACE_B }], ['zTop', 'Tank top / deck zTop', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, L = S.L, m = el.mem || 'cg';
+      let t = m === 'cg' ? c.st('Centre girder t = 0,056 L + 5,5', '', 0.056 * L + 5.5, 'mm') : m === 'sg' ? c.st('Side girder t = 0,036 L + 4,5', '', 0.036 * L + 4.5, 'mm') : m === 'flL' ? c.st('Floor t = 0,036 L + 6,0', '', 0.036 * L + 6, 'mm') : c.st('Floor t = 0,036 L + 4,5', '', 0.036 * L + 4.5, 'mm');
+      if (c.Q < 1) { const C = min(0.3 * t, 3); t = c.st('HSS: (tms − C)(Q + 2√Q)/3 + C, C = 0,3 tms ≤ 3', '', (t - C) * (c.Q + 2 * sqrt(c.Q)) / 3 + C, 'mm'); }
+      return { t: shellTank(c, t) };
+    }
+  });
+  add('b_ib', {
+    r: 'barge', cat: PLATE, grp: 'Double bottom', label: 'Inner bottom plating', ref: 'Barge 5-1-2/5.17, 3-2-7/3.1', fields: S => [['framing', 'Framing', { opts: FRAMING }], ['space', 'Tank above / below (3-2-7)', { opts: SPACE_B }], ['z', 'Inner bottom height z', { unit: 'm' }], ['zTop', 'Tank top / deck at side zTop', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), lon = el.framing !== 'trans';
+      let t = c.st('t = 0,037 L + 0,009 s − 0,5' + (lon ? ' − 1,0 (longitudinal framing)' : ''), '', 0.037 * S.L + 0.009 * s - 0.5 - (lon ? 1 : 0), 'mm');
+      if (c.Q < 1 && lon) { const C = min(0.3 * t, 3); t = c.st('HSS: (tms − C)(Q + 2√Q)/3 + C', '', (t - C) * (c.Q + 2 * sqrt(c.Q)) / 3 + C, 'mm'); }
+      return { t: shellTank(c, t) };
+    }
+  });
+  function bargeWeb(c, l, kind) {
+    const { S, el } = c, pr = profile(el.prof); if (!(pr.depth > 0)) return;
+    const intk = tank(el) || el.space === 'cargo', L1 = max(S.L, 29);
+    const fac = kind === 'deck' ? (intk ? 83.5 : 58.5) : 125;
+    if (kind !== 'bhd') c.checks.push({ lbl: 'Web depth ≥ ' + fac + ' mm per m of span (3-2-4/3.9)', req: fac * l, off: pr.depth, u: 'mm' });
+    const t1 = min(pr.depth / 100 + 3, 11.5), t2 = intk ? (S.L >= 75 ? L1 / 36 + 7 : L1 / 20 + 5.33) : (S.L >= 75 ? L1 / 36 + 5.5 : L1 / 60 + 6.35);
+    c.checks.push({ lbl: 'Web thickness ≥ depth/100 + 3 (≤ 11,5) and ≥ ' + (intk ? 'in tanks ' : 'clear of tanks ') + (S.L >= 75 ? 'L1/36 + ' + (intk ? '7,0' : '5,5') : (intk ? 'L1/20 + 5,33' : 'L1/60 + 6,35')), req: max(t1, t2), off: pr.tw, u: 'mm' });
+  }
+  const BBEAM = [['long', 'Longitudinal, strength deck'], ['trans', 'Transverse beam; platform deck; between hatches']];
+  add('b_beam', {
+    r: 'barge', cat: STIFF, grp: 'Deck framing', label: 'Deck beam / deck longitudinal', ref: 'Barge 5-1-1/3, 5-2-1/7',
+    fields: S => [['btype', 'Beam', { opts: BBEAM }], ['kfac', 'k = SMR y / I (blank = from hull girder, else 1)', {}], ['p', 'Deck cargo p (blank: 10,05 d Cb for deck cargo barges)', { unit: 'kN/m²' }], ['space', 'Space below the deck', { opts: SPACE_B }], ['zTop', 'Tank top / deck zTop', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), L = S.L, lon = el.btype !== 'trans';
+      let k = num(el.kfac, NaN); if (!has(k)) k = (has(S.Ioff) && has(S.zNA)) ? S.SMR * abs(S.D - S.zNA) / S.Ioff : 1;
+      const cc = lon ? 1 / (1.709 - 0.651 * k) : 0.585;
+      c.st('c = ' + (lon ? '1/(1,709 − 0,651 k), k = ' + f2(k, 3) : '0,585'), '', cc, '');
+      const h = c.st('h = ' + (L < 107 ? '0,02 L + 0,76' : '2,9 m'), '', L < 107 ? 0.02 * L + 0.76 : 2.9, 'm');
+      let SM = c.st('SM = 7,8 c h s ℓ² (5-1-1/3.1)', '7,8 · ' + f2(cc, 4) + ' · ' + f2(h, 3) + ' · ' + f2(s, 3) + ' · ' + f2(l, 3) + '²', 7.8 * cc * h * s * l * l, 'cm³');
+      let p = num(el.p, NaN); if (!has(p) && S.T0.deckcargo) p = c.st('p not given, flat top deck cargo barge: p = 10,05 d Cb', '', 10.05 * S.d * S.Cb, 'kN/m²');
+      if (has(p) && p > 0) SM = max(SM, c.st('Deck cargo (5-1-1/3.3): 7,8 · 0,585 · (p/7,07) s ℓ²', '', 7.8 * 0.585 * p / 7.07 * s * l * l, 'cm³'));
+      if (tank(el)) {
+        const ht = bargeHead(c, zOf(el), el), ct = el.space === 'cargo' ? (lon ? 1.25 : 1.0) : (lon ? 1.25 : 1.0);
+        SM = max(SM, c.st('In way of tanks (5-2-1/7): 7,8 c h s ℓ², c = ' + ct, '', 7.8 * ct * ht * s * l * l, 'cm³'));
+      }
+      return { SM: SM * c.Q };
+    }
+  });
+  const BFR = [['side', 'Side frame, transverse or longitudinal (c = 1,25)'], ['blong', 'Bottom longitudinal (c = 1,34)'], ['btrans', 'Bottom transverse frame (c = 1,25)']];
+  add('b_frame', {
+    r: 'barge', cat: STIFF, grp: 'Shell framing', label: 'Side / bottom frame or longitudinal', ref: 'Barge 5-1-1/9, 5-2-1/7, 5-2-2/3.7',
+    fields: S => [['fr', 'Member', { opts: BFR }], ['space', 'Space inside', { opts: SPACE_B }], ['zTop', 'Tank top / deck at side zTop', { unit: 'm' }], ['strut', 'Effective struts to inner bottom (bottom long. c = 0,715)', { chk: 1 }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el) / 1000, l = lOf(el), f = el.fr || 'side';
+      let cc = f === 'blong' ? (yes(el.strut) ? 0.715 : 1.34) : 1.25;
+      const h = bargeHead(c, zOf(el), el);
+      return { SM: c.st('SM = 7,8 c h s ℓ² Q, c = ' + cc, '7,8 · ' + cc + ' · ' + f2(h, 3) + ' · ' + f2(s, 3) + ' · ' + f2(l, 3) + '² · ' + f2(c.Q), 7.8 * cc * h * s * l * l * c.Q, 'cm³') };
+    }
+  });
+  add('b_iblong', {
+    r: 'barge', cat: STIFF, grp: 'Shell framing', label: 'Inner bottom longitudinal', ref: 'Barge 5-2-2/3.5',
+    fields: S => [['space', 'Space above the inner bottom', { opts: SPACE_B }], ['zTop', 'Tank top / deck at side zTop', { unit: 'm' }], ['strut', 'Effective struts (c = 0,5)', { chk: 1 }]],
+    calc(c) {
+      const { el } = c, s = sOf(el) / 1000, l = lOf(el), cc = yes(el.strut) ? 0.5 : 1.0, h = bargeHead(c, zOf(el), el);
+      return { SM: c.st('SM = 7,8 c h s ℓ² Q, c = ' + cc, '7,8 · ' + cc + ' · ' + f2(h, 3) + ' · ' + f2(s, 3) + ' · ' + f2(l, 3) + '²', 7.8 * cc * h * s * l * l * c.Q, 'cm³') };
+    }
+  });
+  const BPSM = [
+    ['dg', 'Deck girder / transverse (5-1-1/7)', 1.0, 'deck'], ['dgc', 'Deck girder, channel construction (5-1-1/7)', 1.1, 'deck'],
+    ['bt', 'Bottom transverse / truss bottom chord (5-1-1/11)', 1.5, 'bot'], ['btc', 'Bottom transverse, channel (5-1-1/11)', 1.65, 'bot'],
+    ['st', 'Side transverse (5-1-1/11)', 1.75, 'side'], ['stc', 'Side transverse, channel (5-1-1/11)', 1.95, 'side'],
+    ['tbt', 'Tank barge bottom transverse (5-2-1/11)', 1.75, 'bot'], ['tst', 'Tank barge side transverse (5-2-1/11)', 1.75, 'side'], ['tdt', 'Tank barge deck transverse (5-2-1/11)', 2.0, 'deck'],
+    ['tbtc', 'Tank barge bottom / side transverse, channel (5-2-1/11)', 1.95, 'bot'], ['tdtc', 'Tank barge deck transverse, channel (5-2-1/11)', 2.2, 'deck'], ['tch', 'Truss top / bottom chord (5-2-1/11)', 1.5, 'bot']];
+  add('b_psm', {
+    r: 'barge', cat: PSM, grp: 'Primary members', label: 'Girder, transverse, web frame or chord', ref: 'Barge 5-1-1/7, 11; 5-2-1/11',
+    fields: S => [['pt', 'Member', { opts: BPSM.map(q => [q[0], q[1] + ', c = ' + q[2]]) }], ['space', 'Space', { opts: SPACE_B }], ['zTop', 'Tank top / deck at side zTop', { unit: 'm' }], ['p', 'Deck cargo p (deck members)', { unit: 'kN/m²' }]],
+    calc(c) {
+      const { S, el } = c, b = num(el.S, 2), l = lOf(el), P = BPSM.find(q => q[0] === el.pt) || BPSM[0], cc = P[2];
+      let h;
+      if (P[3] === 'deck') {
+        const L = S.L; h = c.st('Deck beam head h = ' + (L < 107 ? '0,02 L + 0,76' : '2,9 m'), '', L < 107 ? 0.02 * L + 0.76 : 2.9, 'm');
+        let p = num(el.p, NaN); if (!has(p) && S.T0.deckcargo) p = 10.05 * S.d * S.Cb;
+        if (has(p) && p > 0) h = max(h, c.st('Deck cargo h = p/7,07', '', p / 7.07, 'm'));
+        if (tank(el)) h = max(h, bargeHead(c, zOf(el), el));
+      } else h = bargeHead(c, zOf(el), el);
+      const SM = c.st('SM = 4,74 c h s ℓ² Q, c = ' + cc + ', s = spacing / mean breadth supported', '4,74 · ' + cc + ' · ' + f2(h, 3) + ' · ' + f2(b) + ' · ' + f2(l) + '² · ' + f2(c.Q), 4.74 * cc * h * b * l * l * c.Q, 'cm³');
+      bargeWeb(c, l, P[3] === 'deck' ? 'deck' : 'bs');
+      return { SM };
+    }
+  });
+
+  /* ---------------- element calculation ---------------- */
+  const isFor = (it, rules) => it.r === 'both' || it.r === rules;
+  function itemsFor(rules) { return Object.keys(ITEMS).filter(k => isFor(ITEMS[k], rules)); }
+  function effB(el, cat) { if (cat === 'stiff') return sOf(el); return min(num(el.S, 2) * 1000, 0.33 * lOf(el) * 1000); }
+  function calcElement(S, el) {
+    const it = ITEMS[el.item];
+    if (!it || !isFor(it, S.rules)) return { status: 'na', error: 'Item not available for these rules', steps: [], checks: [], notes: [], warn: [], util: NaN };
+    const c = ctx(S, el); let o;
+    try { o = it.calc(c) || {}; } catch (e) { return { status: 'na', error: String(e), steps: c.steps, checks: [], notes: [], warn: [], util: NaN }; }
+    const R = { item: it, steps: c.steps, checks: c.checks, notes: c.notes, warn: c.warn, cat: it.cat };
+    if (it.cat === 'spec') { Object.assign(R, o); R.reqV = o.req; R.offV = o.off; }
+    else if (it.cat === 'plate') {
+      const mg = has(el.margin) ? +el.margin : S.margin;
+      R.treq = o.t; R.tmg = o.t + mg; R.treqR = r05(R.tmg); R.margin = mg; R.toff = num(el.t, NaN); R.na = o.na;
+      R.reqV = R.treqR; R.offV = R.toff; R.u = 'mm';
+      R.reqTxt = isFinite(R.treqR) ? f2(R.treqR, 1) + ' mm' : '–'; R.offTxt = has(el.t) ? f2(+el.t, 1) + ' mm' : '–'; R.label = has(el.t) ? 'PL ' + el.t : '–';
+    } else {
+      R.SMreq = o.SM; const pr = profile(el.prof);
+      const tp = num(el.tp, 8), be = effB(el, it.cat);
+      R.prof = pr; R.beff = be; R.tp = tp;
+      if (el.prof && el.prof.type === 'DIR') { R.SMoff = num(el.prof.Z, NaN); R.label = 'SM ' + f2(R.SMoff, 1) + ' cm³ (entered)'; }
+      else if (pr.depth > 0 && pr.tw > 0) { R.sec = withPlate(pr, be, tp); R.SMoff = R.sec.Z; R.label = pr.label + ' / PL ' + f2(be, 0) + '×' + f2(tp, 1); }
+      else { R.SMoff = NaN; R.label = '–'; }
+      R.reqV = R.SMreq; R.offV = R.SMoff; R.u = 'cm³';
+      R.reqTxt = isFinite(R.SMreq) ? f2(R.SMreq, 1) + ' cm³' : '–'; R.offTxt = isFinite(R.SMoff) ? f2(R.SMoff, 1) + ' cm³' : '–';
+    }
+    // status
+    let u = (isFinite(R.reqV) && R.offV > 0) ? R.reqV / R.offV : NaN, bad = isFinite(u) && u > 1 + 1e-9;
+    for (const ch of R.checks) { const uu = ch.inv ? ch.off / ch.req : ch.req / max(ch.off, 1e-9); ch.ok = uu <= 1 + 1e-9; if (!ch.ok && !ch.soft) bad = true; if (isFinite(uu) && (!isFinite(u) || uu > u)) u = uu; }
+    R.util = u;
+    R.status = o.na ? 'ok' : (!isFinite(R.reqV) || !(R.offV > 0)) ? 'na' : bad ? 'bad' : R.warn.length ? 'warn' : 'ok';
+    if (o.na) { R.util = 0; R.reqTxt = 'n/a'; }
+    return R;
+  }
+  return { GRADES, gradeOf, RULES, TYPES, ITEMS, BEAMLOC, itemsFor, deriveShip, calcElement, profile, withPlate, has, num, f2, r05, beamH, effB };
+})();
+
+</script>
+<script>
+(function () {
+'use strict';
+const A = window.ABS, $ = (s, r) => (r || document).querySelector(s), has = A.has, num = A.num;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fx = (v, d) => (v == null || !isFinite(v)) ? '–' : Number(v).toFixed(d == null ? 2 : d);
+const KEY = 'abs-local-scantlings-v1';
+const CATS = { plate: 'Plating', stiff: 'Stiffener', psm: 'Primary member', spec: 'Special item' };
+const CATP = { plate: 'Plating', stiff: 'Ordinary stiffeners', psm: 'Primary supporting members', spec: 'Special items' };
+
+/* ---------- examples ---------- */
+const META0 = () => ({ project: '', vessel: '', doc: '', by: '' });
+const T = (hw, tw, bf, tf) => ({ type: 'T', hw, tw, bf, tf }), Lp = (hw, bf, tw) => ({ type: 'L', hw, bf, tw, tf: tw }), HP = (hw, tw) => ({ type: 'HP', hw, tw });
+function exBarge() {
+  const e = [];
+  const P = (name, item, o) => e.push(Object.assign({ id: e.length + 1, name, item, grade: 'A' }, o));
+  P('Bottom shell plating', 'b_bottom', { s: 600, l: 2, t: 8, framing: 'long', space: 'ballast', x: 20, z: 0, zTop: 3 });
+  P('Side shell plating', 'b_side', { s: 600, l: 2, t: 8, space: 'ballast', x: 20, z: 0.8, zTop: 3 });
+  P('Centre girder', 'b_db', { mem: 'cg', s: 600, l: 2, t: 8, x: 20, z: 0.4 });
+  P('Floor', 'b_db', { mem: 'flL', s: 600, l: 2, t: 8, x: 20, z: 0.4 });
+  P('Side girder', 'b_db', { mem: 'sg', s: 600, l: 2, t: 8, x: 20, z: 0.4 });
+  P('Inner bottom plating', 'b_ib', { s: 600, l: 2, t: 8, framing: 'long', space: 'cargo', x: 20, z: 0.8, zTop: 3 });
+  P('Deep tank bulkhead plating', 'x_tkpl', { s: 600, l: 2.075, t: 8, space: 'cargo', x: 12, z: 0.8, zTop: 3 });
+  P('Main deck plating', 'b_deck', { s: 600, l: 2, t: 8, deck: 'S', framing: 'long', x: 20, z: 3 });
+  P('Bottom longitudinal', 'b_frame', { fr: 'blong', s: 600, l: 2, space: 'ballast', x: 20, z: 0, zTop: 3, prof: Lp(125, 75, 10), tp: 8 });
+  P('Inner bottom longitudinal', 'b_iblong', { s: 600, l: 2, space: 'void', x: 20, z: 0.8, prof: Lp(100, 75, 7), tp: 8 });
+  P('Side shell longitudinal', 'b_frame', { fr: 'side', s: 600, l: 2, space: 'ballast', x: 20, z: 0.8, zTop: 3, prof: Lp(125, 75, 7), tp: 8 });
+  P('Deep tank TBHD stiffener', 'x_tkst', { s: 600, l: 2.075, space: 'cargo', orient: 'tb', x: 12, z: 0.8, zTop: 3, prof: Lp(100, 75, 7), tp: 8 });
+  P('Deep tank LBHD longitudinal', 'x_tkst', { s: 600, l: 2, space: 'cargo', orient: 'hl', x: 20, z: 0.8, zTop: 3, prof: Lp(125, 75, 7), tp: 8 });
+  P('Main deck longitudinal', 'b_beam', { btype: 'long', kfac: 1, s: 600, l: 2, space: 'cargo', x: 20, z: 3, zTop: 3, prof: Lp(100, 75, 7), tp: 8 });
+  P('Side shell web frame', 'b_psm', { pt: 'tst', S: 2, l: 1.9, space: 'ballast', x: 20, z: 1.9, zTop: 3, prof: T(300, 8, 75, 8), tp: 8 });
+  P('Deep tank web', 'x_tkgd', { S: 1, l: 2, space: 'cargo', x: 12, z: 0.8, zTop: 3, prof: T(300, 8, 75, 8), tp: 8 });
+  P('Main deck transverse', 'b_psm', { pt: 'tdt', S: 2.1, l: 2, space: 'cargo', x: 20, z: 3, zTop: 3, prof: T(300, 8, 75, 8), tp: 8 });
+  P('Bottom transverse', 'b_psm', { pt: 'tbt', S: 2, l: 2.4, space: 'ballast', x: 20, z: 0, zTop: 3, prof: T(450, 10, 150, 12), tp: 8 });
+  P('Deck pillar HEM 160', 'x_pillar', { pType: 'man', A: 97.1, rg: 4.05, l: 1.688, bS: 1.524, sS: 2.032, hP: 3.2, x: 25, z: 1.9 });
+  return { meta: { project: '', vessel: '40 m double skin tank barge', doc: '', by: 'Ansal Faris' }, ship: { rules: 'barge', type: 'b_tank2', L: 38.8, B: 13, D: 3, d: 2.387, ds: 2.4, Cb: 0.9365, hovf: 0.76, pv: 0, margin: 0, gDeck: 'A', gBot: 'A' }, els: e, sel: 1, tab: 'all' };
+}
+function exOSV() {
+  const e = [];
+  const P = (name, item, o) => e.push(Object.assign({ id: e.length + 1, name, item, grade: 'A' }, o));
+  P('Side shell plating', 'm_side', { s: 600, l: 2.4, t: 10, framing: 'long', x: 31, z: 3 });
+  P('Bottom shell plating', 'm_bottom', { s: 600, l: 2.4, t: 10, framing: 'long', x: 31, z: 0 });
+  P('Flat keel plate', 'm_keel', { s: 600, l: 2.4, t: 11, framing: 'long', x: 31, z: 0 });
+  P('Shell at ends', 'm_ends', { s: 600, l: 2.4, t: 9, x: 58, z: 3 });
+  P('Bottom forward (slamming)', 'm_bfwd', { s: 600, l: 2.4, t: 11, x: 56, z: 0 });
+  P('Bow thruster tunnel', 'm_tunnel', { dt: 1300, t: 14, x: 57, z: 1.5 });
+  P('Main deck plating (cargo deck)', 'm_deck', { deck: 'A', framing: 'long', s: 600, l: 2.4, t: 12, p: 50, x: 20, z: 6.5 });
+  P('Main deck – wheel load', 'm_wheel', { s: 600, l: 2.4, t: 13, W: 60, wa: 300, wb: 200, wPort: 'port', wDeck: 'str', x: 20, z: 6.5 });
+  P('Inner bottom plating', 'm_ib', { s: 600, l: 2.4, t: 9, framing: 'long', x: 31, z: 1 });
+  P('Centre girder', 'm_cg', { s: 600, l: 2.4, t: 10, x: 31, z: 0.5 });
+  P('Solid floor', 'm_floor', { mem: 'floorL', s: 600, l: 2.4, t: 9, x: 31, z: 0.5 });
+  P('Bottom longitudinal', 'm_blong', { s: 600, l: 2.4, x: 31, z: 0, prof: HP(200, 10), tp: 10 });
+  P('Side longitudinal', 'm_slong', { s: 600, l: 2.4, x: 31, z: 3, prof: HP(180, 9), tp: 10 });
+  P('Deck longitudinal (cargo deck)', 'm_beam', { btype: 'lstr', bloc: 'fb1', p: 50, s: 600, l: 2.4, x: 20, z: 6.5, prof: HP(240, 11), tp: 12 });
+  P('Side web frame', 'm_web', { S: 2.4, l: 5.5, bS: 3, h1: 2.44, Kn: 1, x: 31, z: 3.7, prof: T(700, 11, 150, 15), tp: 10 });
+  P('Deck transverse (cargo deck)', 'm_dgirder', { S: 2.4, l: 4.8, p: 50, bloc: 'fb1', x: 20, z: 6.5, prof: T(500, 11, 180, 18), tp: 12 });
+  P('Watertight bulkhead plating', 'x_wtpl', { bht: 'wt', s: 600, l: 2.4, t: 8, x: 40, z: 1 });
+  P('Watertight bulkhead stiffener', 'x_wtst', { bht: 'wt', endc: 'cc', s: 600, l: 2.75, x: 40, z: 2.4, prof: HP(160, 8), tp: 8 });
+  P('Collision bulkhead plating', 'x_wtpl', { bht: 'coll', s: 600, l: 2.4, t: 8, x: 56, z: 1 });
+  P('Fuel tank bulkhead plating', 'x_tkpl', { s: 600, l: 2.4, t: 9, x: 25, z: 1, zTop: 4, hov: 2.6, sg: 0.85 });
+  P('Fuel tank bulkhead stiffener', 'x_tkst', { endc: 'cc', s: 600, l: 3, x: 25, z: 2.5, zTop: 4, hov: 2.6, sg: 0.85, prof: HP(200, 10), tp: 9 });
+  P('Deckhouse front, 1st tier', 'm_wallpl', { wall: 'uf', tier: 1, x: 47, b1: 13, B1: 15, s: 600, l: 2.5, t: 8, z: 7.5 });
+  P('Deckhouse front stiffener', 'm_wallst', { wall: 'uf', tier: 1, x: 47, b1: 13, B1: 15, s: 600, l: 2.5, z: 7.75, prof: HP(160, 9), tp: 8 });
+  P('Deck pillar', 'x_pillar', { pType: 'pipe', OD: 219.1, tp: 12.7, l: 2.5, bS: 2.4, sS: 4.8, hP: 7.1, x: 20, z: 5 });
+  P('Bar stem', 'm_stem', { stType: 'bar', t: 50, w: 180, x: 62, z: 4 });
+  return { meta: { project: '', vessel: '62 m offshore support vessel', doc: '', by: 'Ansal Faris' }, ship: { rules: 'mvr', type: 'osv', L: 62, B: 15, D: 6.5, d: 5.2, ds: 5.2, Cb: 0.72, df: 2.2, hDB: 1000, margin: 0, gDeck: 'A', gBot: 'A' }, els: e, sel: 1, tab: 'all' };
+}
+function FB(hw, tw) { return { type: 'FB', hw, tw }; }
+function ex130() {
+  const e = [];
+  const P = (name, item, o) => e.push(Object.assign({ id: e.length + 1, name, item, grade: 'AH36' }, o));
+  P('Side shell plating', 'm_side', { s: 700, l: 2.8, t: 13, framing: 'long', x: 65, z: 4 });
+  P('Bottom shell plating', 'm_bottom', { s: 700, l: 2.8, t: 13, framing: 'long', x: 65, z: 0 });
+  P('Flat keel plate', 'm_keel', { s: 700, l: 2.8, t: 15, framing: 'long', x: 65, z: 0 });
+  P('Strength deck plating', 'm_deck', { deck: 'A', framing: 'long', s: 700, l: 2.8, t: 14, x: 65, z: 11.5 });
+  P('Inner bottom plating', 'm_ib', { s: 700, l: 2.8, t: 12, framing: 'long', p: 80, x: 65, z: 1.4, grade: 'A' });
+  P('Centre girder', 'm_cg', { s: 700, l: 2.8, t: 14, x: 65, z: 0.7, grade: 'A' });
+  P('Bottom longitudinal', 'm_blong', { s: 700, l: 2.8, x: 65, z: 0, prof: T(300, 11, 100, 14), tp: 13 });
+  P('Side longitudinal', 'm_slong', { s: 700, l: 2.8, x: 65, z: 3, prof: HP(260, 11), tp: 13 });
+  P('Deck longitudinal', 'm_beam', { btype: 'lstr', bloc: 'fb1', s: 700, l: 2.8, x: 65, z: 11.5, prof: HP(200, 10), tp: 14 });
+  P('Side web frame', 'm_web', { S: 2.8, l: 9.6, bS: 3.5, h1: 2.44, Kn: 1, x: 65, z: 6, prof: T(1200, 15, 250, 22), tp: 13 });
+  P('Watertight bulkhead plating', 'x_wtpl', { bht: 'wt', s: 750, l: 3, t: 10, x: 40, z: 1.4, grade: 'A' });
+  P('Watertight bulkhead stiffener', 'x_wtst', { bht: 'wt', endc: 'bc', s: 750, l: 3.6, x: 40, z: 3.2, prof: HP(240, 11), tp: 10, grade: 'A' });
+  P('Ballast tank bulkhead plating', 'x_tkpl', { s: 700, l: 2.8, t: 12.5, x: 120, z: 1.4, zTop: 11.5, hov: 0.76, sg: 1.025, grade: 'A' });
+  P('Deckhouse front, 1st tier', 'm_wallpl', { wall: 'uf', tier: 1, x: 18, b1: 17, B1: 20.5, s: 600, l: 2.6, t: 9, z: 12.8, grade: 'A' });
+  P('Deck girder (hatch side)', 'm_dgirder', { S: 4.2, l: 5.6, bloc: 'fb1', x: 65, z: 11.5, prof: T(600, 12, 200, 20), tp: 14 });
+  return { meta: { project: '', vessel: '130 m general cargo vessel', doc: '', by: 'Ansal Faris' }, ship: { rules: 'mvr', type: 'general', L: 129.8, B: 20.5, D: 11.5, d: 8.0, ds: 8.2, Cb: 0.75, df: 4.2, hDB: 1400, MsH: 300000, MsS: 120000, SMdk: 52000, SMbt: 60000, Ioff: 260000, zNA: 5.2, margin: 0, gDeck: 'AH36', gBot: 'AH36' }, els: e, sel: 1, tab: 'all' };
+}
+function blank(rules) { return { meta: META0(), ship: rules === 'barge' ? { rules: 'barge', type: 'b_deck', L: 60, B: 18, D: 4, d: 3, Cb: 0.9, hovf: 0.76, margin: 0 } : { rules: 'mvr', type: 'general', L: 90, B: 15, D: 7.5, d: 5.5, Cb: 0.72, margin: 0 }, els: [], sel: null, tab: 'all' }; }
+
+/* ---------- state ---------- */
+let state = load() || norm(exBarge());
+function norm(s) {
+  s.meta = Object.assign(META0(), s.meta || {}); s.ship = s.ship || {}; s.els = Array.isArray(s.els) ? s.els : [];
+  if (!A.RULES[s.ship.rules]) s.ship.rules = (A.TYPES[s.ship.type] || {}).r || 'mvr';
+  if (!A.TYPES[s.ship.type] || A.TYPES[s.ship.type].r !== s.ship.rules) s.ship.type = s.ship.rules === 'barge' ? 'b_deck' : 'general';
+  s.tab = ['all', 'plate', 'stiff', 'psm', 'spec'].includes(s.tab) ? s.tab : 'all';
+  s.els.forEach(fixEl);
+  if (!s.els.some(e => e.id === s.sel)) s.sel = (s.els[0] || {}).id;
+  return s;
+}
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.ship && Array.isArray(s.els)) return norm(s); } catch (e) { } return null; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { } }
+const selEl = () => state.els.find(e => e.id === state.sel) || state.els[0];
+const itemOf = el => A.ITEMS[el.item];
+function refOf(it) { const m = it.ref.match(/^(.*?) \(MVR\),\s*(.*?) \(Barge\)$/); return m ? (state.ship.rules === 'mvr' ? m[1] : 'Barge ' + m[2]) : it.ref; }
+function fixEl(el) {
+  const it = A.ITEMS[el.item];
+  if (!it) el.item = 'x_wtpl';
+  const cat = A.ITEMS[el.item].cat;
+  if (cat === 'stiff' && !el.prof) el.prof = { type: 'HP', hw: 160, tw: 8 };
+  if (cat === 'psm' && !el.prof) el.prof = { type: 'T', hw: 400, tw: 10, bf: 120, tf: 12 };
+  if ((cat === 'stiff' || cat === 'psm') && el.tp == null) el.tp = 10;
+  if (!el.grade) el.grade = 'A';
+}
+
+/* ---------- form helpers ---------- */
+const rootOf = k => k === 'ship' ? state.ship : k === 'meta' ? state.meta : selEl();
+function getPath(p) { const a = p.split('.'); let o = rootOf(a[0]); for (let i = 1; i < a.length; i++) { if (o == null) return undefined; o = o[a[i]]; } return o; }
+function setPath(p, v) { const a = p.split('.'); let o = rootOf(a[0]); for (let i = 1; i < a.length - 1; i++) { if (o[a[i]] == null) o[a[i]] = {}; o = o[a[i]]; } o[a[a.length - 1]] = v; }
+function F(label, path, o) {
+  o = o || {}; const v = getPath(path), id = 'f_' + path.replace(/\./g, '_');
+  const cls = 'f' + (o.span ? ' span2' : ''), rr = o.rr ? ' data-rr="1"' : '';
+  const lab = '<label for="' + id + '"><span>' + esc(label) + '</span>' + (o.unit ? '<i>' + esc(o.unit) + '</i>' : '') + '</label>';
+  if (o.chk) return '<div class="f chk' + (o.span ? ' span2' : '') + '"><input type="checkbox" id="' + id + '" data-k="' + path + '" data-t="bool"' + rr + (v ? ' checked' : '') + '><label for="' + id + '"><span>' + esc(label) + '</span></label></div>';
+  if (o.opts) {
+    let h = '<select id="' + id + '" data-k="' + path + '" data-t="' + (o.numeric ? 'num' : 'str') + '"' + rr + '>';
+    const cur = v == null || v === '' ? (o.def == null ? (o.opts[0] && !o.opts[0].grp ? o.opts[0][0] : '') : o.def) : v;
+    for (const op of o.opts) {
+      if (op.grp) { h += '<optgroup label="' + esc(op.grp) + '">'; for (const q of op.items) h += '<option value="' + esc(q[0]) + '"' + (String(q[0]) === String(cur) ? ' selected' : '') + '>' + esc(q[1]) + '</option>'; h += '</optgroup>'; }
+      else h += '<option value="' + esc(op[0]) + '"' + (String(op[0]) === String(cur) ? ' selected' : '') + '>' + esc(op[1]) + '</option>';
+    }
+    return '<div class="' + cls + '">' + lab + h + '</select></div>';
+  }
+  if (o.text) return '<div class="' + cls + '">' + lab + '<input type="text" id="' + id + '" data-k="' + path + '" data-t="str" value="' + esc(v == null ? '' : v) + '"></div>';
+  return '<div class="' + cls + '">' + lab + '<input type="number" step="any" inputmode="decimal" id="' + id + '" data-k="' + path + '" data-t="num" value="' + esc(v == null ? '' : v) + '"' + (o.ph != null ? ' placeholder="' + esc(o.ph) + '"' : '') + '></div>';
+}
+const SEC = (t, s) => '<div class="fsec"><h3>' + esc(t) + '</h3>' + (s ? '<small>' + s + '</small>' : '') + '</div>';
+const GRADEOPTS = Object.keys(A.GRADES).map(k => [k, A.GRADES[k].label + ' (Q ' + A.GRADES[k].Q.toFixed(2) + ')']);
+
+/* ---------- ship tab ---------- */
+let SH = null, RES = {};
+function renderShip() {
+  const S = A.deriveShip(state.ship), r = state.ship.rules;
+  $('#ruleSel').innerHTML = Object.keys(A.RULES).map(k => '<div class="' + (k === r ? 'on' : '') + '" data-rules="' + k + '" role="button" tabindex="0" style="cursor:pointer"><b>' + esc(A.RULES[k].label) + '</b>' + (k === 'mvr' ? 'Self-propelled steel vessels of any length: cargo ships, tankers, bulk, container, OSV, tugs, passenger, fishing (Pt.3 Ch.2, 2026)' : 'Steel barges: deck cargo, dry cargo, single / double skin tank barges and other barges (Pt.3 Ch.2 and Pt.5, 2026)') + '</div>').join('') + '<div style="display:none"></div>';
+  $('#ruleSel').style.gridTemplateColumns = '1fr 1fr';
+  const types = Object.keys(A.TYPES).filter(k => A.TYPES[k].r === r).map(k => [k, A.TYPES[k].label]);
+  let h = '<div class="fields">' + F('Vessel type', 'ship.type', { opts: types, rr: 1, span: 1 }) +
+    F('Rule length L', 'ship.L', { unit: 'm' }) + F('Moulded breadth B', 'ship.B', { unit: 'm' }) + F('Moulded depth D', 'ship.D', { unit: 'm' }) +
+    F('Design draft d', 'ship.d', { unit: 'm' }) + F('Block coefficient Cb', 'ship.Cb');
+  if (r === 'mvr') h += F('Scantling draft ds', 'ship.ds', { unit: 'm', ph: fx(S.d, 2) }) + F('Scantling depth Ds', 'ship.Ds', { unit: 'm', ph: fx(S.D, 2) }) + F('Bulkhead / freeboard deck height Dbd', 'ship.Dfb', { unit: 'm', ph: fx(S.D, 2) }) + F('Forward draft in ballast df', 'ship.df', { unit: 'm', ph: 'bottom slamming' }) + F('Double bottom height (offered)', 'ship.hDB', { unit: 'mm', ph: 'check dDB' });
+  else h += F('Scantling draft ds', 'ship.ds', { unit: 'm', ph: fx(S.d, 2) }) + F('Freeboard deck height Dfb', 'ship.Dfb', { unit: 'm', ph: fx(S.D, 2) }) +
+    SEC('Tank heads', '5-2-1/3, Part 5 ballast heads') + F('Overflow / air pipe height above deck', 'ship.hovf', { unit: 'm', ph: '0.76' }) + F('PV valve setting pv', 'ship.pv', { unit: 'bar', ph: '0' }) + F('Cargo specific gravity', 'ship.rho', { ph: '1.025' });
+  h += SEC('Owner\'s margin', 'added to every plate before rounding') + F('Extra thickness on all plating', 'ship.margin', { unit: 'mm', ph: '0' }) + '</div><div class="alerts" id="shipAlerts"></div>';
+  $('#shipForm').innerHTML = h;
+  $('#shipRef').textContent = r === 'mvr' ? 'MVR 3-1-1 definitions' : 'Barge Rules 3-1-1 definitions';
+  $('#hgRef').textContent = r === 'mvr' ? 'MVR 3-2-1' : 'Barge Rules 3-2-1';
+  $('#hgForm').innerHTML = '<div class="fields">' + F('Still water BM, hogging', 'ship.MsH', { unit: 'kN·m', ph: 'optional' }) + F('Still water BM, sagging', 'ship.MsS', { unit: 'kN·m', ph: 'optional' }) +
+    F('Deck material', 'ship.gDeck', { opts: GRADEOPTS }) + F('Bottom material', 'ship.gBot', { opts: GRADEOPTS }) +
+    F('SM offered at deck', 'ship.SMdk', { unit: 'cm²·m' }) + F('SM offered at bottom', 'ship.SMbt', { unit: 'cm²·m' }) + F('Moment of inertia offered', 'ship.Ioff', { unit: 'cm²·m²' }) + F('Neutral axis above BL', 'ship.zNA', { unit: 'm', ph: 'for k of deck long.' }) + '</div>';
+}
+function renderShipResults() {
+  const S = SH;
+  let al = '';
+  for (const n of S.notes) al += '<div class="alert info">' + esc(n) + '</div>';
+  if (S.rules === 'mvr' && S.L >= 150 && ['tanker', 'bulk', 'container'].includes(S.type)) al += '<div class="alert">L ≥ 150 m ' + esc(A.TYPES[S.type].label.toLowerCase()) + ': Part 5C (SafeHull / common structural rules) also applies.</div>';
+  if (S.rules === 'mvr' && S.osv) al += '<div class="alert info">Offshore support vessel: OSV side shell, bottom ratio ds/Ds ≥ 0,67, superstructure minimum thicknesses and 25 % impact increases apply.</div>';
+  $('#shipAlerts').innerHTML = al;
+  $('#ruleAlerts').innerHTML = state.els.some(e => !RES[e.id] || RES[e.id].error) ? '<div class="alert">Some members use items of the other rule set: open them and choose an item for ' + esc(A.RULES[S.rules].label) + '.</div>' : '';
+  const st = (l, v, u) => '<div class="stat"><span>' + l + '</span><b>' + v + (u ? ' <small>' + u + '</small>' : '') + '</b></div>';
+  let h = '<div class="stats" style="margin:-12px -16px 12px">' + st('Rules', esc(A.RULES[S.rules].short)) + st('Length band', S.rules === 'barge' ? 'Barge' : S.L < 61 ? 'L < 61 m' : S.L < 90 ? '61 ≤ L < 90 m' : 'L ≥ 90 m') + st('Std. frame spacing', fx(S.s0, 0), 'mm') + (S.rules === 'mvr' ? st('dDB = 32 B + 190 √d', fx(S.dDBreq, 0), 'mm') : st('ha (tank head)', fx(S.ha, 3), 'm')) + st('SM required (ordinary steel)', fx(S.SMR, 0), 'cm²·m') + st('I required', fx(S.Ireq, 0), 'cm²·m²') + '</div>';
+  h += '<table><tbody>' + S.hgSteps.map(q => '<tr><td>' + esc(q[0]) + '</td><td class="n">' + esc(q[1]) + '</td></tr>').join('') + '<tr><td>Required SM at deck, × Q = ' + fx(S.gDeck.Q, 2) + '</td><td class="n"><b>' + fx(S.SMreqDk, 0) + ' cm²·m</b></td></tr><tr><td>Required SM at bottom, × Q = ' + fx(S.gBot.Q, 2) + '</td><td class="n"><b>' + fx(S.SMreqBt, 0) + ' cm²·m</b></td></tr></tbody></table>';
+  if (S.hgChecks.length) h += '<div class="checks" style="margin-top:10px">' + S.hgChecks.map(c => { const ok = c.off >= c.req * 0.999; return '<div class="chk-row ' + (ok ? 'ok' : 'bad') + '"><span class="ic">' + (ok ? '✓' : '✕') + '</span><span>' + esc(c.lbl) + '</span><span class="num">required ' + fx(c.req, 0) + ' · offered ' + fx(c.off, 0) + ' ' + c.u + '</span></div>'; }).join('') + '</div>';
+  else h += '<p class="ref">Enter the offered section modulus and moment of inertia to check the hull girder.</p>';
+  $('#hgRes').innerHTML = h;
+  $('#sbRegime').innerHTML = '<b>' + esc(A.RULES[S.rules].short) + '</b>' + esc(A.TYPES[S.type].label) + ', L = ' + fx(S.L, 2) + ' m';
+}
+
+/* ---------- member form ---------- */
+function itemOpts(cat) {
+  const g = {};
+  for (const k of A.itemsFor(state.ship.rules)) { const it = A.ITEMS[k]; if (cat && it.cat !== cat) continue; (g[it.grp] = g[it.grp] || []).push([k, it.label + ' – ' + refOf(it)]); }
+  return Object.keys(g).map(n => ({ grp: n, items: g[n] }));
+}
+function profFields(cat) {
+  const el = selEl(), t = (el.prof || {}).type || 'HP';
+  const types = cat === 'psm' ? [['T', 'T (web + face plate)'], ['L', 'Angle L'], ['FB', 'Flat bar'], ['DIR', 'Enter SM directly']] : [['HP', 'Bulb flat HP'], ['L', 'Angle L'], ['FB', 'Flat bar'], ['T', 'T (web + face plate)'], ['DIR', 'Enter SM directly']];
+  let h = SEC('Section offered', cat === 'psm' ? 'attached plating min(spacing ; 0,33 ℓ)' : 'attached plating width = s') + F('Profile', 'el.prof.type', { opts: types, rr: 1 });
+  if (t === 'DIR') return h + F('Section modulus incl. plating', 'el.prof.Z', { unit: 'cm³' });
+  h += F(t === 'L' ? 'Height h' : t === 'HP' ? 'Height h' : 'Web height hw', 'el.prof.hw', { unit: 'mm' }) + F('Web thickness tw', 'el.prof.tw', { unit: 'mm' });
+  if (t === 'L' || t === 'T') h += F(t === 'L' ? 'Flange width b' : 'Face plate width bf', 'el.prof.bf', { unit: 'mm' }) + F('Flange thickness tf', 'el.prof.tf', { unit: 'mm', ph: t === 'L' ? 'tw' : '' });
+  return h + F('Attached plate thickness', 'el.tp', { unit: 'mm' });
+}
+function renderElForm() {
+  const el = selEl();
+  if (!el) { $('#elForm').innerHTML = '<p class="muted">No members yet. Use the buttons on the members tab to add one.</p>'; $('#elTitle').textContent = 'Member'; return; }
+  const it = itemOf(el), cat = it.cat, ok = it.r === 'both' || it.r === state.ship.rules;
+  $('#elTitle').textContent = CATS[cat] + ': ' + el.name;
+  let h = '<div class="fields">' + F('Name', 'el.name', { text: 1, span: 1 }) + F('Rule item', 'el.item', { opts: itemOpts(cat).length ? (ok ? itemOpts(cat) : [[el.item, '(other rule set) ' + it.label]].concat(itemOpts(cat))) : [], rr: 1, span: 1 }) +
+    F('Material', 'el.grade', { opts: GRADEOPTS }) + F('x from AP', 'el.x', { unit: 'm' }) + F(cat === 'plate' ? 'z – plate (lower edge / centre) above BL' : 'z – mid-span above BL', 'el.z', { unit: 'm' });
+  if (cat === 'plate') h += SEC('Plate panel', refOf(it)) + F('Stiffener spacing s', 'el.s', { unit: 'mm' }) + F('Panel length (longer edge)', 'el.l', { unit: 'm' }) + F('Offered thickness t', 'el.t', { unit: 'mm' }) + F('Owner\'s margin (blank = ship value)', 'el.margin', { unit: 'mm', ph: fx(SH.margin, 1) });
+  else if (cat === 'stiff') h += SEC('Stiffener', refOf(it)) + F('Spacing s', 'el.s', { unit: 'mm' }) + F('Span ℓ', 'el.l', { unit: 'm' });
+  else if (cat === 'psm') h += SEC('Primary member', refOf(it)) + F('Spacing / breadth supported s, b', 'el.S', { unit: 'm' }) + F('Span ℓ', 'el.l', { unit: 'm' });
+  else h += SEC('Item', refOf(it));
+  const fl = it.fields ? it.fields(SH) : [];
+  if (fl.length) { if (cat !== 'spec') h += SEC('Rule options', ''); for (const f of fl) { if (cat === 'spec' && f[0] === 'l') { h += F(f[1], 'el.l', { unit: 'm' }); continue; } if (f[0] === 'z' || f[0] === 'x') continue; h += F(f[1], 'el.' + f[0], Object.assign({ rr: f[2] && (f[2].opts || f[2].chk) ? 1 : 0 }, f[2] || {})); } }
+  if (cat === 'stiff' || cat === 'psm') h += profFields(cat);
+  h += '</div>';
+  $('#elForm').innerHTML = h;
+}
+
+/* ---------- results ---------- */
+function compute() { SH = A.deriveShip(state.ship); RES = {}; for (const e of state.els) RES[e.id] = A.calcElement(SH, e); }
+const pill = s => '<span class="pill ' + s + '">' + ({ ok: 'OK', bad: 'Not OK', warn: 'Check', na: 'No values' }[s]) + '</span>';
+function ubar(u, st) { if (u == null || !isFinite(u)) return ''; return '<span class="ub ' + (st === 'bad' ? 'bad' : u > 0.9 ? 'warn' : '') + '"><i style="width:' + Math.min(100, u * 100).toFixed(0) + '%"></i></span>' + (u * 100).toFixed(0) + ' %'; }
+const ORDER = ['plate', 'stiff', 'psm', 'spec'];
+function geomTxt(e, it) { return it.cat === 'plate' ? (has(e.s) ? fx(+e.s, 0) + ' mm' : '–') : it.cat === 'stiff' ? fx(num(e.s, 0), 0) + ' mm / ' + fx(num(e.l, 0), 2) + ' m' : it.cat === 'psm' ? fx(num(e.S, 0), 2) + ' / ' + fx(num(e.l, 0), 2) + ' m' : '–'; }
+function renderTable() {
+  const tab = state.tab || 'all'; let h = '', cnt = { ok: 0, bad: 0, warn: 0, na: 0 };
+  for (const e of state.els) cnt[RES[e.id].status] = (cnt[RES[e.id].status] || 0) + 1;
+  const head = '<tr><th>Member</th><th>Rule item</th><th>Ref.</th><th class="n">x / z (m)</th><th class="n">s / ℓ</th><th>Section offered</th><th class="n">Required</th><th class="n">Offered</th><th>Utilisation</th><th>Status</th></tr>';
+  for (const cat of ORDER) {
+    if (tab !== 'all' && tab !== cat) continue;
+    const list = state.els.filter(e => itemOf(e).cat === cat);
+    if (!list.length && tab === 'all') continue;
+    h += '<tr class="grp"><td colspan="10">' + CATP[cat] + '<span>' + list.length + (list.length === 1 ? ' member' : ' members') + '</span></td></tr>' + head;
+    if (!list.length) h += '<tr><td colspan="10" class="muted">None yet.</td></tr>';
+    for (const e of list) {
+      const R = RES[e.id], it = itemOf(e);
+      h += '<tr class="row' + (e.id === state.sel ? ' sel' : '') + '" data-id="' + e.id + '" tabindex="0"><td>' + esc(e.name) + '</td><td class="muted">' + esc(it.label) + '</td><td class="muted" style="white-space:nowrap">' + esc(refOf(it)) + '</td><td class="n">' + fx(num(e.x, 0), 1) + ' / ' + fx(num(e.z, 0), 2) + '</td><td class="n">' + geomTxt(e, it) + '</td><td class="mono" style="white-space:nowrap">' + esc(R.label || '–') + '</td><td class="n">' + (R.error ? 'item n/a' : R.reqTxt || '–') + '</td><td class="n">' + (R.offTxt || '–') + '</td><td style="white-space:nowrap">' + ubar(R.util, R.status) + '</td><td>' + pill(R.status) + '</td></tr>';
+    }
+  }
+  $('#tbody').innerHTML = h || '<tr><td class="muted">No members.</td></tr>';
+  $('#summary').innerHTML = '<span><b>' + state.els.length + '</b> members</span><span class="pill ok">' + (cnt.ok || 0) + ' OK</span>' + (cnt.warn ? '<span class="pill warn">' + cnt.warn + ' to check</span>' : '') + (cnt.bad ? '<span class="pill bad">' + cnt.bad + ' not OK</span>' : '') + (cnt.na ? '<span class="pill na">' + cnt.na + ' without values</span>' : '');
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.v === tab));
+}
+const kv = a => '<div class="kvl">' + a.filter(Boolean).map(x => '<div><span>' + x[0] + '</span><b>' + x[1] + '</b></div>').join('') + '</div>';
+function sheetHtml(el, R) {
+  const it = itemOf(el);
+  if (R.error) return '<p class="alert">' + esc(R.error) + ' – choose an item of the ' + esc(A.RULES[SH.rules].label) + '.</p>';
+  let h = '<div class="sheet"><h4>' + esc(it.label) + ' – ' + esc(refOf(it)) + '</h4>';
+  h += '<div class="tblwrap"><table><tr><th>Step</th><th>Values</th><th class="n">Result</th></tr>' + R.steps.map(s => '<tr><td>' + esc(s.d) + '</td><td class="mono" style="font-size:11.5px">' + esc(s.f) + '</td><td class="n">' + (typeof s.v === 'number' ? fx(s.v, Math.abs(s.v) >= 1000 ? 0 : 3) : esc(s.v)) + (s.u ? ' ' + s.u : '') + '</td></tr>').join('') + '</table></div>';
+  if (it.cat === 'plate') {
+    h += '<div class="res"><div><span>Rule thickness</span><b>' + fx(R.treq, 2) + ' <small>mm</small></b></div>' + (R.margin ? '<div><span>+ owner\'s margin</span><b>' + fx(R.margin, 1) + ' <small>mm</small></b></div>' : '') + '<div class="key"><span>Required (nearest 0,5)</span><b>' + fx(R.treqR, 1) + ' <small>mm</small></b></div><div><span>Offered</span><b>' + fx(R.toff, 1) + ' <small>mm</small></b></div></div>';
+  } else if (it.cat === 'spec') {
+    h += '<div class="res"><div class="key"><span>Required</span><b>' + esc(R.reqTxt || '–') + '</b></div><div><span>Offered</span><b>' + esc(R.offTxt || '–') + '</b></div></div>';
+  } else {
+    h += '<div class="res"><div class="key"><span>Required SM</span><b>' + fx(R.SMreq, 1) + ' <small>cm³</small></b></div><div><span>Offered SM</span><b>' + fx(R.SMoff, 1) + ' <small>cm³</small></b></div>' + (R.sec ? '<div><span>Area / I</span><b>' + fx(R.sec.A, 1) + ' <small>cm²</small> / ' + fx(R.sec.I, 0) + ' <small>cm⁴</small></b></div><div><span>Attached plate</span><b>' + fx(R.beff, 0) + ' × ' + fx(R.tp, 1) + '</b></div>' : '') + '</div>';
+  }
+  if (R.checks.length) h += '<h4>Checks</h4><div class="checks">' + R.checks.map(c => '<div class="chk-row ' + (c.ok ? 'ok' : 'bad') + '"><span class="ic">' + (c.ok ? '✓' : '✕') + '</span><span>' + esc(c.lbl) + '</span><span class="num">' + (c.inv ? 'limit ' + fx(c.req, 1) + ' · actual ' + fx(c.off, 1) : 'required ' + fx(c.req, 2) + ' · offered ' + fx(c.off, 2)) + ' ' + c.u + '</span></div>').join('') + '</div>';
+  const nt = R.warn.map(w => '<div class="alert">' + esc(w) + '</div>').join('') + R.notes.map(n => '<div class="alert info">' + esc(n) + '</div>').join('');
+  if (nt) h += '<div class="alerts">' + nt + '</div>';
+  h += '<p style="margin-top:12px">' + pill(R.status) + (isFinite(R.util) ? ' <span class="ref">utilisation ' + (R.util * 100).toFixed(0) + ' %</span>' : '') + '</p></div>';
+  return h;
+}
+function renderSheet() { const el = selEl(); $('#sheet').innerHTML = el ? sheetHtml(el, RES[el.id]) : '<p class="muted">Add a member to start.</p>'; $('#sheetRef').textContent = el ? refOf(itemOf(el)) : ''; }
+function renderMemSel() {
+  $('#memSel').innerHTML = ORDER.map(c => { const l = state.els.filter(e => itemOf(e).cat === c); return l.length ? '<optgroup label="' + CATP[c] + '">' + l.map(e => '<option value="' + e.id + '"' + (e.id === state.sel ? ' selected' : '') + '>' + esc(e.name) + '</option>').join('') + '</optgroup>' : ''; }).join('');
+}
+
+/* ---------- figures ---------- */
+const stCol = s => ({ ok: 'var(--ok)', bad: 'var(--no)', warn: 'var(--warn)', na: 'var(--mut)' }[s] || 'var(--mut)');
+function marker(cat, cx, cy, c) { const r = v => v.toFixed(1); return cat === 'plate' ? '<rect x="' + r(cx - 6) + '" y="' + r(cy - 2.2) + '" width="12" height="4.4" fill="' + c + '"/>' : cat === 'stiff' ? '<circle cx="' + r(cx) + '" cy="' + r(cy) + '" r="3.6" fill="' + c + '"/>' : cat === 'psm' ? '<path d="M' + r(cx) + ' ' + r(cy - 5.5) + ' l5.5 5.5 l-5.5 5.5 l-5.5 -5.5 Z" fill="' + c + '"/>' : '<path d="M' + r(cx) + ' ' + r(cy - 6) + ' l5.5 10 h-11 Z" fill="' + c + '"/>'; }
+function drawProfile() {
+  const S = SH, L = S.L, D = S.D, W = 760, mL = 34, mR = 46, mT = 26, mB = 46, barge = S.rules === 'barge';
+  const zTop = Math.max(D * 1.35, ...state.els.map(e => num(e.z, 0) + 0.6));
+  const sx = (W - mL - mR) / (L * 1.06), sz = Math.min(sx * 4, 190 / zTop), H = mT + mB + zTop * sz;
+  const X = x => mL + (x + 0.03 * L) * sx, Y = z => mT + (zTop - z) * sz, r = v => v.toFixed(1);
+  const pts = barge ? [[-0.01 * L, D], [-0.01 * L, 0.35 * D], [0.06 * L, 0], [0.94 * L, 0], [1.01 * L, 0.35 * D], [1.01 * L, D]] : [[-0.02 * L, D], [-0.015 * L, 0.55 * S.d], [0.04 * L, 0], [0.94 * L, 0], [0.99 * L, 0.25 * S.d], [1.02 * L, D]];
+  const hull = 'M' + pts.map(p => r(X(p[0])) + ' ' + r(Y(p[1]))).join(' L') + ' Z';
+  let s = '<svg viewBox="0 0 ' + W + ' ' + r(H) + '" role="img" aria-label="Profile with member positions"><defs><clipPath id="hc"><path d="' + hull + '"/></clipPath></defs>';
+  const band = (a, b, col, lbl) => { s += '<rect clip-path="url(#hc)" x="' + r(X(a)) + '" y="' + r(Y(D)) + '" width="' + r((b - a) * sx) + '" height="' + r(D * sz) + '" fill="' + col + '" opacity=".14"/><line x1="' + r(X(a)) + '" x2="' + r(X(b)) + '" y1="' + r(mT - 6) + '" y2="' + r(mT - 6) + '" stroke="' + col + '" stroke-width="3"/><text x="' + r(X((a + b) / 2)) + '" y="' + r(mT - 10) + '" text-anchor="middle" class="lbl">' + lbl + '</text>'; };
+  band(-0.03 * L, 0.1 * L, 'var(--wave)', '0,1 L aft'); band(0.3 * L, 0.7 * L, 'var(--acc)', '0,4 L amidships'); band(0.9 * L, 1.03 * L, 'var(--wave)', '0,1 L fwd');
+  s += '<path d="' + hull + '" fill="none" stroke="var(--ink)" stroke-width="1.8"/>';
+  s += '<line x1="' + r(X(-0.03 * L)) + '" x2="' + r(X(1.03 * L)) + '" y1="' + r(Y(S.d)) + '" y2="' + r(Y(S.d)) + '" stroke="var(--sea)" stroke-dasharray="6 4"/><text x="' + r(X(1.03 * L) + 4) + '" y="' + r(Y(S.d) + 4) + '">d ' + fx(S.d, 2) + '</text>';
+  if (S.ds > S.d + 0.06 * D) s += '<line x1="' + r(X(-0.03 * L)) + '" x2="' + r(X(1.03 * L)) + '" y1="' + r(Y(S.ds)) + '" y2="' + r(Y(S.ds)) + '" stroke="var(--sea)" stroke-dasharray="2 3"/><text x="' + r(X(1.03 * L) + 4) + '" y="' + r(Y(S.ds) - 3) + '">ds</text>';
+  const by = Y(0) + 30;
+  for (const t of [0, 0.1, 0.3, 0.5, 0.7, 0.9, 1]) s += '<line x1="' + r(X(t * L)) + '" x2="' + r(X(t * L)) + '" y1="' + r(by - 4) + '" y2="' + r(by) + '" stroke="var(--mut)"/><text x="' + r(X(t * L)) + '" y="' + r(by + 12) + '" text-anchor="middle">' + (t === 0 ? 'AP' : t === 1 ? 'FP' : t.toFixed(1) + ' L') + '</text>';
+  s += '<line x1="' + r(X(0)) + '" x2="' + r(X(L)) + '" y1="' + r(by - 4) + '" y2="' + r(by - 4) + '" stroke="var(--mut)"/><text x="' + r(X(-0.03 * L) - 4) + '" y="' + r(Y(D) + 4) + '" text-anchor="end">D</text>';
+  for (const e of state.els) {
+    const R = RES[e.id], cat = itemOf(e).cat, cx = X(Math.max(-0.03 * L, Math.min(1.03 * L, num(e.x, L / 2)))), cy = Y(Math.max(0, num(e.z, 0))), on = e.id === state.sel;
+    s += '<g data-id="' + e.id + '" style="cursor:pointer"><title>' + esc(e.name) + ' – ' + ({ ok: 'OK', bad: 'not OK', warn: 'check', na: 'no values' }[R.status]) + '</title>' + (on ? '<circle cx="' + r(cx) + '" cy="' + r(cy) + '" r="10" fill="none" stroke="var(--acc)" stroke-width="2"/>' : '') + marker(cat, cx, cy, stCol(R.status)) + '</g>';
+  }
+  $('#figProfile').innerHTML = s + '</svg>';
+}
+function memberSvg(el, R) {
+  const W = 340, H = 220, Tx = (x, y, t, a) => '<text class="lbl" x="' + x + '" y="' + y + '" text-anchor="' + (a || 'middle') + '">' + esc(t) + '</text>', it = itemOf(el);
+  let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Sketch of the selected member" style="min-width:260px">';
+  if (it.cat === 'plate') {
+    let a = num(el.s, 600) / 1000, b = num(el.l, 2); if (b < a) { const t = a; a = b; b = t; } const rr = Math.min(b / Math.max(a, 1e-6), 4.5), pw = 220, ph = pw / rr, x0 = 92, y0 = (H - ph) / 2;
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + pw + '" height="' + ph.toFixed(1) + '" fill="var(--accbg)" stroke="var(--acc)" stroke-width="1.5"/><line x1="' + (x0 - 14) + '" x2="' + (x0 + pw + 14) + '" y1="' + y0 + '" y2="' + y0 + '" stroke="var(--ink)" stroke-width="3"/><line x1="' + (x0 - 14) + '" x2="' + (x0 + pw + 14) + '" y1="' + (y0 + ph) + '" y2="' + (y0 + ph) + '" stroke="var(--ink)" stroke-width="3"/>';
+    s += Tx(x0 + pw / 2, y0 + ph + 22, 'panel ' + fx(b * 1000, 0) + ' mm') + Tx(x0 - 18, y0 + ph / 2 + 4, 's = ' + fx(a * 1000, 0), 'end') + Tx(x0 + pw / 2, y0 + ph / 2 + 4, 't = ' + fx(num(el.t, 0), 1) + ' mm (req. ' + fx(R.treqR, 1) + ')');
+    s += Tx(W / 2, 16, it.label);
+  } else if (it.cat === 'spec') {
+    s += Tx(170, 100, it.label) + Tx(170, 122, R.label || '') + Tx(170, 144, (R.reqTxt || '') + ' vs ' + (R.offTxt || ''));
+  } else if (R.sec) {
+    const np = R.prof, tp = Math.max(R.tp, 1), bp = Math.min(R.beff, Math.max(np.bf * 3, 300)), tot = tp + np.hw + (np.flanged ? np.tf : 0);
+    const sc = Math.min((H - 60) / tot, (W - 110) / bp), cx = W / 2 - 20, yb = H - 34, Yy = v => yb - v * sc, tw = Math.max(np.tw * sc, 2);
+    s += '<rect x="' + (cx - bp * sc / 2) + '" y="' + Yy(tp) + '" width="' + (bp * sc) + '" height="' + Math.max(tp * sc, 2) + '" fill="var(--mut)"/><rect x="' + (cx - tw / 2) + '" y="' + Yy(tp + np.hw) + '" width="' + tw + '" height="' + (np.hw * sc) + '" fill="var(--acc)"/>';
+    if (np.flanged) { const fw = np.bf * sc, fxx = np.type === 'T' ? cx - fw / 2 : cx - tw / 2; s += '<rect x="' + fxx + '" y="' + Yy(tot) + '" width="' + fw + '" height="' + Math.max(np.tf * sc, 2) + '" fill="var(--acc)"/>'; }
+    s += '<line x1="' + (cx - bp * sc / 2 - 8) + '" x2="' + (cx + bp * sc / 2 + 8) + '" y1="' + Yy(R.sec.yna) + '" y2="' + Yy(R.sec.yna) + '" stroke="var(--no)" stroke-dasharray="5 3"/><text x="' + (cx + bp * sc / 2 + 12) + '" y="' + (Yy(R.sec.yna) + 4) + '">N.A.</text>';
+    s += Tx(cx, yb + 16, 'plate ' + fx(R.beff, 0) + ' × ' + fx(tp, 1) + (R.beff > bp ? ' (clipped)' : '')) + Tx(cx + Math.max(np.bf * sc, 20) / 2 + 14, Yy(tp + np.hw / 2), np.label, 'start');
+    s += '<text x="8" y="14">gross section, mm' + (np.type === 'HP' ? ' – bulb as equivalent angle' : '') + '</text>';
+  } else s += Tx(170, 110, R.label || 'enter the section');
+  return s + '</svg>';
+}
+function drawMember() { const el = selEl(); $('#figMember').innerHTML = el ? memberSvg(el, RES[el.id]) : ''; }
+
+/* ---------- key results ---------- */
+function renderKey() {
+  const S = SH, cnt = { ok: 0, bad: 0, warn: 0, na: 0 }; let worst = null;
+  for (const e of state.els) { const R = RES[e.id]; cnt[R.status] = (cnt[R.status] || 0) + 1; if (R.status !== 'na' && isFinite(R.util) && (!worst || R.util > worst.u)) worst = { e, u: R.util, st: R.status }; }
+  const hgOk = S.hgChecks.every(c => c.off >= c.req * 0.999), hgN = S.hgChecks.length;
+  const k = (t, v, s, c) => '<div><div class="k">' + t + '</div><div class="kv"' + (c ? ' style="color:var(--' + c + ')"' : '') + '>' + v + '</div>' + (s ? '<div class="ks">' + s + '</div>' : '') + '</div>';
+  $('#kr').innerHTML = k('Rules applied', esc(A.RULES[S.rules].short), esc(A.TYPES[S.type].label)) + k('Rule length L', fx(S.L, 2) + ' <small>m</small>', 'B ' + fx(S.B, 2) + ' · D ' + fx(S.D, 2) + ' · d ' + fx(S.d, 2) + ' m') + k('Members', state.els.length, (cnt.ok || 0) + ' OK · ' + (cnt.warn || 0) + ' check · ' + (cnt.bad || 0) + ' not OK') +
+    k('Overall', cnt.bad ? '✗ NOT OK' : cnt.warn ? '! CHECK' : state.els.length ? '✓ ALL OK' : '–', cnt.na ? cnt.na + ' without offered values' : '', cnt.bad ? 'no' : cnt.warn ? 'warn' : 'ok') +
+    k('Highest utilisation', worst ? (worst.u * 100).toFixed(0) + ' <small>%</small>' : '–', worst ? esc(worst.e.name) : '', worst ? (worst.st === 'bad' ? 'no' : worst.st === 'warn' ? 'warn' : 'ok') : '') +
+    k('Hull girder SM req.', fx(S.SMR, 0) + ' <small>cm²·m</small>', hgN ? (hgOk ? 'offered values OK' : 'offered values not OK') : 'ordinary steel; enter offered', hgN ? (hgOk ? 'ok' : 'no') : '');
+  const m = state.meta, d = new Date(), ds = d.getDate().toString().padStart(2, '0') + '.' + (d.getMonth() + 1).toString().padStart(2, '0') + '.' + d.getFullYear();
+  const c = (a, b) => '<td>' + a + '</td><td><b>' + esc(b || '–') + '</b></td>';
+  $('#pp').innerHTML = '<tr>' + c('Project', m.project) + c('Vessel', m.vessel) + c('Doc. no.', m.doc) + '</tr><tr>' + c('Prepared', m.by) + c('Date', ds) + c('Rules', A.RULES[S.rules].short + ' 2026') + '</tr><tr>' + c('Vessel type', A.TYPES[S.type].label) + c('L × B × D × d', fx(S.L, 2) + ' × ' + fx(S.B, 2) + ' × ' + fx(S.D, 2) + ' × ' + fx(S.d, 2) + ' m') + c('Cb', fx(S.Cb, 3)) + '</tr>';
+  $('#pfL').textContent = 'ABS local structural scantlings' + (m.vessel ? ' – ' + m.vessel : '') + (m.doc ? ' – ' + m.doc : '');
+  for (const f of ['project', 'vessel', 'doc', 'by']) { const n = $('#m_' + f); if (n && document.activeElement !== n) n.value = m[f] || ''; }
+}
+function inputSummary(el, R) {
+  const it = itemOf(el), g = A.GRADES[el.grade] || A.GRADES.A;
+  return '<div class="kvl">' + [['Rule item', esc(it.label)], ['Reference', esc(refOf(it))], ['x / z', fx(num(el.x, 0), 2) + ' / ' + fx(num(el.z, 0), 2) + ' m'], ['Material', esc(g.label)], it.cat === 'plate' ? ['s × panel', fx(num(el.s, 0), 0) + ' mm × ' + fx(num(el.l, 0), 2) + ' m'] : it.cat === 'stiff' ? ['s × ℓ', fx(num(el.s, 0), 0) + ' mm × ' + fx(num(el.l, 0), 2) + ' m'] : it.cat === 'psm' ? ['s × ℓ', fx(num(el.S, 0), 2) + ' m × ' + fx(num(el.l, 0), 2) + ' m'] : null, ['Offered', esc(R.label || '–')]].filter(Boolean).map(x => '<div><span>' + x[0] + '</span><b>' + x[1] + '</b></div>').join('') + '</div>';
+}
+function renderAllSheets() {
+  let h = '', n = 0;
+  for (const c of ORDER) for (const e of state.els.filter(q => itemOf(q).cat === c)) {
+    const R = RES[e.id]; n++;
+    h += '<div class="msheet"><h3><span>3.' + n + ' · ' + esc(e.name) + ' <span style="font-weight:400;font-family:var(--f-body)">(' + CATS[c].toLowerCase() + ')</span></span>' + pill(R.status) + '</h3><div class="mbody"><div><div class="sheet blk"><h4>Input</h4>' + inputSummary(e, R) + '</div>' + sheetHtml(e, R) + '</div><div class="mfig">' + memberSvg(e, R) + '</div></div></div>';
+  }
+  $('#allSheets').innerHTML = h || '<p class="muted">No members.</p>';
+}
+function renderResults() { compute(); renderShipResults(); renderTable(); renderSheet(); drawProfile(); drawMember(); renderKey(); renderMemSel(); }
+function renderAll() { compute(); renderShip(); renderElForm(); renderResults(); }
+
+/* ---------- events ---------- */
+function toast(t) { const d = $('#toast'); d.textContent = t; d.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => { d.style.display = 'none'; }, 2400); }
+function showText(title, note, text) { $('#dlgTitle').textContent = title; $('#dlgNote').textContent = note; $('#dlgText').value = text; $('#dlg').classList.add('on'); $('#dlgText').select(); }
+function copy(text, okMsg) { const fb = () => showText('Copy table', 'Select all and copy, then paste into Excel.', text); try { navigator.clipboard.writeText(text).then(() => toast(okMsg), fb); } catch (e) { fb(); } }
+function tsv() {
+  const S = SH, m = state.meta, rows = [['Project', m.project, 'Vessel', m.vessel, 'Doc. no.', m.doc, 'Prepared', m.by], ['Rules', A.RULES[S.rules].ref], ['Type', A.TYPES[S.type].label, 'L', S.L, 'B', S.B, 'D', S.D, 'd', S.d, 'Cb', S.Cb], ['Hull girder SM required (ordinary steel)', fx(S.SMR, 0), 'cm2-m', 'I required', fx(S.Ireq, 0), 'cm2-m2'], [], ['Category', 'Member', 'Rule item', 'Reference', 'x (m)', 'z (m)', 's', 'l (m)', 'Section offered', 'Required', 'Offered', 'Utilisation', 'Status']];
+  for (const e of state.els) { const R = RES[e.id], it = itemOf(e); rows.push([CATS[it.cat], e.name, it.label, it.ref, e.x, e.z, it.cat === 'psm' ? e.S : e.s, e.l, R.label, R.reqTxt, R.offTxt, isFinite(R.util) ? fx(R.util, 2) : '', R.status]); }
+  rows.push([], ['Developed by Ansal Faris - Naval Architect']);
+  return rows.map(r => r.map(v => v == null ? '' : v).join('\t')).join('\n');
+}
+const DEFITEM = { mvr: { plate: 'm_side', stiff: 'm_slong', psm: 'm_web', spec: 'x_pillar' }, barge: { plate: 'b_side', stiff: 'b_frame', psm: 'b_psm', spec: 'x_pillar' } };
+function newEl(cat) {
+  const cur = selEl() || {}, id = state.els.reduce((m, e) => Math.max(m, e.id), 0) + 1, r = state.ship.rules;
+  const curIt = cur.item && A.ITEMS[cur.item], item = curIt && curIt.cat === cat && (curIt.r === 'both' || curIt.r === r) ? cur.item : DEFITEM[r][cat];
+  const base = { id, name: cat === 'plate' ? 'New plate' : cat === 'stiff' ? 'New stiffener' : cat === 'psm' ? 'New primary member' : 'New item', item, grade: cur.grade || 'A', x: has(cur.x) ? cur.x : +(SH.L / 2).toFixed(1), z: has(cur.z) ? cur.z : 0, s: has(cur.s) ? cur.s : Math.round(Math.min(SH.s0, 700)), l: cat === 'psm' ? 4 : 2.4, S: 2.4 };
+  if (cat === 'plate') base.t = 10;
+  fixEl(base); state.els.push(base); state.sel = id;
+}
+function openMember(id) { state.sel = id; save(); renderElForm(); renderResults(); if (location.hash !== '#member') location.hash = 'member'; else scrollTo(0, 0); }
+function setRules(r) {
+  if (state.ship.rules === r) return;
+  state.ship.rules = r; state.ship.type = r === 'barge' ? 'b_deck' : 'general';
+  save(); renderAll(); toast('Rules: ' + A.RULES[r].label);
+}
+document.addEventListener('input', e => {
+  const t = e.target; if (!t.dataset || !t.dataset.k) return;
+  let v; if (t.dataset.t === 'bool') v = t.checked; else if (t.dataset.t === 'num') v = t.value === '' ? '' : parseFloat(t.value); else v = t.value;
+  if (t.dataset.t === 'num' && v !== '' && !isFinite(v)) return;
+  setPath(t.dataset.k, v);
+  if (t.dataset.k === 'el.item' || t.dataset.k === 'el.prof.type') fixEl(selEl());
+  save();
+  if (t.dataset.k.indexOf('meta.') === 0) { renderKey(); return; }
+  if (t.dataset.rr || (t.tagName === 'SELECT' && t.dataset.k.indexOf('ship.') === 0)) { renderAll(); const n = document.getElementById(t.id); if (n) n.focus(); }
+  else { renderResults(); if (t.dataset.k === 'el.name') $('#elTitle').textContent = $('#elTitle').textContent.split(':')[0] + ': ' + v; }
+});
+$('#memSel').addEventListener('change', e => { state.sel = +e.target.value; save(); renderElForm(); renderResults(); });
+document.addEventListener('click', e => {
+  const cl = e.target.closest('[data-close]'); if (cl) { $('#' + cl.dataset.close).classList.remove('on'); return; }
+  const rs = e.target.closest('[data-rules]'); if (rs) { setRules(rs.dataset.rules); return; }
+  const row = e.target.closest('[data-id]'); if (row && !e.target.closest('button') && row.closest('#t-members')) { openMember(+row.dataset.id); return; }
+  const b = e.target.closest('button[data-act]'); if (!b) return; const a = b.dataset.act;
+  if (a === 'tab') { state.tab = b.dataset.v; save(); renderTable(); }
+  else if (a === 'add') { newEl(b.dataset.v); save(); openMember(state.sel); }
+  else if (a === 'dup') { const el = selEl(); if (!el) return; const c = JSON.parse(JSON.stringify(el)); c.id = state.els.reduce((m, q) => Math.max(m, q.id), 0) + 1; c.name = el.name + ' (copy)'; state.els.splice(state.els.indexOf(el) + 1, 0, c); state.sel = c.id; save(); renderElForm(); renderResults(); toast('Member duplicated'); }
+  else if (a === 'del') { if (b.dataset.arm !== '1') { b.dataset.arm = '1'; b.textContent = 'Confirm delete?'; setTimeout(() => { b.dataset.arm = ''; b.textContent = 'Delete'; }, 3000); return; } const el = selEl(); if (!el) return; const i = state.els.indexOf(el); state.els.splice(i, 1); state.sel = (state.els[Math.min(i, state.els.length - 1)] || {}).id; b.dataset.arm = ''; b.textContent = 'Delete'; save(); renderElForm(); renderResults(); }
+  else if (a === 'tsv') copy(tsv(), 'Table copied – paste into Excel');
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && (e.target.classList.contains('row') || e.target.dataset.rules)) { e.preventDefault(); e.target.click(); }
+  if (e.key === 'Escape') document.querySelectorAll('.mod.on').forEach(m => m.classList.remove('on'));
+});
+document.querySelectorAll('.mod').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('on'); }));
+$('#figProfile').addEventListener('click', e => { const g = e.target.closest('g[data-id]'); if (g) openMember(+g.dataset.id); });
+
+/* ---------- project file ---------- */
+function setState(s) { state = norm(s); save(); renderAll(); }
+let dl = null; try { window.claude && window.claude.use && window.claude.use('downloads').then(d => { dl = d; }).catch(() => { }); } catch (e) { }
+async function saveFile(name, text) {
+  if (dl) { try { await dl.save({ filename: name, data: text }); toast('Saved ' + name); } catch (e) { if (!e || e.code !== 'declined') showText('Copy ' + name, 'Saving is not available in this view. Copy the text below instead.', text); } return; }
+  if (!window.claude) { try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text])); a.download = name; document.body.appendChild(a); a.click(); a.remove(); toast('Saved ' + name); return; } catch (e) { } }
+  showText('Copy ' + name, 'Saving is not available in this view. Copy the text below instead.', text);
+}
+const fslug = () => ((state.meta.project ? state.meta.project + '_' : '') + (state.meta.vessel || 'vessel')).replace(/[^A-Za-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 50) || 'vessel';
+$('#bSave').onclick = () => saveFile(fslug() + '_ABS_local_scantlings.json', JSON.stringify({ app: 'abs-local-scantlings', meta: state.meta, ship: state.ship, els: state.els }, null, 1));
+$('#bOpen').onclick = () => $('#fileIn').click();
+$('#fileIn').onchange = async ev => { const f = ev.target.files[0]; if (!f) return; try { const s = JSON.parse(await f.text()); if (!s.ship || !Array.isArray(s.els) || s.app !== 'abs-local-scantlings') throw 0; setState({ meta: s.meta, ship: s.ship, els: s.els, sel: (s.els[0] || {}).id, tab: 'all' }); toast('Opened ' + f.name); } catch (e) { toast('That file is not a saved ABS scantling project (.json).'); } ev.target.value = ''; };
+function arm(btn, label, fn) { if (Date.now() - (btn._arm || 0) < 4000) { btn._arm = 0; btn.textContent = label; fn(); } else { btn._arm = Date.now(); btn.textContent = 'Confirm?'; setTimeout(() => { btn.textContent = label; }, 4000); } }
+$('#bEx40').onclick = function () { arm(this, 'Ex: 40 m barge', () => { setState(exBarge()); toast('Example loaded: 40 m double skin tank barge (Barge Rules)'); }); };
+$('#bEx62').onclick = function () { arm(this, 'Ex: 62 m', () => { setState(exOSV()); toast('Example loaded: 62 m offshore support vessel (MVR)'); }); };
+$('#bEx130').onclick = function () { arm(this, 'Ex: 130 m', () => { setState(ex130()); toast('Example loaded: 130 m general cargo vessel (MVR)'); }); };
+$('#bClear').onclick = function () { arm(this, 'New', () => { setState(blank(state.ship.rules)); location.hash = 'ship'; toast('New project – choose the rules and enter the particulars, then add members'); }); };
+$('#bRef').onclick = () => $('#ref').classList.add('on');
+
+/* ---------- print ---------- */
+let printed = false;
+addEventListener('beforeprint', () => { printed = true; renderAllSheets(); });
+$('#bPrint').onclick = () => { printed = false; renderAllSheets(); try { window.print(); } catch (e) { } setTimeout(() => { if (!printed) $('#pdlg').classList.add('on'); }, 700); };
+function buildReport() {
+  renderAllSheets();
+  const live = [...document.querySelectorAll('main input, main select, main textarea')], d = document.documentElement.cloneNode(true), cl = [...d.querySelectorAll('main input, main select, main textarea')];
+  cl.forEach((el, i) => { const L = live[i]; if (!L) return; const s = document.createElement('span'); s.className = 'pv';
+    s.textContent = L.tagName === 'SELECT' ? ((L.selectedOptions[0] || {}).text || '') : L.type === 'checkbox' ? (L.checked ? 'Yes' : 'No') : (L.value || L.placeholder || '');
+    if (L.type === 'checkbox') { const w = el.closest('.f'); if (w) { w.innerHTML = '<label>' + esc((w.querySelector('label') || {}).textContent || '') + '</label><span class="pv">' + (L.checked ? 'Yes' : 'No') + '</span>'; w.classList.remove('chk'); return; } }
+    el.replaceWith(s); });
+  d.querySelectorAll('script,#sb,.mod,.toast,.noprint').forEach(e => e.remove());
+  d.querySelector('#pcss').setAttribute('media', 'all'); d.setAttribute('data-theme', 'light');
+  const b = d.querySelector('body'); b.setAttribute('style', 'display:block;max-width:190mm;margin:0 auto;padding:8px');
+  const sc = document.createElement('script'); sc.textContent = 'addEventListener("load",function(){setTimeout(function(){window.print()},400)})'; b.appendChild(sc);
+  d.querySelector('title').textContent = 'ABS Local Structural Scantlings – ' + (state.meta.vessel || 'report');
+  return '<!DOCTYPE html>\n' + d.outerHTML;
+}
+$('#bPrintCopy').onclick = () => { $('#pdlg').classList.remove('on'); saveFile(fslug() + '_ABS_local_scantlings_print.html', buildReport()); };
+
+/* ---------- tabs ---------- */
+const TABS = ['ship', 'members', 'member', 'basis'];
+function showTab() { const h = location.hash.slice(1), t = TABS.includes(h) ? h : 'members'; TABS.forEach(k => $('#t-' + k).classList.toggle('on', k === t)); document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + t)); }
+addEventListener('hashchange', () => { showTab(); scrollTo(0, 0); });
+renderAll(); showTab();
+})();
+
+</script>
+</body>
+</html>

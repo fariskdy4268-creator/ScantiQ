@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2a44">
+<meta name="description" content="SCANTIQ – class structural scantling suite: Tasneef/RINA, BV, DNV, ABS, LR Ships &amp; SSC and LR Offshore Units local scantling calculators.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SCANTIQ">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>SCANTIQ – Class Structural Scantling Suite</title>
+<style>
+:root{--ink:#0f2a44;--bar:#0f2a44;--acc:#1f6fb2;--bg:#f2f5f8;--card:#fff;--mut:#5f7186;--line:#d8e1ea;--f:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);display:flex;flex-direction:column}
+header{background:var(--bar);color:#fff;display:flex;align-items:stretch;gap:6px;padding:0 10px;min-height:52px;flex:none}
+.home{display:flex;align-items:center;gap:10px;background:none;border:0;color:#fff;cursor:pointer;padding:6px 10px 6px 2px;font:inherit;white-space:nowrap}
+.home svg{flex:none}.home span{text-align:left}.home b{font-size:21px;font-weight:800;letter-spacing:1.5px;line-height:1.05}.home small{display:block;font-size:10.5px;color:#9fd0ff;font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-top:2px}
+nav{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:thin;align-items:stretch}
+.tb{background:none;border:0;border-bottom:3px solid transparent;color:#c9d6e3;cursor:pointer;padding:8px 12px 5px;font:inherit;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;white-space:nowrap}
+.tb b{font-size:11px;letter-spacing:.6px;opacity:.75}.tb span{font-size:13.5px}
+.tb:hover{color:#fff;background:rgba(255,255,255,.06)}.tb.on{color:#fff;border-bottom-color:#7cc0ff;background:rgba(255,255,255,.1)}
+.tb:focus-visible,.home:focus-visible,.card:focus-visible{outline:2px solid #7cc0ff;outline-offset:-2px}
+#stage{flex:1;position:relative;min-height:0}
+#stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:none;background:#fff}
+#stage iframe.on{display:block}
+#landing{position:absolute;inset:0;overflow:auto;padding:32px 24px 40px}
+#landing.off{display:none}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:26px;margin:0 0 6px}.lead{color:var(--mut);margin:0 0 24px;max-width:760px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:4px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:var(--acc);box-shadow:0 4px 14px rgba(15,42,68,.08)}
+.card .ab{font-weight:700;font-size:12px;letter-spacing:.8px;color:#fff;background:var(--acc);border-radius:4px;padding:3px 7px;align-self:flex-start;margin-bottom:6px}
+.card h3{margin:0;font-size:18px}.card p{margin:0;color:var(--mut);font-size:13.5px;line-height:1.45}.card p.r{color:var(--ink);font-weight:500}
+.card .go{margin-top:10px;color:var(--acc);font-weight:600;font-size:13.5px}
+.notes{margin-top:26px;color:var(--mut);font-size:13px;line-height:1.55}
+.notes ul{margin:6px 0 0;padding-left:18px}
+.iostip{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));background:#0f2a44;color:#fff;border-radius:10px;padding:12px 40px 12px 14px;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:9}.iostip button{position:absolute;right:6px;top:6px;background:none;border:0;color:#fff;font-size:16px;padding:6px;cursor:pointer}
+.inst{align-self:center;flex:none;background:#1f6fb2;color:#fff;border:0;border-radius:6px;padding:8px 12px;font:600 13px var(--f);cursor:pointer;margin-left:6px}.inst:hover{background:#2b83cc}
+footer{margin-top:28px;font-size:12.5px;color:var(--mut)}
+@media (max-width:700px){.home small{display:none}.home b{font-size:13px}#landing{padding:20px 14px}}
+</style>
+</head>
+<body>
+<header>
+  <button class="home" id="home" title="SCANTIQ – all calculators"><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 34 34" aria-hidden="true">
+  <g fill="#fff" stroke="#fff" stroke-width=".6" stroke-linejoin="round">
+    <path d="M9.2 8.6 L16.1 6.8 V11.6 H9.2 Z"/>
+    <path d="M17.9 6.8 L24.8 8.6 V11.6 H17.9 Z"/>
+    <path d="M4.2 13.2 H29.8 L17 17.2 Z" fill="#9fd0ff" stroke="#9fd0ff"/>
+    <path d="M2.6 14.8 L16.1 19 V31.2 Z"/>
+    <path d="M31.4 14.8 L17.9 19 V31.2 Z"/>
+  </g>
+</svg><span><b>SCANTIQ</b><small>Class structural scantling suite</small></span></button>
+  <nav role="tablist" aria-label="Class rules"><button class="tb" data-app="tasneef" role="tab"><b>TS</b><span>Tasneef / RINA</span></button><button class="tb" data-app="bv" role="tab"><b>BV</b><span>Bureau Veritas</span></button><button class="tb" data-app="dnv" role="tab"><b>DNV</b><span>DNV</span></button><button class="tb" data-app="abs" role="tab"><b>ABS</b><span>ABS</span></button><button class="tb" data-app="lr" role="tab"><b>LR</b><span>LR Ships &amp; SSC</span></button><button class="tb" data-app="lro" role="tab"><b>LR·OU</b><span>LR Offshore Units</span></button></nav>
+  <button id="install" class="inst" hidden title="Install SCANTIQ as an app on this device">⤓ Install app</button>
+</header>
+<div id="stage">
+  <div id="landing"><div class="wrap">
+    <h1>SCANTIQ – Class Structural Scantling Suite</h1>
+    <p class="lead">Six rule-based scantling calculators in one place. Choose the classification society and rule set; each calculator keeps its own projects, examples, Save / Open files and printed calculation report.</p>
+    <div class="grid"><button class="card" data-app="tasneef"><div class="ab">TS</div><h3>Tasneef / RINA</h3><p class="r">Tasneef (RINA) Rules 2016, Part B</p><p>Ships and barges – shell, decks, bottom, framing, bulkheads, tanks, deckhouses</p><span class="go">Open calculator →</span></button><button class="card" data-app="bv"><div class="ab">BV</div><h3>Bureau Veritas</h3><p class="r">BV NR467 Part B and NR600</p><p>Steel ships by NR467, ships under 65 m by NR600</p><span class="go">Open calculator →</span></button><button class="card" data-app="dnv"><div class="ab">DNV</div><h3>DNV</h3><p class="r">DNV-RU-SHIP Pt.3</p><p>Hull local scantlings – plating, stiffeners, primary supporting members</p><span class="go">Open calculator →</span></button><button class="card" data-app="abs"><div class="ab">ABS</div><h3>ABS</h3><p class="r">ABS Marine Vessel Rules Pt 3 and Barge Rules</p><p>All ship types and barges</p><span class="go">Open calculator →</span></button><button class="card" data-app="lr"><div class="ab">LR</div><h3>LR Ships &amp; SSC</h3><p class="r">LR Rules for Ships 2016 and Special Service Craft 2022</p><p>Steel ships, barges, tugs, OSVs, yachts, patrol and high-speed craft</p><span class="go">Open calculator →</span></button><button class="card" data-app="lro"><div class="ab">LR·OU</div><h3>LR Offshore Units</h3><p class="r">LR Offshore Units 2016, Pt 4</p><p>Semi-submersibles, TLPs, jack-ups, buoys and caissons</p><span class="go">Open calculator →</span></button></div>
+    <div class="notes"><b>Notes</b><ul>
+      <li>Switching between calculators keeps your work in each one; entries are also remembered in this browser.</li>
+      <li>Project files saved from one calculator open only in that calculator.</li>
+      <li>Scantlings are subject to approval by the classification society. These sheets are design aids.</li>
+    </ul></div>
+    <footer>Developed by Ansal Faris - Naval Architect</footer>
+  </div></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var APPS={"tasneef": "Tasneef / RINA", "bv": "Bureau Veritas", "dnv": "DNV", "abs": "ABS", "lr": "LR Ships & SSC", "lro": "LR Offshore Units"};
+var KEY='scantlings-suite-last', made={}, cur=null, stage=document.getElementById('stage'), land=document.getElementById('landing');
+function frame(k){
+  if(made[k]) return made[k];
+  if(!APPS[k]) return null;
+  var f=document.createElement('iframe'); f.title=APPS[k]; f.src='apps/'+k+'.html'; stage.appendChild(f); made[k]=f; return f;
+}
+function show(k){
+  cur=k||null;
+  Object.keys(made).forEach(function(x){made[x].classList.toggle('on',x===k)});
+  land.classList.toggle('off',!!k);
+  if(k) frame(k).classList.add('on');
+  document.querySelectorAll('.tb').forEach(function(b){var on=b.dataset.app===k;b.classList.toggle('on',on);b.setAttribute('aria-selected',on?'true':'false');});
+  try{localStorage.setItem(KEY,k||'')}catch(e){}
+  var tb=document.querySelector('.tb.on'); if(tb&&tb.scrollIntoView) tb.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-app]'); if(b){show(b.dataset.app);return;} if(e.target.closest('#home')) show(null);});
+var last=null; try{last=localStorage.getItem(KEY)}catch(e){}
+show(last&&APPS[last]?last:null);
+})();
+</script>
+<script>
+(function(){
+var dp=null,b=document.getElementById('install');
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;b.hidden=false;});
+b.addEventListener('click',function(){if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;b.hidden=true;});});
+window.addEventListener('appinstalled',function(){b.hidden=true;});
+var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),sa=window.navigator.standalone||matchMedia('(display-mode: standalone)').matches;
+if(ios&&!sa){try{if(!localStorage.getItem('scantiq-ios-tip')){var t=document.createElement('div');t.className='iostip';t.innerHTML='Install SCANTIQ: tap <b>Share</b> <span aria-hidden="true">⬆︎</span> then <b>Add to Home Screen</b>.<button aria-label="Close">✕</button>';document.body.appendChild(t);t.querySelector('button').onclick=function(){t.remove();try{localStorage.setItem('scantiq-ios-tip','1')}catch(e){}};}}catch(e){}}
+if('serviceWorker' in navigator && location.protocol!=='file:') navigator.serviceWorker.register('sw.js').catch(function(){});
+})();
+</script>
+</body>
+</html>

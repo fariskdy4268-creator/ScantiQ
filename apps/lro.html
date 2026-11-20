@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href^='#']");if(!a)return;e.preventDefault();var h=a.getAttribute("href");if(location.hash!==h)location.hash=h;else window.dispatchEvent(new HashChangeEvent("hashchange"))},true);try{if(window.parent!==window)Object.defineProperty(window,"claude",{configurable:true,get:function(){try{return window.parent.claude}catch(e){return undefined}}})}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LR Offshore Units Structural Scantlings</title>
+<style>
+:root{
+  /* layout: dark sidebar with section tabs and file/print tools; main column of cards; print = A4 report of every section */
+  --bg:#f3f5f8;--card:#fff;--ink:#16202e;--mut:#5d6b7e;--line:#d9e0ea;--line2:#e9eef4;--acc:#0b5c8a;--accbg:#e4f1f9;--sb:#0f2a43;--sbt:#cfdbe8;--inp:#fffbe6;
+  --ok:#146c43;--okbg:#dcf1e4;--no:#b3261e;--nobg:#f9dfdb;--warn:#9a5b00;--warnbg:#fff3d6;--sea:#2a78d6;--wave:#eb6834;
+  --f-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--f-disp:Georgia,"Times New Roman",serif;--f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#0d141c;--card:#151f2b;--ink:#e6edf5;--mut:#98a7b9;--line:#26354a;--line2:#1d2a3a;--acc:#58b4e8;--accbg:#12293b;--sb:#08121c;--sbt:#a9bacd;--inp:#2a2712;--ok:#5fd39a;--okbg:#14301f;--no:#ff8a80;--nobg:#3a1a17;--warn:#f0b64e;--warnbg:#332713;--sea:#3987e5;--wave:#d95926}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#0d141c;--card:#151f2b;--ink:#e6edf5;--mut:#98a7b9;--line:#26354a;--line2:#1d2a3a;--acc:#58b4e8;--accbg:#12293b;--sb:#08121c;--sbt:#a9bacd;--inp:#2a2712;--ok:#5fd39a;--okbg:#14301f;--no:#ff8a80;--nobg:#3a1a17;--warn:#f0b64e;--warnbg:#332713;--sea:#3987e5;--wave:#d95926}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 var(--f-body);display:flex;min-height:100vh}
+#sb{width:268px;flex:none;background:var(--sb);color:var(--sbt);position:sticky;top:0;height:100vh;overflow:auto;padding:22px 16px;display:flex;flex-direction:column;gap:14px}
+#sb h1{font:700 19px/1.2 var(--f-disp);color:#fff;margin:0}
+#sb .sub{font-size:12px;margin:6px 0 0;opacity:.85}
+#sb nav a{display:block;color:var(--sbt);text-decoration:none;padding:6px 10px;border-radius:6px;font-size:13px}
+#sb nav a:hover{background:rgba(255,255,255,.1);color:#fff}#sb nav a.on{background:rgba(255,255,255,.16);color:#fff;font-weight:600}
+#sb button{width:100%;padding:9px;border-radius:7px;border:1px solid #3a5876;background:transparent;color:#fff;cursor:pointer;font:inherit;font-size:13px;margin-bottom:6px}
+#sb button:hover{background:rgba(255,255,255,.12)}
+#sb .pf{display:grid;grid-template-columns:1fr 1fr;gap:0 6px}#sb .pf button{font-size:12px;padding:7px 4px}
+#sb .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin:0 0 6px}
+#sb .rg{border:1px solid #2c4560;border-radius:8px;padding:8px 10px;font-size:12px}#sb .rg b{display:block;color:#fff;font-size:13px}
+.credit{font-size:11.5px;opacity:.8;border-top:1px solid #2c4560;padding-top:10px}.bd{display:flex;align-items:center;gap:10px}
+main{flex:1;min-width:0;padding:22px 26px 40px;max-width:1240px}
+.ph,.pfoot,.tabh,.ponly{display:none}
+h2,h3{margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:16px;overflow:hidden;min-width:0}
+.card>header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:10px 16px;background:var(--accbg);border-bottom:1px solid var(--line)}
+.card>header h2,.card>h2{font-size:14px;letter-spacing:.03em;color:var(--acc)}
+.card>h2{padding:10px 16px;background:var(--accbg);border-bottom:1px solid var(--line)}
+.cb{padding:12px 16px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}
+.grid2>.card{margin-bottom:0}
+.mono,.num,td.n,th.n{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--f-mono);font-size:12.5px}
+.muted{color:var(--mut)}
+.ref{font-size:11.5px;color:var(--mut)}
+button{font:inherit}
+.bt{padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:13px;cursor:pointer}
+.bt:hover{border-color:var(--acc);color:var(--acc)}.bt.pri{background:var(--acc);border-color:var(--acc);color:#fff}.bt.pri:hover{color:#fff;filter:brightness(1.08)}
+.bt.sm{padding:3px 9px;font-size:12.5px}.bt.danger:hover{border-color:var(--no);color:var(--no)}
+.tools{display:flex;flex-wrap:wrap;gap:6px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+/* project strip */
+.stk{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.r{display:grid;gap:8px;align-items:center;padding:7px 16px;border-bottom:1px solid var(--line)}
+.r:last-child{border-bottom:0}.r.pj{grid-template-columns:70px 1fr 70px 1fr}
+.r input,.f input,.f select{width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--inp);color:var(--ink);font:inherit;font-size:13.5px;min-width:0}
+.f select{background:var(--card)}
+.f input::placeholder,.r input::placeholder{color:var(--mut);opacity:.75}
+/* forms */
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px 12px}
+.f{display:flex;flex-direction:column;gap:3px;min-width:0}
+.f>label{font-size:12px;color:var(--mut);display:flex;justify-content:space-between;gap:6px}
+.f>label i{font-style:normal;font-size:11.5px;white-space:nowrap}
+.f.span2{grid-column:span 2}
+.f.chk{flex-direction:row;align-items:center;gap:7px;padding-top:17px}
+.f.chk input{width:auto;accent-color:var(--acc)}
+.f.chk label{font-size:13px;color:var(--ink)}
+.fsec{grid-column:1/-1;margin-top:6px;padding:5px 0 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.fsec h3{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);font-weight:600}
+.fsec small{color:var(--mut);font-size:11.5px}
+/* key results */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.kr>div{padding:9px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kr .k{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.kr .kv{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.kr .kv small{font-size:12px;font-weight:400;color:var(--mut)}
+.kr .ks{font-size:12px;color:var(--mut)}
+/* regime */
+.regime{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:12px}
+.regime div{padding:8px 10px;border-right:1px solid var(--line);background:var(--bg);color:var(--mut);font-size:12.5px}
+.regime div:last-child{border-right:0}
+.regime b{display:block;font-size:13.5px}
+.regime div.on{background:var(--accbg);color:var(--ink);box-shadow:inset 0 3px 0 var(--acc)}.regime div.on b{color:var(--acc)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.seg button{padding:6px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer;font-size:13px}
+.seg button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.alerts{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.alert{padding:7px 12px;border-radius:7px;background:var(--warnbg);color:var(--warn);font-size:12.5px}
+.alert.info{background:var(--accbg);color:var(--ink)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+.stat{padding:8px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.stat b{font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.stat b small{font-weight:400;color:var(--mut);font-size:11.5px}
+/* figures */
+.fig{width:100%;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:420px}
+#figMember svg{max-width:380px;margin:0 auto}
+#figSection svg,#figProfile svg{max-width:900px;margin:0 auto}
+svg text{font:10.5px var(--f-body);fill:var(--mut)}
+svg .lbl{fill:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--mut);margin-top:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+/* member table */
+.mbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
+.ftabs{display:flex;gap:4px;flex-wrap:wrap}
+.ftabs button{padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);font-size:12.5px;cursor:pointer}
+.ftabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th{font-size:11px;font-weight:600;color:var(--mut);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:bottom}
+td{padding:6px 8px;border-bottom:1px solid var(--line2);vertical-align:middle}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr.grp td{background:var(--bg);font-weight:700;font-size:12.5px;letter-spacing:.02em;color:var(--acc)}
+tr.grp td span{color:var(--mut);font-weight:400;margin-left:8px;font-size:12px}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover td{background:var(--bg)}
+tbody tr.row.sel td{background:var(--accbg)}
+tbody tr.row.sel td:first-child{box-shadow:inset 3px 0 0 var(--acc)}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.pill.ok{background:var(--okbg);color:var(--ok)}.pill.bad{background:var(--nobg);color:var(--no)}.pill.warn{background:var(--warnbg);color:var(--warn)}.pill.na{background:var(--bg);color:var(--mut)}
+.ub{display:inline-block;width:56px;height:5px;background:var(--line);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:6px}
+.ub i{display:block;height:100%;background:var(--ok)}.ub.warn i{background:var(--warn)}.ub.bad i{background:var(--no)}
+.sumbar{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px}
+/* editor + sheet */
+.edhead{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.edhead select{padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit;font-size:13px;max-width:260px}
+.sheet{font-size:13px}
+.sheet h4{font-size:11.5px;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+.sheet h4:first-child{margin-top:0}
+.eq{font-family:var(--f-mono);font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:nowrap}
+.kvl{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2px 16px}
+.kvl div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:3px 0}
+.kvl div span{color:var(--mut)}.kvl div b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin-top:8px}
+.res div{border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.res div span{display:block;font-size:11.5px;color:var(--mut)}
+.res div b{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.res div b small{font-size:11.5px;color:var(--mut);font-weight:400}
+.res div.key{border-color:var(--acc);background:var(--accbg)}
+.checks{display:flex;flex-direction:column}
+.chk-row{display:grid;grid-template-columns:20px 140px 1fr;gap:6px;align-items:baseline;padding:3px 0;border-bottom:1px dotted var(--line)}
+.chk-row .ic{font-weight:700}.chk-row.ok .ic{color:var(--ok)}.chk-row.bad .ic{color:var(--no)}.chk-row.warn .ic{color:var(--warn)}
+tr.gov td{background:var(--accbg);font-weight:600}
+.sheet th{font-size:11px}
+.notes{margin:0;padding:12px 16px 12px 34px;color:var(--mut);font-size:12.5px}
+.notes li{margin:5px 0}.notes b{color:var(--ink)}
+.cb .notes{padding:0 0 0 18px}
+section.tab{display:none}section.tab.on{display:block}
+.mod{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:20;padding:16px}
+.mod.on{display:flex}
+.mod>div{background:var(--card);color:var(--ink);max-width:820px;width:100%;max-height:86vh;overflow:auto;border-radius:12px;padding:18px 22px}
+.mod h3{margin:0 0 10px;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.mod p{margin:0 0 9px;font-size:13px}.mod p b{color:var(--acc)}
+.mod h4{margin:14px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.mod textarea{width:100%;margin:8px 0;min-height:180px;font-family:var(--f-mono);font-size:12px;background:var(--inp);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px}
+.x{padding:2px 7px;border:0;background:none;color:var(--mut);cursor:pointer;font-size:16px;line-height:1}.x:hover{color:var(--no)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;display:none;z-index:30}
+@media screen and (max-width:1100px){.grid2{grid-template-columns:1fr}.grid2>.card{margin-bottom:0}}
+@media screen and (max-width:820px){body{display:block}#sb{position:static;width:auto;height:auto}main{padding:14px}.r.pj{grid-template-columns:60px 1fr}.chk-row{grid-template-columns:20px 1fr}.chk-row span:last-child{grid-column:2}.regime{grid-template-columns:1fr}.regime div{border-right:0;border-bottom:1px solid var(--line)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+sub,sup{font-size:72%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.45em}
+
+#sb h1.ttl{display:flex;align-items:stretch;gap:8px}#sb h1.ttl .big{font:800 50px/0.86 var(--f-disp);letter-spacing:-1px;display:flex;align-items:center}#sb h1.ttl .stk3{display:flex;flex-direction:column;justify-content:center;font:700 15px/1.12 var(--f-disp)}
+
+</style>
+<style id="pcss" media="print">
+@page{size:A4;margin:11mm 10mm 12mm}
+:root:root:root:root{color-scheme:light;--bg:#f4f6f8;--card:#fff;--ink:#000;--mut:#444;--line:#b9c2cc;--line2:#d5dbe2;--acc:#0b5c8a;--accbg:#e8f1f7;--inp:#fff;--ok:#146c43;--okbg:#dcf1e4;--no:#b3261e;--nobg:#f9dfdb;--warn:#7a4800;--warnbg:#fff3d6;--sea:#2a78d6;--wave:#eb6834}
+body{display:block;background:#fff;font-size:10.5px}
+#sb,.noprint,.mod,.toast,.stk,.seg button:not(.on),.bt,.ftabs{display:none!important}
+main{padding:0;max-width:none}
+.ph{display:block;margin-bottom:8px;border-bottom:2px solid #000;padding-bottom:5px}
+.ph h2{margin:0;font:700 15px Georgia,"Times New Roman",serif}
+.ph table{width:100%;border-collapse:collapse;font-size:10px;margin-top:4px}.ph td{padding:1px 6px 1px 0;border:0}.ph td b{font-weight:600}
+.pfoot{display:flex;justify-content:space-between;margin-top:10px;border-top:1px solid #000;padding-top:4px;font-size:9.5px}
+.ponly{display:block}
+section.tab{display:block!important}
+.tabh{display:block;font:700 13px Georgia,"Times New Roman",serif;margin:12px 0 6px;padding-bottom:2px;border-bottom:1px solid #000;break-after:avoid}
+#t-members .tabh,#t-member .tabh,#t-basis .tabh{break-before:page}
+.grid2{display:block}.grid2>.card{margin-bottom:8px}
+.card{border-color:#999;border-radius:0;margin-bottom:8px;overflow:visible}
+.card>header,.card>h2{padding:4px 8px;break-after:avoid}
+.card>header h2,.card>h2{font-size:11.5px}
+.cb{padding:6px 8px}
+.av,.kr,.msheet .blk{break-inside:avoid}
+.fields{grid-template-columns:repeat(4,minmax(0,1fr));gap:3px 10px}
+.f>label{font-size:9.5px}
+.f input,.f select,.r input{border:0;background:none;appearance:none;-webkit-appearance:none;padding:0;font-weight:600;font-size:10.5px}
+.f.chk{padding-top:0}
+.regime{margin-top:6px}.regime div{padding:4px 6px;font-size:9.5px}
+.alert{padding:3px 8px;font-size:9.5px}
+.stat{padding:4px 8px}.stat b{font-size:11px}
+.kr>div{padding:4px 8px}.kr .kv{font-size:12.5px}
+.fig svg{min-width:0!important}
+#figSection svg{max-width:150mm;margin:0 auto}
+table{font-size:9px}th,td{padding:2px 4px}th{font-size:8.5px}
+tr{break-inside:avoid}thead{display:table-header-group}
+tbody tr.row.sel td{background:none}tbody tr.row.sel td:first-child{box-shadow:none}
+.ub{width:34px}
+.msheet{border:1px solid #999;margin:0 0 8px;break-inside:auto}
+.msheet>h3{font:700 11.5px Georgia,"Times New Roman",serif;background:var(--accbg);padding:4px 8px;border-bottom:1px solid #999;display:flex;justify-content:space-between;break-after:avoid}
+.msheet .mbody{display:grid;grid-template-columns:1fr 62mm;gap:8px;padding:6px 8px}
+.msheet .mfig svg{width:100%;min-width:0}
+.sheet{font-size:9.5px}.sheet h4{font-size:9px;margin:7px 0 3px}
+.eq{font-size:9px;padding:3px 6px;white-space:normal}
+.kvl{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 10px}.kvl div{padding:1px 0}
+.res{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin-top:4px}.res div{padding:3px 6px}.res div b{font-size:12px}
+.chk-row{grid-template-columns:14px 110px 1fr;padding:1px 0}
+.notes{padding:6px 8px 6px 22px;font-size:9.5px}.notes li{margin:2px 0}
+.pv{font-weight:600}
+#memTbl td:nth-child(2),#memTbl th:nth-child(2),#memTbl td:nth-child(5),#memTbl th:nth-child(5){display:none}
+#memTbl tr.grp td{display:table-cell!important}
+#memTbl td{white-space:normal}#memTbl td.n{white-space:nowrap}
+#memTbl .ub{display:none}
+
+</style>
+</head>
+<body>
+<aside id="sb">
+  <div>
+    <div class="bd"><h1 class="ttl"><span class="big">LR</span><span class="stk3"><span>Offshore</span><span>Structural</span><span>Scantlings</span></span></h1></div>
+    <p class="sub">Shell boundaries · decks · bulkheads · double bottom · helideck · deckhouses · pillars<br>Lloyd's Register Rules for Offshore Units (2016), Pt 4<br>semi-submersibles, TLPs, jack-ups, buoys and caissons</p>
+  </div>
+  <nav id="nav">
+    <a href="#ship">1 · Unit &amp; design loads</a>
+    <a href="#members">2 · Members summary</a>
+    <a href="#member">3 · Member calculation</a>
+    <a href="#basis">4 · Basis &amp; references</a>
+  </nav>
+  <div class="rg" id="sbRegime"></div>
+  <div style="margin-top:auto">
+    <p class="lbl">Project file</p>
+    <div class="pf"><button id="bSave">Save</button><button id="bOpen">Open</button><button id="bEx40" title="Example: 80 m column-stabilised semi-submersible">Ex: 80 m semi</button><button id="bEx62" title="Example: 60 m self-elevating unit">Ex: 60 m jack-up</button><button id="bEx130" title="Example: 14 m CALM buoy">Ex: 14 m buoy</button><button id="bClear">New</button></div>
+    <input type="file" id="fileIn" accept=".json,application/json" hidden>
+    <button id="bPrint" style="margin-top:8px">🖨 Print / Save PDF</button>
+    <button id="bRef">📖 Rule Reference</button>
+  </div>
+  <div class="credit">Developed by Ansal Faris - Naval Architect</div>
+</aside>
+<main>
+  <div class="ph"><h2>Offshore Units Structural Scantlings – Lloyd's Register</h2><table id="pp"></table></div>
+  <div class="card stk">
+    <div class="r pj"><div>Project</div><input id="m_project" data-k="meta.project" placeholder="Project / Yard No."><div>Unit</div><input id="m_vessel" data-k="meta.vessel" placeholder="Unit name"></div>
+    <div class="r pj"><div>Doc. no.</div><input id="m_doc" data-k="meta.doc" placeholder="Document no."><div>Prepared</div><input id="m_by" data-k="meta.by" placeholder="Prepared by"></div>
+  </div>
+  <div class="card av"><h2>Key results</h2><div class="kr" id="kr"></div></div>
+
+  <section class="tab" id="t-ship"><div class="tabh">1 · Unit &amp; design loads</div>
+    <section class="card av"><header><h2>Unit type</h2><span class="ref">LR Offshore Units Pt 4 Ch 4 structural unit types</span></header>
+      <div class="cb"><div class="regime" id="ruleSel"></div><div class="alerts" id="ruleAlerts"></div></div>
+    </section>
+    <div class="grid2">
+      <section class="card av"><header><h2>Unit particulars</h2><span class="ref" id="shipRef">definitions</span></header><div class="cb" id="shipForm"></div></section>
+      <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+        <section class="card av"><header><h2>Deck loadings</h2><span class="ref" id="hgRef">hull girder</span></header><div class="cb" id="hgForm"></div></section>
+        <section class="card av"><header><h2>Design heads and permissible stresses</h2><span class="ref">Pt 4 Ch 6 Sec 2, Ch 5 Sec 2</span></header><div class="cb" id="hgRes"></div></section>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab" id="t-members"><div class="tabh">2 · Members summary</div>
+    <section class="card av"><header><h2>Unit elevation and member positions</h2><span class="ref noprint">click a marker to open that member</span></header>
+      <div class="cb"><div class="fig" id="figProfile"></div>
+        <div class="legend"><span><i style="background:var(--sea)"></i>operating draught To / transit TT</span><span><i style="background:var(--ok)"></i>OK</span><span><i style="background:var(--warn)"></i>check</span><span><i style="background:var(--no)"></i>not OK</span><span>▬ plate&nbsp; ● stiffener&nbsp; ◆ primary member&nbsp; ▲ special item</span></div>
+      </div>
+    </section>
+    <section class="card"><header><h2>Members – required vs offered</h2><div class="sumbar" id="summary"></div></header>
+      <div class="mbar noprint">
+        <div class="ftabs" id="tabs"><button data-act="tab" data-v="all">All</button><button data-act="tab" data-v="plate">Plating</button><button data-act="tab" data-v="stiff">Stiffeners</button><button data-act="tab" data-v="psm">Primary members</button><button data-act="tab" data-v="spec">Special items</button></div>
+        <div class="tools"><button class="bt sm" data-act="add" data-v="plate">+ Plate</button><button class="bt sm" data-act="add" data-v="stiff">+ Stiffener</button><button class="bt sm" data-act="add" data-v="psm">+ Primary member</button><button class="bt sm" data-act="add" data-v="spec">+ Special item</button><button class="bt sm" data-act="tsv">Copy table for Excel</button></div>
+      </div>
+      <div class="tblwrap"><table id="memTbl"><tbody id="tbody"></tbody></table></div>
+      <div class="cb ref">Rule scantlings (no separate corrosion addition). Plating: rule thickness + owner's margin, rounded to the nearest 0,5 mm. Stiffeners: attached plating max(600 ; 40 tp) mm, not more than s; primary members: f b with f = 0,3 (ℓ/b)^⅔ ≤ 1 (Pt 4 Ch 3 3.2). Utilisation is the highest ratio of required to offered over all checks. Click a row to open its calculation.</div>
+    </section>
+  </section>
+
+  <section class="tab" id="t-member"><div class="tabh">3 · Member calculations</div>
+    <div class="grid2 noprint" id="editor">
+      <section class="card">
+        <header><div class="edhead"><h2 id="elTitle">Member</h2></div><div class="tools"><select id="memSel" class="bt sm" aria-label="Select member"></select><button class="bt sm" data-act="dup">Duplicate</button><button class="bt sm danger" data-act="del">Delete</button></div></header>
+        <div class="cb"><div id="elForm"></div><div class="fig" id="figMember" style="margin-top:12px"></div></div>
+      </section>
+      <section class="card"><header><h2>Calculation sheet</h2><span class="ref" id="sheetRef">selected member</span></header><div class="cb" id="sheet"></div></section>
+    </div>
+    <div class="ponly" id="allSheets"></div>
+  </section>
+
+  <section class="tab" id="t-basis"><div class="tabh">4 · Basis &amp; references</div>
+    <section class="card"><h2>Basis of calculation</h2>
+      <ul class="notes">
+        <li><b>Rules.</b> Lloyd's Register Rules and Regulations for the Classification of Offshore Units, 2016 – Pt 4 Steel Unit Structures: Ch 2 materials (k = 235/σo ≥ 0,66), Ch 3 structural idealisation (effective plating, spans), Ch 4 unit types, Ch 5 permissible stresses and Ch 6 local strength.</li>
+        <li><b>Unit types.</b> Column-stabilised units (semi-submersibles, TLPs, sea bed-stabilised units), self-elevating units and buoys / deep draught caissons. Ship units and other surface type units are designed to the Rules for Ships (Pt 4 Ch 4 Sec 4 and Pt 10) – use the LR ship calculator for those.</li>
+        <li><b>Design heads (Table 6.2.1).</b> E = (0,0914 + 0,003 L)/(D − T) − 0,15 within 0 … 0,147, T = To (or TT for self-elevating units); h1 = 1,28 + 2,04 E or 0,14 pa + 2,04 E; h2 1,28, h3 2,0, h5 1,2, h6 0,90 / 0,60 / 0,45, h7 0,64 m, or 0,1417 p for higher specified loads. Watertight head h4 to 0,91 m above the bulkhead deck or the worst damage waterline; tank head to the tank top or half way to the overflow top.</li>
+        <li><b>Shell boundaries (Sec 3).</b> Column-stabilised: t = 0,004 s f √(ho k) + 2,5 ≥ 9,0, Z = 8,5 s k ho le² 10⁻³, webs 8,5 k ho S le², ho to min(1,4 To ; upper hull) ≥ 6,0; upper hull by the watertight head h4 ≥ 6,0 with 0,012 s1 √k ≥ 7,5. Self-elevating: bottom and side shell of Table 6.3.3 with tm = (6,5 + 0,033 L) √(k s1/sb), framing 11,0 / 8,0 s k hT le² 10⁻³ with hT to min(1,6 TT ; D) ≥ 0,01 L + 0,7. Buoys and caissons: Table 6.3.5 with ho to the wave crest or deck + 1,0. Shell is never less than a watertight or tank bulkhead in the same position.</li>
+        <li><b>Decks, bulkheads, double bottom (Sec 4, 7, 8).</b> Deck plating of Table 6.4.1, deck stiffeners C s k h le² 10⁻³ (le ≥ 1,5 m), girders 4,75 k S Hg le² and 11,7 ρ k h4 S le² in tanks; bulkhead plating 0,004 s f √(h4 k) ≥ 5,5 or 0,004 s f √(ρ h4 k/1,025) + 2,5 ≥ 7,5, stiffeners s k h4 le²/(71 γ (ω1 + ω2 + 2)) or ρ s k h4 le²/(22 γ (ω1 + ω2 + 2)); self-elevating double bottom dDB = 28 B + 205 √TT ≥ 760 with girders, floors and inner bottom of 8.3.</li>
+        <li><b>Helicopter landing area (Sec 5).</b> Plating t = α s/(1000 √k) + 1,5 with P1 = 2,5 φ1 φ2 φ3 f γ Pw and β = log10(P1 k²/s² · 10⁷); α is read from a digitised copy of Fig 5.6.1, so check values near the chart limits. Stiffening and girders for emergency landing, normal operation and at rest (Table 6.5.1) against the permissible stresses of Table 6.5.2, with the patch load at mid-span of a fixed-ended member.</li>
+        <li><b>Erections (Sec 9).</b> h = α δ (β λ − γ) with γ from the maximum transit waterline; t = 0,003 s √(k h) (0,0036 on the lowest-tier front of self-elevating units); Z = 0,0035 h s ls² k; deck plating of Table 6.9.5. Erections not subject to wave forces use h = 1,25 + 0,005 L2.</li>
+        <li><b>Rounding.</b> Required thickness + owner's margin to the nearest 0,5 mm.</li>
+      </ul>
+    </section>
+    <section class="card av"><h2>Not covered by this sheet</h2>
+      <ul class="notes">
+        <li>Global strength, the direct calculation of primary structure, buckling (Ch 5 Sec 3, 4), fatigue (Ch 5 Sec 5) and the load combinations of Ch 3 Sec 4 – the permissible stresses are shown for use with your own analysis.</li>
+        <li>Jack-up legs, spudcans, jacking and fixation systems, preload, TLP tendons and foundations, turrets, mooring and towing attachments, sliding bearings and the crane pedestal.</li>
+        <li>Ship units (Pt 10) and other surface type units – use the Rules for Ships (LR ship calculator).</li>
+        <li>Aluminium helidecks and structure, wheel-loaded decks (Sec 6), bulwarks (Sec 10) and machinery seatings.</li>
+      </ul>
+    </section>
+    <section class="card av"><h2>Rule references</h2>
+      <ul class="notes">
+        <li>Lloyd's Register Rules and Regulations for the Classification of Offshore Units, 2016: Pt 4 Ch 1 to Ch 6.</li>
+        <li>Scantlings are subject to approval by Lloyd's Register. This sheet is a design aid.</li>
+      </ul>
+    </section>
+  </section>
+  <div class="pfoot"><span id="pfL">LR offshore structural scantlings</span><span>Developed by Ansal Faris - Naval Architect</span></div>
+</main>
+
+<div class="mod" id="ref"><div>
+  <h3>Rule reference – LR Offshore Units 2016, Pt 4 <button class="x" data-close="ref" aria-label="Close">✕</button></h3>
+  <h4>Design heads (Ch 6 Table 6.2.1)</h4>
+  <p>E = (0,0914 + 0,003 L)/(D − T) − 0,15, 0 … 0,147 · h1 = 1,28 + 2,04 E (9,0 + 14,41 E kN/m²) or 0,14 pa + 2,04 E · work h2 1,28 · storage h3 2,0 · accommodation h5 1,2 · erection decks h6 0,90 / 0,60 / 0,45 · walkways h7 0,64 · p = 7,06 h kN/m² (C = 1,39 m³/t)</p>
+  <h4>Shell (Tables 6.3.1 – 6.3.5)</h4>
+  <p>Column-stabilised and buoys: t = 0,004 s f √(ho k) + 2,5 ≥ 9,0 · Z = 8,5 s k ho le² 10⁻³ · webs 8,5 k ho S le² · I = 2,3/k le Z · upper hull max(0,004 s f √(h4 k) ; 0,012 s1 √k) ≥ 7,5 (+2,5 bottom between columns)</p>
+  <p>Self-elevating: bottom max(0,001 s1 (0,043 L + 10) √(1/k) ; 0,0052 s1 √(1,5 TT k)) · side above D/2 max(0,001 s1 (0,059 L + 7) √(1/k) ; 0,0042 s1 √(1,4 TT k)) · bilge turn 0,0052 s1 √(1,2 TT k) · tm = (6,5 + 0,033 L) √(k s1/sb) · framing 11,0 / 8,0 s k hT le² 10⁻³</p>
+  <h4>Decks and bulkheads (Tables 6.4.1 – 6.4.4, 6.7.1)</h4>
+  <p>Strength deck max(0,001 s1 (0,059 L + 7) √(1/k) ; 0,00083 s1 √(L k) + 2,5) · lower 0,012 s1 √k ≥ 7,0 · platform 0,01 s1 √k ≥ 6,5 · tank 0,004 s f √(ρ k h4/1,025) + K1 ≥ 7,5 · stiffeners 5,5 / 5,0 / 4,5 s k h le² 10⁻³ · girders 4,75 k S Hg le² · pillars Ap = k P/(12,36 − 51,5 le/(r √k))</p>
+  <p>Bulkheads: 0,004 s f √(h4 k) ≥ 5,5 · 0,004 s f √(ρ h4 k/1,025) + 2,5 ≥ 7,5 · Z = s k h4 le²/(71 γ (ω1 + ω2 + 2)) · ρ s k h4 le²/(22 γ (ω1 + ω2 + 2)) · stringers 5,5 k h4 S le² / 11,7 ρ k h4 S le² · cross ties Ac = 0,82 bc hc S k/(1 − 0,42 lc/(r √k))</p>
+  <h4>Helideck (Sec 5) and erections (Sec 9)</h4>
+  <p>t = α s/(1000 √k) + 1,5 · P1 = 2,5 φ1 φ2 φ3 f γ Pw · β = log10(P1 k²/s² 10⁷) · permissible 245/k, 176/k (secondary), 220,5/k, 147/k (primary), shear σ/√3</p>
+  <p>h = α δ (β λ − γ) · t = 0,003 s √(k h) · Z = 0,0035 h s ls² k · dDB = 28 B + 205 √TT ≥ 760 · inner bottom 0,00136 (s + 660)(k² L TT)^¼</p>
+</div></div>
+<div class="mod" id="dlg"><div>
+  <h3><span id="dlgTitle"></span><button class="x" data-close="dlg" aria-label="Close">✕</button></h3>
+  <p id="dlgNote" style="color:var(--mut)"></p>
+  <textarea id="dlgText" spellcheck="false" readonly></textarea>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px"><button class="bt" data-close="dlg">Close</button></div>
+</div></div>
+<div class="mod" id="pdlg"><div>
+  <h3>Print / Save PDF<button class="x" data-close="pdlg" aria-label="Close">✕</button></h3>
+  <p>Printing is blocked inside this viewer. Save a print copy and open it in your browser: it opens the print dialog with all sections and a calculation sheet for every member on A4. Choose your printer or <b>Save as PDF</b>.</p>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px"><button class="bt" data-close="pdlg">Cancel</button><button class="bt pri" id="bPrintCopy">Save print copy (.html)</button></div>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* LR offshore units local structural scantlings engine — Lloyd's Register Rules and Regulations for the
+   Classification of Offshore Units, 2016: Pt 4 Steel Unit Structures, Ch 2, Ch 3, Ch 5 and Ch 6.
+   Developed by Ansal Faris - Naval Architect */
+window.OU = (function () {
+  'use strict';
+  const { max, min, sqrt, pow, abs, exp, round, PI, log10 } = Math;
+  const has = v => v !== '' && v != null && isFinite(+v), num = (v, d) => has(v) ? +v : d;
+  const clamp = (v, a, b) => max(a, min(b, v));
+  const r05 = v => round(v * 2 + 1e-9) / 2;
+  const f2 = (v, d) => (v == null || !isFinite(v)) ? '–' : Number(v).toFixed(d == null ? 2 : d);
+  const lerp = (x, X, Y) => { if (x <= X[0]) return Y[0]; for (let i = 1; i < X.length; i++) if (x <= X[i]) return Y[i - 1] + (Y[i] - Y[i - 1]) * (x - X[i - 1]) / (X[i] - X[i - 1] || 1); return Y[Y.length - 1]; };
+  const yes = v => v === true || v === 'yes' || v === 1 || v === '1';
+
+  const GRADES = {
+    A: { label: 'Mild steel, σo 235', so: 235 },
+    AH27: { label: 'AH27S, σo 265', so: 265 },
+    AH32: { label: 'AH32, σo 315', so: 315 },
+    AH36: { label: 'AH36, σo 355', so: 355 },
+    AH40: { label: 'AH40, σo 390', so: 390 },
+    AH420: { label: 'AH420, σo 420', so: 420 },
+    AH460: { label: 'AH460, σo 460', so: 460 }
+  };
+  const gradeOf = k => { const g = GRADES[k] || GRADES.A; return Object.assign({ key: k, k: max(235 / g.so, 0.66) }, g); };
+
+  const RULES = {
+    csu: { label: 'Column-stabilised units', short: 'LR OU Pt 4 – column-stabilised', ref: 'LR Offshore Units 2016 Pt 4 Ch 4 Sec 2, 8 and Ch 6' },
+    seu: { label: 'Self-elevating units', short: 'LR OU Pt 4 – self-elevating', ref: 'LR Offshore Units 2016 Pt 4 Ch 4 Sec 3 and Ch 6' },
+    buoy: { label: 'Buoys and deep draught caissons', short: 'LR OU Pt 4 – buoy / caisson', ref: 'LR Offshore Units 2016 Pt 4 Ch 4 Sec 5, 7 and Ch 6' }
+  };
+  const TYPES = {
+    semi: { label: 'Column-stabilised semi-submersible (Ch 4 Sec 2)', r: 'csu' },
+    tlp: { label: 'Tension leg platform (Ch 4 Sec 6, column-stabilised basis)', r: 'csu' },
+    seabed: { label: 'Sea bed-stabilised unit (Ch 4 Sec 8)', r: 'csu' },
+    jackup: { label: 'Self-elevating unit / jack-up (Ch 4 Sec 3)', r: 'seu' },
+    liftboat: { label: 'Self-elevating lift boat / accommodation jack-up (Ch 4 Sec 3)', r: 'seu' },
+    buoy: { label: 'Buoy – CALM / mooring / production (Ch 4 Sec 5)', r: 'buoy' },
+    caisson: { label: 'Deep draught caisson / spar (Ch 4 Sec 7)', r: 'buoy' }
+  };
+
+  /* ---------- Fig 5.6.1 tyre print chart, digitised: α vs β for v/s = line load, 0,1 … 1,0 ---------- */
+  const CH_A = [4, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40];
+  const CH_B = [[0.492, 0.765, 0.969, 1.131, 1.264, 1.475, 1.638, 1.771, 1.885, 1.984, 2.072, 2.152, 2.226, 2.295, 2.359, 2.419, 2.476, 2.531, 2.583, 2.633, 2.681], [0.535, 0.825, 1.041, 1.211, 1.35, 1.568, 1.736, 1.873, 1.989, 2.09, 2.18, 2.261, 2.336, 2.405, 2.47, 2.531, 2.589, 2.644, 2.696, 2.747, 2.795], [0.665, 0.928, 1.132, 1.297, 1.435, 1.657, 1.832, 1.975, 2.097, 2.203, 2.296, 2.38, 2.456, 2.526, 2.59, 2.65, 2.706, 2.759, 2.809, 2.856, 2.9], [0.75, 1.02, 1.227, 1.394, 1.534, 1.757, 1.931, 2.074, 2.195, 2.3, 2.393, 2.477, 2.552, 2.622, 2.686, 2.746, 2.802, 2.855, 2.905, 2.952, 2.997], [0.779, 1.069, 1.289, 1.465, 1.611, 1.844, 2.024, 2.171, 2.296, 2.404, 2.499, 2.585, 2.663, 2.734, 2.8, 2.862, 2.92, 2.975, 3.026, 3.075, 3.122], [0.815, 1.123, 1.357, 1.543, 1.696, 1.938, 2.125, 2.276, 2.402, 2.511, 2.607, 2.692, 2.769, 2.839, 2.904, 2.964, 3.02, 3.073, 3.123, 3.17, 3.215], [0.841, 1.171, 1.418, 1.612, 1.771, 2.02, 2.209, 2.362, 2.489, 2.598, 2.694, 2.779, 2.856, 2.926, 2.991, 3.052, 3.108, 3.161, 3.212, 3.26, 3.305], [0.86, 1.205, 1.467, 1.679, 1.85, 2.111, 2.307, 2.461, 2.588, 2.696, 2.79, 2.873, 2.948, 3.016, 3.078, 3.136, 3.191, 3.242, 3.29, 3.337, 3.381], [0.922, 1.297, 1.57, 1.781, 1.95, 2.208, 2.399, 2.549, 2.673, 2.778, 2.869, 2.951, 3.024, 3.091, 3.153, 3.21, 3.264, 3.315, 3.364, 3.411, 3.455], [1.007, 1.381, 1.654, 1.864, 2.032, 2.289, 2.48, 2.629, 2.752, 2.857, 2.948, 3.028, 3.101, 3.167, 3.228, 3.285, 3.339, 3.389, 3.437, 3.483, 3.527], [1.07, 1.462, 1.745, 1.961, 2.132, 2.391, 2.581, 2.729, 2.849, 2.95, 3.038, 3.116, 3.185, 3.249, 3.308, 3.363, 3.414, 3.463, 3.509, 3.553, 3.596]];
+  function alphaOf(beta, vs) {
+    const curve = j => lerp(beta, CH_B[j], CH_A), r = clamp(vs, 0, 1) * 10, j = min(floorI(r), 9), w = r - j;
+    return curve(j) * (1 - w) + curve(j + 1) * w;
+  }
+  function floorI(v) { return Math.floor(v + 1e-9); }
+
+  /* =================== unit-level =================== */
+  function deriveShip(sh) {
+    const S = { rules: RULES[sh.rules] ? sh.rules : (TYPES[sh.type] || {}).r || 'csu', notes: [], hgSteps: [], hgChecks: [] };
+    S.type = TYPES[sh.type] && TYPES[sh.type].r === S.rules ? sh.type : Object.keys(TYPES).find(k => TYPES[k].r === S.rules);
+    S.T0d = TYPES[S.type];
+    S.L = clamp(num(sh.L, 80), 5, 500); S.B = clamp(num(sh.B, 60), 2, 300); S.D = clamp(num(sh.D, 35), 1, 250);
+    S.T0 = clamp(num(sh.T0, S.rules === 'seu' ? 0.6 * S.D : S.rules === 'csu' ? 0.6 * S.D : 0.6 * S.D), 0, S.D * 3);
+    S.TT = clamp(num(sh.TT, S.rules === 'seu' ? S.T0 : S.T0), 0, S.D * 3);
+    S.Cb = clamp(num(sh.Cb, 0.8), 0.3, 1);
+    S.zUH = clamp(num(sh.zUH, S.rules === 'csu' ? 0.75 * S.D : S.D), 0.5, S.D);
+    S.zWave = num(sh.zWave, S.D); S.zDeck = num(sh.zDeck, S.D);
+    S.zBD = num(sh.zBD, S.D); S.zDWL = num(sh.zDWL, 0);
+    S.Wc = num(sh.Wc, 0);
+    S.margin = num(sh.margin, 0);
+    S.T = S.rules === 'seu' ? S.TT : S.T0; S.d = S.T; S.LWL = S.L;
+    const st = (l, v) => S.hgSteps.push([l, v]);
+    const fb = S.D - S.T;
+    S.E = clamp(fb > 0 ? (0.0914 + 0.003 * S.L) / fb - 0.15 : 0.147, 0, 0.147);
+    const ph = (p, hmin) => max(hmin, has(p) ? 0.1417 * +p : 0);
+    S.h1min = 1.28 + 2.04 * S.E;
+    S.h1 = max(S.h1min, has(sh.paW) ? 0.14 * +sh.paW + 2.04 * S.E : 0);
+    S.h2 = ph(sh.pWork, 1.28); S.h3 = ph(sh.pStore, 2.0); S.h5 = ph(sh.pAcc, 1.2); S.h7 = 0.64;
+    S.sb = min(470 + S.L / 0.6, 700);
+    S.L2 = min(S.L, 250); S.L3 = min(S.L, 300);
+    S.sbE = 470 + 1.67 * S.L2;
+    S.lam = S.L <= 150 ? S.L / 10 * exp(-S.L / 300) - (1 - pow(S.L / 150, 2)) : S.L <= 300 ? S.L / 10 * exp(-S.L / 300) : 11.03;
+    S.hoCS = min(1.4 * S.T0, S.zUH); S.hoB = max(S.zWave, S.zDeck + 1);
+    S.hTtop = min(1.6 * S.TT, S.D);
+    S.dDB = max(28 * min(S.B, num(sh.B1, S.B)) + 205 * sqrt(S.TT), 760);
+    S.hDB = num(sh.hDB, NaN);
+    S.trMax = S.L <= 100 ? 3.8 : 0.006 * S.L + 3.2;
+    st('Draught for E: ' + (S.rules === 'seu' ? 'transit TT' : 'max. operating To'), f2(S.T, 2) + ' m');
+    st('E = (0,0914 + 0,003 L)/(D − T) − 0,15, 0 … 0,147', f2(S.E, 4));
+    st('h1 weather deck = max(1,28 + 2,04 E ; 0,14 pa + 2,04 E)', f2(S.h1, 3) + ' m (' + f2(S.h1 * 7.06, 2) + ' kN/m²)');
+    st('h2 work areas (≥ 1,28 m, 9,0 kN/m²)', f2(S.h2, 3) + ' m');
+    st('h3 storage areas (≥ 2,0 m, 14,13 kN/m²)', f2(S.h3, 3) + ' m');
+    st('h5 accommodation (≥ 1,2 m, 8,5 kN/m²)', f2(S.h5, 3) + ' m');
+    st('h6 superstructure decks, tier 1 / 2 / 3+', '0,90 / 0,60 / 0,45 m (+ 2,04 E if exposed)');
+    st('h7 walkways', '0,64 m (4,5 kN/m²)');
+    st('Standard spacing sb = 470 + L/0,6 ≤ 700', f2(S.sb, 0) + ' mm');
+    if (S.rules === 'csu') st('Shell head ho to min(1,4 To ; upper hull underside), ≥ 6,0', f2(S.hoCS, 2) + ' m above keel');
+    if (S.rules === 'buoy') st('Shell head ho to max(wave crest ; deck + 1,0), ≥ 6,0', f2(S.hoB, 2) + ' m above keel');
+    if (S.rules === 'seu') { st('Shell head hT to min(1,6 TT ; D), ≥ 0,01 L + 0,7', f2(S.hTtop, 2) + ' m above keel'); st('Double bottom dDB = 28 B + 205 √TT ≥ 760', f2(S.dDB, 0) + ' mm'); if (S.hDB > 0) S.hgChecks.push({ lbl: 'Double bottom depth at centreline', req: S.dDB, off: S.hDB, u: 'mm', d: 0 }); }
+    st('Watertight head to bulkhead deck + 0,91 / damage WL', f2(max(S.zBD + 0.91, S.zDWL), 2) + ' m above keel');
+    st('Erections: λ = (L/10) e^(−L/300) − (1 − (L/150)²)', f2(S.lam, 3));
+    st('Transverses supporting deck longitudinals, spacing ≤', f2(S.trMax, 2) + ' m');
+    if (fb <= 0) S.notes.push('Depth is not above the draught used for E: E is taken as 0,147.');
+    if (S.L > 150) S.notes.push('Erections on units over 150 m: head λ for L > 150 m used (Table 6.9.2).');
+    S.notes.push('Global strength, buckling, fatigue and the direct calculation of primary structure are to be verified separately by Pt 4 Ch 5 (factors of safety shown below).');
+    const so = gradeOf(sh.gHull).so; S.so = so;
+    S.perm = [['(a) static', 1.67, 2.5, 1.43], ['(b), (c) combined / environmental', 1.25, 1.89, 1.11], ['(d) damaged / accidental', 1.0, 1.72, 1.0]].map(r => ({ lc: r[0], fb: so / r[1], fs: so / r[2], fc: so / r[3], sfb: r[1], sfs: r[2], sfc: r[3] }));
+    return S;
+  }
+
+  /* =================== section properties =================== */
+  function props(parts) {
+    let A = 0, Ay = 0, I = 0, top = 0;
+    for (const p of parts) { if (!(p.b > 0 && p.h > 0)) continue; A += p.b * p.h; Ay += p.b * p.h * p.y; top = max(top, p.y + p.h / 2); }
+    if (A <= 0) return { A: 0, yna: 0, I: 0, top: 0 };
+    const yna = Ay / A; for (const p of parts) { if (!(p.b > 0 && p.h > 0)) continue; I += p.b * pow(p.h, 3) / 12 + p.b * p.h * pow(p.y - yna, 2); }
+    return { A, yna, I, top };
+  }
+  function profile(pr) {
+    pr = pr || {}; const type = pr.type || 'L', hw0 = num(pr.hw, 0), tw0 = num(pr.tw, 0), bf0 = num(pr.bf, 0), tf0 = num(pr.tf, tw0);
+    if (type === 'FB') return { type, hw: hw0, tw: tw0, bf: 0, tf: 0, flanged: false, depth: hw0, label: 'FB ' + hw0 + '×' + tw0 };
+    if (type === 'HP') { const al = hw0 <= 120 ? 1.1 + pow(120 - hw0, 2) / 3000 : 1; return { type, hw: hw0 - hw0 / 9.2 + 2, tw: tw0, bf: al * (tw0 + hw0 / 6.7 - 2), tf: hw0 / 9.2 - 2, flanged: true, depth: hw0, label: 'HP ' + hw0 + '×' + tw0 }; }
+    if (type === 'L') return { type, hw: max(hw0 - tf0, 0), tw: tw0, bf: bf0, tf: tf0, flanged: true, depth: hw0, label: 'L ' + hw0 + '×' + bf0 + '×' + tw0 + (tf0 !== tw0 ? '/' + tf0 : '') };
+    return { type: 'T', hw: hw0, tw: tw0, bf: bf0, tf: tf0, flanged: bf0 > 0 && tf0 > 0, depth: hw0 + tf0, label: 'T ' + hw0 + '×' + tw0 + ' + FL ' + bf0 + '×' + tf0 };
+  }
+  function withPlate(np, bp, tp) {
+    const parts = [{ b: bp, h: tp, y: tp / 2 }, { b: np.tw, h: np.hw, y: tp + np.hw / 2 }];
+    if (np.flanged) parts.push({ b: np.bf, h: np.tf, y: tp + np.hw + np.tf / 2 });
+    const p = props(parts), vf = p.top - p.yna;
+    return { A: p.A / 100, I: p.I / 1e4, yna: p.yna, top: p.top, Z: (vf > 0 && p.yna > 0) ? p.I / max(vf, p.yna) / 1000 : 0 };
+  }
+
+  /* =================== context and shared helpers =================== */
+  const sOf = el => clamp(num(el.s, 600), 50, 6000), lOf = el => clamp(num(el.l, 2), 0.05, 80), zOf = el => num(el.z, 0);
+  function ctx(S, el) {
+    const g = gradeOf(el.grade), c = { S, el, g, k: g.k, steps: [], checks: [], notes: [], warn: [] };
+    c.st = (d, f, v, u) => { c.steps.push({ d, f: f || '', v, u: u || '' }); return v; };
+    return c;
+  }
+  const PLATE = 'plate', STIFF = 'stiff', PSM = 'psm', SPEC = 'spec';
+  const ITEMS = {}; const add = (k, o) => { o.key = k; ITEMS[k] = o; };
+  const fS = (s, Sp) => min(1.1 - s / (2500 * max(Sp, 0.1)), 1);
+  const s1Of = (c, s) => max(s, c.S.sb);
+  const rhoOf = el => max(num(el.rho, 1.025), 1.025);
+  const gamOf = el => { const t = (el.prof || {}).type; return t === 'FB' ? 1.6 : 1.4; };
+  function zref(c) { return zOf(c.el) + max(num(c.el.hp, 0), 0) / 3; }
+  function hWT(c, z) { const S = c.S; return c.st('h4 (watertight) to bulkhead deck + 0,91 m or worst damage WL', 'max(' + f2(S.zBD + 0.91 - z) + ' ; ' + f2(S.zDWL - z) + ')', max(S.zBD + 0.91 - z, S.zDWL - z, 0), 'm'); }
+  function hTank(c, z) { const el = c.el, zTop = num(el.zTop, c.S.D), hov = num(el.hov, 0.76); return c.st('h4 (tank) to tank top or half the distance to the overflow top', 'max(' + f2(zTop - z) + ' ; ' + f2((zTop + hov - z) / 2) + ')', max(zTop - z, (zTop + hov - z) / 2, 0), 'm'); }
+  const TANKF = [['zTop', 'Tank top above keel', { unit: 'm' }], ['hov', 'Air pipe / overflow above tank top', { unit: 'm' }], ['rho', 'Liquid density ρ (≥ 1,025)', { unit: 't/m³' }]];
+  const SPF = ['Sp', 'Primary member spacing S (for f)', { unit: 'm' }];
+  const HPF = ['hp', 'Plate panel height (vertical plating; head at 1/3 height)', { unit: 'm' }];
+  function plWT(c, s, f, z) { const h = hWT(c, z); return max(c.st('Watertight bulkhead t = 0,004 s f √(h4 k)', '', 0.004 * s * f * sqrt(h * c.k), 'mm'), 5.5); }
+  function plTank(c, s, f, z) { const h = hTank(c, z), r = rhoOf(c.el); return max(c.st('Deep tank t = 0,004 s f √(ρ h4 k/1,025) + 2,5', 'ρ = ' + f2(r, 3), 0.004 * s * f * sqrt(r * h * c.k / 1.025) + 2.5, 'mm'), 7.5); }
+  const omg = v => clamp(num(v, 0), 0, 1.5);
+  function stWT(c, s, le, z) { const el = c.el, g = gamOf(el), h = hWT(c, z), w = omg(el.w1) + omg(el.w2) + 2; return c.st('Watertight stiffener Z = s k h4 le²/(71 γ (ω1 + ω2 + 2))', 'γ = ' + g + ', ω1 + ω2 + 2 = ' + f2(w), s * c.k * h * le * le / (71 * g * w), 'cm³'); }
+  function stTank(c, s, le, z) { const el = c.el, g = gamOf(el), h = hTank(c, z), r = rhoOf(el), w = omg(el.w1) + omg(el.w2) + 2; return c.st('Deep tank stiffener Z = ρ s k h4 le²/(22 γ (ω1 + ω2 + 2))', 'γ = ' + g + ', ρ = ' + f2(r, 3), r * s * c.k * h * le * le / (22 * g * w), 'cm³'); }
+  const OMF = [['w1', 'End fixity ω1 (top)', { opts: [['0', '0 – sniped / attached to plating only'], ['1', '1,0 – bracketed or lugged to stiffener']] }], ['w2', 'End fixity ω2 (bottom)', { opts: [['0', '0 – sniped / attached to plating only'], ['1', '1,0 – bracketed or lugged to stiffener']] }]];
+  function webCheck(c) { const pr = profile(c.el.prof); if (!(pr.depth > 0 && pr.tw > 0) || pr.type === 'HP') return; const fb = pr.type === 'FB'; c.checks.push({ lbl: 'Web thickness ≥ dw/(' + (fb ? '18' : '60') + ' √k)', req: pr.depth / ((fb ? 18 : 60) * sqrt(c.k)), off: pr.tw, u: 'mm' }); }
+
+  /* =================== SHELL – column-stabilised =================== */
+  add('cs_shell', {
+    r: 'csu', cat: PLATE, grp: 'Shell boundaries', label: 'Shell plating – lower hull, columns, upper hull', ref: 'Pt 4 Ch 6 Tables 6.3.1, 6.3.2',
+    fields: S => [['zone', 'Zone', { opts: [['low', 'Lower hull / pontoon / column (6.3.1)'], ['uh', 'Upper hull shell, general (6.3.2)'], ['uhb', 'Upper hull bottom between columns (6.3.2)'], ['moon', 'Moonpool / well boundary']] }], SPF, HPF, ['tank', 'Plating also forms a tank boundary', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), Sp = num(el.Sp, lOf(el)), f = c.st('f = 1,1 − s/(2500 S) ≤ 1,0', 'S = ' + f2(Sp) + ' m', fS(s, Sp), ''), z = c.st('z at 1/3 plate height', '', zref(c), 'm'), zone = el.zone || 'low';
+      let t;
+      if (zone === 'low' || zone === 'moon') {
+        const ho = c.st('ho to min(1,4 To ; upper hull underside), ≥ 6,0', f2(S.hoCS) + ' − ' + f2(z), max(S.hoCS - z, 6), 'm');
+        t = max(c.st('t = 0,004 s f √(ho k) + 2,5', '', 0.004 * s * f * sqrt(ho * c.k) + 2.5, 'mm'), c.st('Minimum', '', 9, 'mm'));
+        if (zone === 'moon') c.notes.push('Moonpool boundaries: not less than the adjacent shell, 9,0 mm minimum; consider wave slamming in the well.');
+      } else {
+        const h4 = max(hWT(c, z), 6); c.st('h4 not less than 6,0', '', h4, 'm');
+        const s1 = s1Of(c, s);
+        t = max(c.st('t = 0,004 s f √(h4 k)' + (zone === 'uhb' ? ' + 2,5' : ''), '', 0.004 * s * f * sqrt(h4 * c.k) + (zone === 'uhb' ? 2.5 : 0), 'mm'), c.st('t = 0,012 s1 √k, s1 = ' + f2(s1, 0), '', 0.012 * s1 * sqrt(c.k), 'mm'), 7.5);
+      }
+      t = max(t, plWT(c, s, f, z));
+      if (yes(el.tank)) t = max(t, plTank(c, s, f, z));
+      return { t };
+    }
+  });
+  add('cs_stf', {
+    r: 'csu', cat: STIFF, grp: 'Shell boundaries', label: 'Shell stiffener – hull framing', ref: 'Pt 4 Ch 6 Tables 6.3.1, 6.3.2',
+    fields: S => [['zone', 'Zone', { opts: [['low', 'Lower hull / column framing (6.3.1)'], ['uha', 'Upper hull adjacent to columns (6.3.2)'], ['uh', 'Upper hull, general (bulkhead rule, 6.3.2)']] }], ['tank', 'Stiffener on a tank boundary', { chk: 1 }]].concat(OMF, TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), le = lOf(el), z = zOf(el), zone = el.zone || 'low';
+      let Z, Ifac = 2.3 / c.k;
+      if (zone === 'low') { const ho = c.st('ho to min(1,4 To ; upper hull underside), ≥ 6,0', '', max(S.hoCS - z, 6), 'm'); Z = c.st('Z = 8,5 s k ho le² 10⁻³', '', 8.5 * s * c.k * ho * le * le * 1e-3, 'cm³'); }
+      else if (zone === 'uha') { const h4 = max(hWT(c, z), 6); Z = c.st('Z = 8,5 s k h4 le² 10⁻³ (h4 ≥ 6,0)', '', 8.5 * s * c.k * h4 * le * le * 1e-3, 'cm³'); }
+      else { Z = 0; Ifac = 0; }
+      Z = max(Z, stWT(c, s, le, z));
+      if (yes(el.tank)) { Z = max(Z, stTank(c, s, le, z)); Ifac = 2.3 / c.k; }
+      webCheck(c);
+      return { SM: Z, Ireq: Ifac ? Ifac * le : 0 };
+    }
+  });
+  add('cs_web', {
+    r: 'csu', cat: PSM, grp: 'Shell boundaries', label: 'Web frame / girder supporting shell framing', ref: 'Pt 4 Ch 6 Tables 6.3.1, 6.3.2',
+    fields: S => [['zone', 'Zone', { opts: [['low', 'Lower hull / column (6.3.1)'], ['uh', 'Upper hull (bulkhead stringer rule)']] }], ['tank', 'On a tank boundary', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, Sm = num(el.S, 2.4), le = lOf(el), z = zOf(el);
+      let Z, I = 0;
+      if ((el.zone || 'low') === 'low') { const ho = c.st('ho to min(1,4 To ; upper hull underside), ≥ 6,0', '', max(S.hoCS - z, 6), 'm'); Z = c.st('Z = 8,5 k ho S le²', '', 8.5 * c.k * ho * Sm * le * le, 'cm³'); I = 2.3 / c.k * le; }
+      else { const h4 = max(hWT(c, z), 6); Z = c.st('Z = 5,5 k h4 S le² (watertight stringer, h4 ≥ 6,0)', '', 5.5 * c.k * h4 * Sm * le * le, 'cm³'); }
+      if (yes(el.tank)) { const h = hTank(c, z), r = rhoOf(el); Z = max(Z, c.st('Tank: Z = 11,7 ρ k h4 S le²', '', 11.7 * r * c.k * h * Sm * le * le, 'cm³')); I = 2.3 / c.k * le; }
+      return { SM: Z, Ireq: I };
+    }
+  });
+
+  /* =================== SHELL – buoys and caissons =================== */
+  add('b_shell', {
+    r: 'buoy', cat: PLATE, grp: 'Shell boundaries', label: 'Watertight shell plating', ref: 'Pt 4 Ch 6 Table 6.3.5',
+    fields: S => [SPF, HPF, ['tank', 'Plating also forms a tank boundary', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), Sp = num(el.Sp, lOf(el)), f = c.st('f = 1,1 − s/(2500 S) ≤ 1,0', '', fS(s, Sp), ''), z = c.st('z at 1/3 plate height', '', zref(c), 'm');
+      const ho = c.st('ho to max(wave crest ; uppermost deck + 1,0), ≥ 6,0', f2(S.hoB) + ' − ' + f2(z), max(S.hoB - z, 6), 'm');
+      let t = max(c.st('t = 0,004 s f √(ho k) + 2,5', '', 0.004 * s * f * sqrt(ho * c.k) + 2.5, 'mm'), c.st('Minimum', '', 9, 'mm'));
+      t = max(t, plWT(c, s, f, z)); if (yes(el.tank)) t = max(t, plTank(c, s, f, z));
+      return { t };
+    }
+  });
+  add('b_stf', {
+    r: 'buoy', cat: STIFF, grp: 'Shell boundaries', label: 'Shell stiffener – hull framing', ref: 'Pt 4 Ch 6 Table 6.3.5',
+    fields: S => [['tank', 'Stiffener on a tank boundary', { chk: 1 }]].concat(OMF, TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), le = lOf(el), z = zOf(el), ho = c.st('ho to max(wave crest ; deck + 1,0), ≥ 6,0', '', max(S.hoB - z, 6), 'm');
+      let Z = max(c.st('Z = 8,5 s k ho le² 10⁻³', '', 8.5 * s * c.k * ho * le * le * 1e-3, 'cm³'), stWT(c, s, le, z));
+      if (yes(el.tank)) Z = max(Z, stTank(c, s, le, z));
+      webCheck(c); return { SM: Z, Ireq: 2.3 / c.k * le };
+    }
+  });
+  add('b_web', {
+    r: 'buoy', cat: PSM, grp: 'Shell boundaries', label: 'Web frame supporting shell framing', ref: 'Pt 4 Ch 6 Table 6.3.5',
+    fields: S => [['tank', 'On a tank boundary', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, Sm = num(el.S, 2.4), le = lOf(el), z = zOf(el), ho = c.st('ho to max(wave crest ; deck + 1,0), ≥ 6,0', '', max(S.hoB - z, 6), 'm');
+      let Z = c.st('Z = 8,5 k ho S le²', '', 8.5 * c.k * ho * Sm * le * le, 'cm³');
+      if (yes(el.tank)) { const h = hTank(c, z); Z = max(Z, c.st('Tank: Z = 11,7 ρ k h4 S le²', '', 11.7 * rhoOf(el) * c.k * h * Sm * le * le, 'cm³')); }
+      c.notes.push('Table 6.3.5 prints the web frame modulus as 8,5 k ho le² 10⁻³; the column-stabilised form 8,5 k ho S le² (Table 6.3.1) is used here.');
+      return { SM: Z, Ireq: 2.5 / c.k * le };
+    }
+  });
+
+  /* =================== SHELL – self-elevating =================== */
+  add('j_shell', {
+    r: 'seu', cat: PLATE, grp: 'Shell boundaries', label: 'Shell plating – bottom, bilge, side', ref: 'Pt 4 Ch 6 Table 6.3.3',
+    fields: S => [['loc', 'Location', { opts: [['bot', 'Bottom shell'], ['bilge', 'Bilge (framed)'], ['sideU', 'Side above D/2'], ['sideB', 'Side at upper turn of bilge'], ['sideM', 'Side between bilge and D/2']] }], ['zb', 'Upper turn of bilge above keel', { unit: 'm' }], ['tank', 'Plating also forms a tank boundary', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), s1 = c.st('s1 = s, not less than sb', '', s1Of(c, s), 'mm'), k = c.k, L = S.L, TT = S.TT, loc = el.loc || 'bot';
+      const tBot = max(0.001 * s1 * (0.043 * L + 10) * sqrt(1 / k), 0.0052 * s1 * sqrt(1.5 * TT * k));
+      let t;
+      if (loc === 'bot' || loc === 'bilge') { c.st('(a) t = 0,001 s1 (0,043 L + 10) √(1/k)', '', 0.001 * s1 * (0.043 * L + 10) * sqrt(1 / k), 'mm'); c.st('(b) t = 0,0052 s1 √(1,5 TT k)', '', 0.0052 * s1 * sqrt(1.5 * TT * k), 'mm'); t = tBot; }
+      else {
+        const ta = 0.001 * s1 * (0.059 * L + 7) * sqrt(1 / k), tUii = 0.0042 * s1 * sqrt(1.4 * TT * k), tBii = 0.0052 * s1 * sqrt(1.2 * TT * k);
+        c.st('(i) t = 0,001 s1 (0,059 L + 7) √(1/k)', '', ta, 'mm');
+        let tii;
+        if (loc === 'sideU') tii = c.st('(ii) above D/2: t = 0,0042 s1 √(1,4 TT k)', '', tUii, 'mm');
+        else if (loc === 'sideB') tii = c.st('(ii) upper turn of bilge: t = 0,0052 s1 √(1,2 TT k)', '', tBii, 'mm');
+        else { const zb = num(el.zb, 0.1 * S.D), z = zOf(el); tii = c.st('(ii) interpolated between bilge and D/2', 'z = ' + f2(z), lerp(z, [zb, max(S.D / 2, zb + 0.01)], [tBii, tUii]), 'mm'); }
+        t = max(ta, tii);
+        if (t > tBot) { t = c.st('Side need not exceed bottom shell at the same spacing', '', tBot, 'mm'); }
+      }
+      const tm = c.st('Minimum tm = (6,5 + 0,033 L) √(k s1/sb)', '', (6.5 + 0.033 * L) * sqrt(k * s1 / S.sb), 'mm');
+      t = max(t, tm);
+      const f = fS(s, lOf(el)), z = zOf(el); t = max(t, plWT(c, s, f, z)); if (yes(el.tank)) t = max(t, plTank(c, s, f, z));
+      return { t };
+    }
+  });
+  function hTj(c, z) { const S = c.S; return c.st('hT to min(1,6 TT ; D) from mid-span, ≥ 0,01 L + 0,7', f2(S.hTtop) + ' − ' + f2(z), max(S.hTtop - z, 0.01 * S.L + 0.7), 'm'); }
+  add('j_stf', {
+    r: 'seu', cat: STIFF, grp: 'Shell boundaries', label: 'Shell stiffener – bottom, side, inner bottom', ref: 'Pt 4 Ch 6 Table 6.3.4, 8.3.12',
+    fields: S => [['loc', 'Location', { opts: [['bot', 'Bottom (11,0)'], ['side', 'Side (8,0)'], ['ib', 'Inner bottom (85 % of bottom)']] }], ['tank', 'Stiffener on a tank boundary', { chk: 1 }]].concat(OMF, TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), le = lOf(el), z = zOf(el), loc = el.loc || 'bot';
+      let Z;
+      if (loc === 'ib') { const h = hTj(c, 0); Z = c.st('Z = 0,85 × 11,0 s k hT le² 10⁻³ (bottom value)', '', 0.85 * 11 * s * c.k * h * le * le * 1e-3, 'cm³'); }
+      else { const h = hTj(c, z), C = loc === 'bot' ? 11 : 8; Z = c.st('Z = ' + f2(C, 1) + ' s k hT le² 10⁻³', '', C * s * c.k * h * le * le * 1e-3, 'cm³'); }
+      Z = max(Z, stWT(c, s, le, z)); if (yes(el.tank)) Z = max(Z, stTank(c, s, le, z));
+      webCheck(c); return { SM: Z, Ireq: 2.3 / c.k * le };
+    }
+  });
+  add('j_web', {
+    r: 'seu', cat: PSM, grp: 'Shell boundaries', label: 'Web frame / girder – bottom or side', ref: 'Pt 4 Ch 6 Table 6.3.4',
+    fields: S => [['loc', 'Location', { opts: [['bot', 'Bottom (11,0)'], ['side', 'Side (8,0)']] }], ['tank', 'On a tank boundary', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, Sm = num(el.S, 2.4), le = lOf(el), z = zOf(el), C = (el.loc || 'bot') === 'bot' ? 11 : 8, h = hTj(c, z);
+      let Z = c.st('Z = ' + f2(C, 1) + ' k hT S le²', '', C * c.k * h * Sm * le * le, 'cm³');
+      if (yes(el.tank)) { const h4 = hTank(c, z); Z = max(Z, c.st('Tank: Z = 11,7 ρ k h4 S le²', '', 11.7 * rhoOf(el) * c.k * h4 * Sm * le * le, 'cm³')); }
+      c.notes.push('Table 6.3.4 prints the primary member modulus with 10⁻³, which is taken as a misprint for S in metres.');
+      return { SM: Z, Ireq: 2.3 / c.k * le };
+    }
+  });
+  add('j_db', {
+    r: 'seu', cat: PLATE, grp: 'Double bottom', label: 'Double bottom – girders, floors, inner bottom', ref: 'Pt 4 Ch 6 8.3',
+    fields: S => [['mem', 'Member', { opts: [['cg', 'Centre girder (8.3.4)'], ['sg', 'Side girder (8.3.6)'], ['wsg', 'Watertight side girder'], ['duct', 'Duct keel side plate'], ['ib', 'Inner bottom (8.3.10)'], ['ibm', 'Inner bottom under machinery (+10 %)'], ['mgn', 'Margin plate (+20 %)'], ['fl', 'Plate floor, non-watertight'], ['wfl', 'Watertight / tank floor'], ['br', 'Bracket floor brackets']] }], ['dA', 'Actual double bottom depth', { unit: 'mm' }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, k = c.k, sk = sqrt(k), d = c.st('dDB = 28 B + 205 √TT ≥ 760', '', S.dDB, 'mm'), m = el.mem || 'cg', s = sOf(el), z = zOf(el);
+      const tib = 0.00136 * (s + 660) * pow(k * k * S.L * S.TT, 0.25);
+      let t;
+      switch (m) {
+        case 'cg': t = max(c.st('t = (0,008 dDB + 4) √k', '', (0.008 * d + 4) * sk, 'mm'), 6); break;
+        case 'sg': t = max(c.st('t = (0,0075 dDB + 1) √k', '', (0.0075 * d + 1) * sk, 'mm'), 6); break;
+        case 'wsg': t = max(c.st('t = (0,0075 dDB + 2) √k', '', (0.0075 * d + 2) * sk, 'mm'), 6, plTank(c, s, 1, z)); break;
+        case 'duct': t = max(c.st('t = (0,008 dDB + 2) √k', '', (0.008 * d + 2) * sk, 'mm'), 6, plTank(c, s, 1, z)); break;
+        case 'ib': t = max(c.st('t = 0,00136 (s + 660)(k² L TT)^¼', '', tib, 'mm'), 6.5); break;
+        case 'ibm': t = max(c.st('Under machinery: 1,1 × 0,00136 (s + 660)(k² L TT)^¼', '', 1.1 * tib, 'mm'), 7); break;
+        case 'mgn': t = max(c.st('Margin plate: 1,2 × inner bottom', '', 1.2 * max(tib, 6.5), 'mm'), 6.5); break;
+        case 'fl': t = clamp(c.st('t = (0,009 dDB + 1) √k, ≤ 15', '', (0.009 * d + 1) * sk, 'mm'), 6, 15); break;
+        case 'wfl': t = max(min(max((0.008 * d + 3) * sk, (0.009 * d + 1) * sk), 15), 6, plTank(c, s, 1, z)); c.st('t = max((0,008 dDB + 3) √k ; plate floor), ≤ 15, ≥ tank boundary', '', t, 'mm'); break;
+        default: t = c.st('Bracket t = 0,009 dDB √k', '', 0.009 * d * sk, 'mm'); t = max(t, 6);
+      }
+      const dA = num(el.dA, NaN); if (dA > 0 && m === 'cg') c.checks.push({ lbl: 'Centre girder depth ≥ dDB', req: d, off: dA, u: 'mm', soft: 0 });
+      return { t };
+    }
+  });
+  add('j_dbst', {
+    r: 'seu', cat: STIFF, grp: 'Double bottom', label: 'Double bottom girder / floor stiffener', ref: 'Pt 4 Ch 6 8.3',
+    fields: S => [['dA', 'Actual double bottom depth dDBA', { unit: 'mm' }], ['hdb', 'Head hDB to top of overflow (tanks)', { unit: 'm' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), dA = num(el.dA, S.dDB), h = num(el.hdb, max(S.D - zOf(el), 1));
+      const Z = c.st('Z = 5,41 dDBA² hDB s k 10⁻⁹', 'dDBA = ' + f2(dA, 0) + ', hDB = ' + f2(h), 5.41 * dA * dA * h * s * c.k * 1e-9, 'cm³');
+      webCheck(c); return { SM: Z };
+    }
+  });
+
+  /* =================== DECKS =================== */
+  const AREAS = [['w', 'Weather deck (h1, 5,5)'], ['wk', 'Work area (h2, 5,5)'], ['st', 'Storage area (h3, 5,0)'], ['ac', 'Accommodation / crew spaces (h5, 4,5)'], ['wa', 'Walkway (h7, 4,5)']];
+  const AREA = { w: ['h1', 5.5], wk: ['h2', 5.5], st: ['h3', 5.0], ac: ['h5', 4.5], wa: ['h7', 4.5] };
+  function areaHead(c, a, pl) { const S = c.S, A = AREA[a] || AREA.w; let h = S[A[0]]; if (has(pl) && +pl > 0) h = max(h, (a === 'w' ? 0.14 * +pl + 2.04 * S.E : 0.1417 * +pl)); return c.st(A[0] + ' (Table 6.2.1' + (has(pl) ? ', local load ' + f2(+pl, 1) + ' kN/m²' : '') + ')', '', h, 'm'); }
+  add('deck', {
+    r: 'all', cat: PLATE, grp: 'Decks', label: 'Deck plating', ref: 'Pt 4 Ch 6 Table 6.4.1',
+    fields: S => [['loc', 'Deck', { opts: [['str', 'Strength / weather deck'], ['low', 'Lower deck'], ['plat', 'Platform deck / flat'], ['fl', 'Underdeck girder upper flange']] }], SPF, ['Af', 'Girder face area Af (flange only)', { unit: 'cm²' }], ['pL', 'Local deck load (warning above 43,2)', { unit: 'kN/m²' }], ['box', 'Column-stabilised box-girder deck (6,5 mm min. may be considered)', { chk: 1 }], ['wtb', 'Deck forms a watertight boundary (damage)', { chk: 1 }], ['tank', 'Crown or bottom of a tank', { chk: 1 }], ['K1', 'Tank boundary', { opts: [['0', 'Crown of tank (K1 = 0)'], ['2.5', 'Bottom of tank (K1 = 2,5)']] }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), s1 = c.st('s1 = s, not less than sb', '', s1Of(c, s), 'mm'), k = c.k, L = S.L, loc = el.loc || 'str', Sp = num(el.Sp, lOf(el)), z = zOf(el);
+      let t;
+      if (loc === 'str') { t = max(c.st('(1) t = 0,001 s1 (0,059 L + 7) √(1/k)', '', 0.001 * s1 * (0.059 * L + 7) * sqrt(1 / k), 'mm'), c.st('(2) t = 0,00083 s1 √(L k) + 2,5', '', 0.00083 * s1 * sqrt(L * k) + 2.5, 'mm')); if (yes(el.box)) c.notes.push('Box-girder decks of column-stabilised units: a minimum of 6,5 mm may be specially considered.'); }
+      else if (loc === 'low') t = max(c.st('t = 0,012 s1 √k', '', 0.012 * s1 * sqrt(k), 'mm'), 7);
+      else if (loc === 'plat') t = max(c.st('t = 0,01 s1 √k', '', 0.01 * s1 * sqrt(k), 'mm'), 6.5);
+      else { const Af = num(el.Af, 0); t = c.st('Flange t = √(Af/(1,8 k)), Af in cm²', '', Af > 0 ? sqrt(Af / (1.8 * k)) : 0, 'mm'); t = max(t, 0.012 * s1 * sqrt(k)); }
+      if (has(el.pL) && +el.pL > 43.2) c.warn.push('Local deck loading above 43,2 kN/m² is to be specially considered (6.4.1).');
+      if (yes(el.wtb)) t = max(t, plWT(c, s, fS(s, Sp), z));
+      if (yes(el.tank)) { const f = fS(s, Sp), h = hTank(c, z), r = rhoOf(el), K1 = num(el.K1, 0); t = max(t, c.st('(3) Tank: t = 0,004 s f √(ρ k h4/1,025) + K1, ≥ 7,5', 'K1 = ' + K1, max(0.004 * s * f * sqrt(r * k * h / 1.025) + K1, 7.5), 'mm')); }
+      return { t };
+    }
+  });
+  add('dstf', {
+    r: 'all', cat: STIFF, grp: 'Decks', label: 'Deck stiffener / longitudinal / beam', ref: 'Pt 4 Ch 6 Table 6.4.2',
+    fields: S => [['area', 'Deck area', { opts: AREAS }], ['pL', 'Specified deck load (optional)', { unit: 'kN/m²' }], ['tank', 'In way of crown or bottom of a tank', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { el } = c, s = sOf(el), le = c.st('le, not less than 1,5 m', '', max(lOf(el), 1.5), 'm'), a = el.area || 'w', A = AREA[a] || AREA.w, h = areaHead(c, a, el.pL);
+      let Z = c.st('Z = ' + f2(A[1], 1) + ' s k ' + A[0] + ' le² 10⁻³', '', A[1] * s * c.k * h * le * le * 1e-3, 'cm³'), I = 0;
+      if (yes(el.tank)) { const h4 = hTank(c, zOf(el)), g = gamOf(el); Z = max(Z, c.st('Tank: Z = 0,0113 ρ s k h4 le²/γ', 'γ = ' + g, 0.0113 * rhoOf(el) * s * c.k * h4 * le * le / g, 'cm³')); I = 2.3 / c.k * le; }
+      const pr = profile(el.prof); if (pr.depth > 0) c.checks.push({ lbl: 'Web depth dw ≥ 60 mm', req: 60, off: pr.depth, u: 'mm' });
+      webCheck(c); return { SM: Z, Ireq: I };
+    }
+  });
+  add('dgird', {
+    r: 'all', cat: PSM, grp: 'Decks', label: 'Deck girder / transverse / deep beam', ref: 'Pt 4 Ch 6 Table 6.4.3',
+    fields: S => [['mem', 'Member', { opts: [['g', 'Girder or transverse (I = 1,85/k le Z)'], ['db', 'Deep beam (I = 2,3/k le Z)']] }], ['area', 'Deck area (for Hg)', { opts: AREAS }], ['Hg', 'Head Hg override', { unit: 'm' }], ['trl', 'Transverse supporting deck longitudinals (spacing limit)', { chk: 1 }], ['tank', 'In way of a tank', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, Sm = num(el.S, 2.4), le = lOf(el);
+      const Hg = has(el.Hg) && +el.Hg > 0 ? c.st('Hg (entered)', '', +el.Hg, 'm') : areaHead(c, el.area || 'w');
+      let Z = c.st('Dry spaces: Z = 4,75 k S Hg le² (fixed ends, 123,5/k N/mm²)', '', 4.75 * c.k * Sm * Hg * le * le, 'cm³'), I = (el.mem === 'db' ? 2.3 : 1.85) / c.k * le;
+      if (yes(el.tank)) { const h4 = hTank(c, zOf(el)); Z = max(Z, c.st('Tanks: Z = 11,7 ρ k h4 S le²', '', 11.7 * rhoOf(el) * c.k * h4 * Sm * le * le, 'cm³')); I = max(I, 2.5 / c.k * le); }
+      if (yes(el.trl)) c.checks.push({ lbl: 'Transverse spacing ≤ ' + (S.L <= 100 ? '3,8 m' : '0,006 L + 3,2 m'), req: S.trMax, off: Sm, u: 'm', inv: 1 });
+      c.notes.push('Members carrying point loads are to be assessed by direct calculation at 123,5/k N/mm² with fixed ends.');
+      return { SM: Z, Ireq: I };
+    }
+  });
+
+  /* =================== BULKHEADS =================== */
+  const BHT = [['wt', 'Watertight bulkhead'], ['tank', 'Deep tank bulkhead'], ['void', 'Void space adjacent to sea (tank head to To)'], ['wash', 'Wash bulkhead (perforated)']];
+  add('bhd', {
+    r: 'all', cat: PLATE, grp: 'Bulkheads', label: 'Bulkhead plating', ref: 'Pt 4 Ch 6 Table 6.7.1',
+    fields: S => [['bht', 'Bulkhead', { opts: BHT }], SPF, HPF, ['corr', 'Symmetrical corrugation (s = b or c, greater)', { chk: 1 }]].concat(TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), Sp = num(el.Sp, lOf(el)), f = c.st('f = 1,1 − s/(2500 S) ≤ 1,0', 'S = ' + f2(Sp), fS(s, Sp), ''), z = c.st('z at 1/3 plate height', '', zref(c), 'm'), b = el.bht || 'wt';
+      let t;
+      if (b === 'wt') t = plWT(c, s, f, z);
+      else if (b === 'tank') t = plTank(c, s, f, z);
+      else if (b === 'void') { t = plWT(c, s, f, z); const h = c.st('Void adjacent to sea: head to To', '', max(S.T0 - z, 0), 'm'); t = max(t, c.st('t = 0,004 s f √(h k) + 2,5', '', 0.004 * s * f * sqrt(h * c.k) + 2.5, 'mm'), 7.5); }
+      else { t = c.st('Wash bulkhead minimum', '', 7.5, 'mm'); }
+      return { t };
+    }
+  });
+  add('bhdstf', {
+    r: 'all', cat: STIFF, grp: 'Bulkheads', label: 'Bulkhead stiffener', ref: 'Pt 4 Ch 6 Table 6.7.1, 7.3.4',
+    fields: S => [['bht', 'Bulkhead', { opts: BHT }]].concat(OMF, [['e1', 'End reduction e1 (top bracket)', { unit: 'm' }], ['e2', 'End reduction e2 (bottom bracket)', { unit: 'm' }]], TANKF),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), l = lOf(el), le = c.st('le = l − e1 − e2', '', max(l - num(el.e1, 0) - num(el.e2, 0), 0.3 * l), 'm'), z = zOf(el), b = el.bht || 'wt';
+      let Z, I = 0;
+      if (b === 'wt') Z = stWT(c, s, le, z);
+      else if (b === 'tank') { Z = stTank(c, s, le, z); I = 2.3 / c.k * le; }
+      else if (b === 'void') { Z = stWT(c, s, le, z); const h = max(S.T0 - z, 0), w = omg(el.w1) + omg(el.w2) + 2; Z = max(Z, c.st('Void adjacent to sea: Z = 1,025 s k h le²/(22 γ (ω1 + ω2 + 2)), h to To', '', 1.025 * s * c.k * h * le * le / (22 * gamOf(el) * w), 'cm³')); I = 2.3 / c.k * le; }
+      else { Z = c.st('Wash bulkhead: 50 % of deep tank modulus', '', 0.5 * stTank(c, s, le, z), 'cm³'); }
+      webCheck(c); return { SM: Z, Ireq: I };
+    }
+  });
+  add('bhdweb', {
+    r: 'all', cat: PSM, grp: 'Bulkheads', label: 'Bulkhead stringer / web', ref: 'Pt 4 Ch 6 Table 6.7.1',
+    fields: S => [['bht', 'Bulkhead', { opts: BHT.slice(0, 2) }]].concat(TANKF),
+    calc(c) {
+      const { el } = c, Sm = num(el.S, 2.4), le = lOf(el), z = zOf(el);
+      if ((el.bht || 'wt') === 'wt') { const h = hWT(c, z); return { SM: c.st('Z = 5,5 k h4 S le²', '', 5.5 * c.k * h * Sm * le * le, 'cm³') }; }
+      const h = hTank(c, z); return { SM: c.st('Z = 11,7 ρ k h4 S le²', '', 11.7 * rhoOf(el) * c.k * h * Sm * le * le, 'cm³'), Ireq: 2.3 / c.k * le };
+    }
+  });
+
+  /* =================== SUPERSTRUCTURES AND DECKHOUSES =================== */
+  const WALL = [['uf', 'Unprotected front'], ['pf', 'Protected front'], ['sd', 'Side'], ['af', 'Aft end']];
+  function wallHead(c) {
+    const { S, el } = c, L3 = S.L3, tier = clamp(round(num(el.tier, 1)), 1, 9), w = el.wall || 'uf', xl = clamp(num(el.x, 0.5 * S.L) / S.L, 0, 1.1), cb = clamp(S.Cb, 0.6, 0.8);
+    if (el.wave === false || el.wave === 'no') {
+      const h = c.st('Not subject to wave forces: h = 1,25 + 0,005 L2 (9.7)', '', 1.25 + 0.005 * S.L2, 'm'); return { h, tier, nw: 1 };
+    }
+    let a, at;
+    if (w === 'uf') { if (tier === 1) { a = 2 + 0.0083 * L3; at = '2,0 + 0,0083 L3'; } else if (tier === 2) { a = 1 + 0.0083 * L3; at = '1,0 + 0,0083 L3'; } else { a = 0.5 + 0.0067 * L3; at = '0,5 + 0,0067 L3'; } }
+    else if (w === 'af') { if (xl <= 0.5) { a = 0.7 + 0.001 * L3 - 0.8 * xl; at = '0,7 + 0,001 L3 − 0,8 X/L'; } else { a = 0.5 + 0.001 * L3 - 0.4 * xl; at = '0,5 + 0,001 L3 − 0,4 X/L'; } }
+    else { a = 0.5 + 0.0067 * L3; at = '0,5 + 0,0067 L3'; }
+    c.st('α = ' + at + ' (Table 6.9.1)', '', a, '');
+    const beta = c.st('β, X/L = ' + f2(xl, 3) + ', Cb = ' + f2(cb, 2), '', 1 + (xl <= 0.45 ? 1 : 1.5) * pow((xl - 0.45) / (cb + 0.2), 2), '');
+    const lam = c.st('λ (Table 6.9.2)', '', S.lam, '');
+    const B1 = num(el.B1, S.B), b = num(el.b1, B1), del = c.st('δ = 0,3 + 0,7 b/B1 ≥ 0,475' + (yes(el.casing) ? ' (casing: 1,0)' : ''), '', yes(el.casing) ? 1 : max(0.3 + 0.7 * b / B1, 0.475), '');
+    const gam = c.st('γ = z − maximum transit waterline', '', zOf(el) - S.TT, 'm');
+    const h = c.st('h = α δ (β λ − γ)', '', a * del * (beta * lam - gam), 'm');
+    const low = w === 'uf' && tier === 1, hmin = low ? 2.5 + 0.01 * S.L2 : 1.25 + 0.005 * S.L2;
+    return { h: c.st('h not less than ' + (low ? '2,5 + 0,01 L2' : '1,25 + 0,005 L2'), '', max(h, hmin), 'm'), tier, low };
+  }
+  const WALLF = S => [['wall', 'Bulkhead', { opts: WALL }], ['tier', 'Tier (1 = lowest)', {}], ['b1', 'Breadth of deckhouse b', { unit: 'm' }], ['B1', 'Breadth of unit at weather deck B1', { unit: 'm' }], ['casing', 'Exposed machinery casing (δ = 1)', { chk: 1 }], ['wave', 'Subject to wave forces (transit / afloat)', { chk: 1 }]];
+  add('house', {
+    r: 'all', cat: PLATE, grp: 'Superstructures and deckhouses', label: 'Erection front, side and aft plating', ref: 'Pt 4 Ch 6 9.4–9.7', fields: WALLF,
+    calc(c) {
+      const { S, el } = c, s = sOf(el), H = wallHead(c), jl = S.rules === 'seu' && H.low;
+      let t = c.st(jl ? 't = 0,0036 s √(k h) (self-elevating, lowest tier front, 9.6)' : 't = 0,003 s √(k h)', '', (jl ? 0.0036 : 0.003) * s * sqrt(c.k * H.h), 'mm');
+      t = max(t, H.tier === 1 && !H.nw ? c.st('Lowest tier (5,0 + 0,01 L3) √k ≥ 5,0', '', max((5 + 0.01 * S.L3) * sqrt(c.k), 5), 'mm') : c.st('(4,0 + 0,01 L3) √k ≥ 5,0' + (H.nw ? ' (9.7: (5,0 + 0,01 L) √k)' : ''), '', max((H.nw ? 5 + 0.01 * S.L : 4 + 0.01 * S.L3) * sqrt(c.k), 5), 'mm'));
+      if (jl) t = max(t, 7);
+      return { t };
+    }
+  });
+  add('housestf', {
+    r: 'all', cat: STIFF, grp: 'Superstructures and deckhouses', label: 'Erection bulkhead stiffener', ref: 'Pt 4 Ch 6 9.5.3, 9.6',
+    fields: S => WALLF(S).concat([['nb', 'Lower-tier side stiffener without end brackets (+20 %)', { chk: 1 }]]),
+    calc(c) {
+      const { S, el } = c, s = sOf(el), ls = c.st('ls, not less than 2,0 m', '', max(lOf(el), 2), 'm'), H = wallHead(c), jl = S.rules === 'seu' && H.low;
+      let Z = c.st(jl ? 'Z = 0,0044 h s ls² k (self-elevating, lowest tier front)' : 'Z = 0,0035 h s ls² k', '', (jl ? 0.0044 : 0.0035) * H.h * s * ls * ls * c.k, 'cm³');
+      if (yes(el.nb)) Z = c.st('+20 % without end brackets', '', 1.2 * Z, 'cm³');
+      webCheck(c); return { SM: Z };
+    }
+  });
+  const TIERS = [['1', 'Deck forming top of first tier'], ['2', 'Top of second tier'], ['3', 'Third tier and above']];
+  add('hdeck', {
+    r: 'all', cat: PLATE, grp: 'Superstructures and deckhouses', label: 'Erection deck plating', ref: 'Pt 4 Ch 6 Table 6.9.5',
+    fields: S => [['tier', 'Tier', { opts: TIERS }], ['wave', 'Subject to wave forces', { chk: 1 }], ['sheath', 'Sheathing thickness (mm, reduces 5–10 %)', {}]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), sb = c.st('sb = 470 + 1,67 L2', '', S.sbE, 'mm'), tr = (el.wave === false || el.wave === 'no') ? '3' : (el.tier || '1'), r = sqrt(c.k * s / sb);
+      const A1 = { 1: 5.5, 2: 5.0, 3: 4.5 }[tr], A2 = { 1: 7.5, 2: 7.0, 3: 6.5 }[tr];
+      let t = S.L <= 100 ? c.st('t = (' + f2(A1, 1) + ' + 0,02 L) √(k s/sb)', '', (A1 + 0.02 * S.L) * r, 'mm') : c.st('t = ' + f2(A2, 1) + ' √(k s/sb)', '', A2 * r, 'mm');
+      t = max(t, 5);
+      const sh = num(el.sheath, 0); if (sh > 0) t = c.st('Sheathing reduction ' + f2(min(sh / 50, 1) * 10, 1) + ' %', '', t * (1 - min(sh / 50, 1) * 0.1), 'mm');
+      return { t };
+    }
+  });
+  add('hbeam', {
+    r: 'all', cat: STIFF, grp: 'Superstructures and deckhouses', label: 'Erection deck beam / longitudinal', ref: 'Pt 4 Ch 6 9.8, Table 6.2.1',
+    fields: S => [['tier', 'Tier', { opts: TIERS }], ['exp', 'Exposed deck (h6 + 2,04 E)', { chk: 1 }], ['pL', 'Specified deck load (optional)', { unit: 'kN/m²' }]],
+    calc(c) {
+      const { S, el } = c, s = sOf(el), le = lOf(el), h6b = { 1: 0.9, 2: 0.6, 3: 0.45 }[el.tier || '1'];
+      let h = c.st('h6 (Table 6.2.1)' + (yes(el.exp) ? ' + 2,04 E' : ''), '', h6b + (yes(el.exp) ? 2.04 * S.E : 0), 'm');
+      if (has(el.pL) && +el.pL > 0) h = max(h, c.st('Specified load head 0,1417 p', '', 0.1417 * +el.pL, 'm'));
+      const Z = max(c.st('Z = 0,0048 h6 s le² k', '', 0.0048 * h * s * le * le * c.k, 'cm³'), c.st('Minimum 0,025 s', '', 0.025 * s, 'cm³'));
+      webCheck(c); return { SM: Z };
+    }
+  });
+
+  /* =================== HELICOPTER LANDING AREA =================== */
+  const GEAR = [['w', 'Wheels – single main rotor (Pw = Ph/2 per main wheel or pair)'], ['t', 'Wheels – tandem rotor (Pw entered)'], ['sk', 'Skids (line load, Pw = Ph/3 aft contact)']];
+  const HELIF = S => [['Ph', 'Maximum take-off weight Ph', { unit: 't' }], ['gear', 'Undercarriage', { opts: GEAR }], ['Pw', 'Load on tyre print Pw (tandem / override)', { unit: 't' }], ['u', 'Tyre print u (along long side a)', { unit: 'mm' }], ['v', 'Tyre print v (across s)', { unit: 'mm' }], ['man', 'Manned helideck (f = 1,15)', { chk: 1 }]];
+  function heliPw(c) { const el = c.el, Ph = max(num(el.Ph, 12.8), 0.1), g = el.gear || 'w'; if (has(el.Pw) && +el.Pw > 0) return c.st('Pw (entered)', '', +el.Pw, 't'); return c.st(g === 'sk' ? 'Pw = Ph/3 (skid aft contact)' : 'Pw = Ph/2', 'Ph = ' + f2(Ph, 2) + ' t', g === 'sk' ? Ph / 3 : Ph / 2, 't'); }
+  add('heli', {
+    r: 'all', cat: PLATE, grp: 'Helicopter landing area', label: 'Helideck plating (tyre print)', ref: 'Pt 4 Ch 6 5.6, Fig 5.6.1',
+    fields: S => HELIF(S).concat([['gam', 'Factor γ (0,6; specially considered if part of hull strength)', {}]]),
+    calc(c) {
+      const { el } = c, s = sOf(el), a = max(lOf(el) * 1000, s), Pw = heliPw(c), sk = (el.gear || 'w') === 'sk';
+      const u = max(num(el.u, sk ? 1000 : 300), 1), v = max(num(el.v, sk ? 10 : 300), 1), u1 = min(u, a), v1 = min(v, s), f = yes(el.man) ? 1.15 : 1.0, gam = clamp(num(el.gam, 0.6), 0.3, 1.5);
+      const p1 = c.st('φ1 = (2 v1 + 1,1 s)/(u1 + 1,1 s)', 'u1 = ' + f2(u1, 0) + ', v1 = ' + f2(v1, 0), (2 * v1 + 1.1 * s) / (u1 + 1.1 * s), '');
+      const p2 = c.st('φ2 (u = ' + f2(u, 0) + ', a = ' + f2(a, 0) + ')', '', u <= a - s ? 1 : u <= a ? 1 / (1.3 - 0.3 / s * (a - u)) : 0.77 * a / u, '');
+      const vs = v / s, p3 = c.st('φ3 (v/s = ' + f2(vs, 3) + ')', '', vs < 1 ? 1 : vs < 1.5 ? 0.6 / vs + 0.4 : 1.2 / vs, '');
+      const P1 = c.st('P1 = 2,5 φ1 φ2 φ3 f γ Pw', 'f = ' + f + ', γ = ' + gam, 2.5 * p1 * p2 * p3 * f * gam * Pw, 't');
+      const beta = c.st('β = log10(P1 k²/s² · 10⁷)', '', log10(max(P1 * c.k * c.k / (s * s) * 1e7, 1e-9)), '');
+      const al = c.st('α from Fig 5.6.1 (digitised), v/s curve ' + (sk ? 'line load' : f2(min(v1 / s, 1), 2)), '', alphaOf(beta, sk ? 0 : v1 / s), '');
+      if (beta < 0.49 || beta > 3.6 || al >= 39.9) c.warn.push('β = ' + f2(beta, 3) + ' is outside Fig 5.6.1 (α limited to 4 … 40): check by direct calculation.');
+      const t = c.st('t = α s/(1000 √k) + 1,5', '', al * s / (1000 * sqrt(c.k)) + 1.5, 'mm');
+      c.notes.push('Plating is also not to be less than the deck plating required at the same position.');
+      return { t };
+    }
+  });
+  function heliBeam(c, prim) {
+    const { el } = c, sp = prim ? num(el.S, 2.4) : sOf(el) / 1000, le = lOf(el), Pw = heliPw(c), f = yes(el.man) ? 1.15 : 1, R = clamp(num(el.resp, 1.3), 1, 2), k = c.k;
+    const lc = [['(1) Emergency landing', 2.5 * Pw * f * R, 0.5, prim ? 220.5 / k : 245 / k], ['(2) Normal operation', 1.5 * Pw * f * R, 0.5, prim ? 147 / k : 176 / k], ['(3) Helicopter at rest', Pw, 2.0, prim ? 147 / k : 176 / k]];
+    let Zr = 0, Awr = 0;
+    for (const L of lc) {
+      const P = L[1] * 9.81, q = L[2] * sp + num(el.sw, 0), M = P * le / 8 + q * le * le / 12, V = P / 2 + q * le / 2, Z = M * 1000 / L[3], Aw = 10 * V / (L[3] / sqrt(3));
+      c.st(L[0] + ': P = ' + f2(P, 1) + ' kN, q = ' + f2(q, 2) + ' kN/m, M = P le/8 + q le²/12', 'σ = ' + f2(L[3], 1) + ' N/mm²', Z, 'cm³');
+      Zr = max(Zr, Z); Awr = max(Awr, Aw);
+    }
+    const pr = profile(el.prof); if (pr.depth > 0 && pr.tw > 0) c.checks.push({ lbl: 'Web shear area (τ = σ/√3)', req: Awr, off: pr.depth * pr.tw / 100, u: 'cm²' });
+    c.notes.push('Patch load at mid-span on a fixed-ended member (M = P le/8), structural response factor ' + f2(R, 2) + ' on cases (1) and (2); add self-weight, wind and inertia loads as applicable (Table 6.5.1).');
+    return { SM: Zr };
+  }
+  const HBF = S => HELIF(S).concat([['resp', 'Structural response factor (1,3 recommended)', {}], ['sw', 'Additional distributed load (self-weight etc.)', { unit: 'kN/m' }]]);
+  add('helistf', { r: 'all', cat: STIFF, grp: 'Helicopter landing area', label: 'Helideck stiffener (deck secondary)', ref: 'Pt 4 Ch 6 5.7, Tables 6.5.1, 6.5.2', fields: HBF, calc(c) { return heliBeam(c, false); } });
+  add('heligird', { r: 'all', cat: PSM, grp: 'Helicopter landing area', label: 'Helideck girder / transverse (primary)', ref: 'Pt 4 Ch 6 5.7, Tables 6.5.1, 6.5.2', fields: HBF, calc(c) { return heliBeam(c, true); } });
+
+  /* =================== PILLARS AND CROSS TIES =================== */
+  function tubeAI(el) { const D0 = num(el.OD, 219.1), tw = min(max(num(el.tw, 8), 0.1), D0 / 2), Di = D0 - 2 * tw; return { D0, tw, A: PI / 4 * (D0 * D0 - Di * Di) / 100, I: PI / 64 * (pow(D0, 4) - pow(Di, 4)) / 1e4 }; }
+  add('pillar', {
+    r: 'all', cat: SPEC, grp: 'Pillars and cross ties', label: 'Deck pillar', ref: 'Pt 4 Ch 6 Table 6.4.4',
+    fields: S => [['pType', 'Section', { opts: [['pipe', 'Tubular (OD × t)'], ['rhs', 'Square hollow (b × t)'], ['man', 'Other: A, I']] }], ['OD', 'Outside diameter / width b', { unit: 'mm' }], ['tw', 'Wall thickness', { unit: 'mm' }], ['A', 'Area A (other)', { unit: 'cm²' }], ['I', 'Least I (other)', { unit: 'cm⁴' }], ['l', 'Overall length l (le = 0,8 l)', { unit: 'm' }], ['Sg', 'Breadth supported S', { unit: 'm' }], ['lp', 'Length supported', { unit: 'm' }], ['Hg', 'Head Hg', { unit: 'm' }], ['Pa', 'Load from pillars above Pa', { unit: 'kN' }]],
+    calc(c) {
+      const { S, el } = c, k = max(c.k, 0.72), l = lOf(el), le = c.st('le = 0,8 l', '', 0.8 * l, 'm'), pt = el.pType || 'pipe';
+      let A, I, lbl, b = 0, tw = 0;
+      if (pt === 'man') { A = max(num(el.A, 50), 0.01); I = max(num(el.I, 500), 0.01); lbl = 'A ' + f2(A, 1) + ' cm²'; }
+      else if (pt === 'rhs') { b = num(el.OD, 200); tw = min(max(num(el.tw, 8), 0.1), b / 2); const bi = b - 2 * tw; A = (b * b - bi * bi) / 100; I = (pow(b, 4) - pow(bi, 4)) / 12 / 1e4; lbl = 'SHS ' + f2(b, 0) + ' × ' + f2(tw, 1); }
+      else { const T = tubeAI(el); A = T.A; I = T.I; b = T.D0; tw = T.tw; lbl = 'Pipe ' + f2(b, 1) + ' × ' + f2(tw, 1); }
+      const r = c.st('r = 10 √(I/A)', '', 10 * sqrt(I / A), 'mm');
+      const P = c.st('P = Po + Pa, Po = 7,06 S lp Hg, ≥ 19,62 kN', '', max(7.06 * num(el.Sg, 3) * num(el.lp, 3) * num(el.Hg, S.h3) + num(el.Pa, 0), 19.62), 'kN');
+      const den = 12.36 - 51.5 * le / (r * sqrt(k)); const Ap = c.st('Ap = k P/(12,36 − 51,5 le/(r √k)), k ≥ 0,72', '', den > 0 ? k * P / den : Infinity, 'cm²');
+      const tmin = S.L >= 90 ? 7.5 : 5.5;
+      if (pt === 'pipe') { const dp = b - tw, d2 = 0.392 * dp - 4.9 * le; c.checks.push({ lbl: 'Tube wall ≥ max(P/(0,392 dp − 4,9 le) ; dp/40 ; ' + tmin + ')', req: max(d2 > 0 ? P / d2 : Infinity, dp / 40, tmin), off: tw, u: 'mm' }); }
+      if (pt === 'rhs') c.checks.push({ lbl: 'Wall ≥ lesser of (b r/(600 le) ; b/55), ≥ ' + tmin, req: max(min(b * r / (600 * le), b / 55), tmin), off: tw, u: 'mm' });
+      return { spec: 1, req: Ap, off: A, u: 'cm²', reqTxt: f2(Ap, 1) + ' cm²', offTxt: f2(A, 1) + ' cm²', label: lbl, title: 'Pillar' };
+    }
+  });
+  add('xtie', {
+    r: 'all', cat: SPEC, grp: 'Pillars and cross ties', label: 'Cross tie in tanks / pontoons', ref: 'Pt 4 Ch 6 3.3.4',
+    fields: S => [['pType', 'Section', { opts: [['pipe', 'Tubular (OD × t)'], ['man', 'Other: A, I']] }], ['OD', 'Outside diameter', { unit: 'mm' }], ['tw', 'Wall thickness', { unit: 'mm' }], ['A', 'Area A (other)', { unit: 'cm²' }], ['I', 'Least I (other)', { unit: 'cm⁴' }], ['bc', 'Breadth of plating supported bc', { unit: 'm' }], ['Sg', 'Spacing of cross ties S', { unit: 'm' }], ['hc', 'Head hc at the cross tie', { unit: 'm' }], ['l', 'Length of cross tie lc', { unit: 'm' }]],
+    calc(c) {
+      const { el } = c, k = c.k, lc = lOf(el);
+      let A, I, lbl;
+      if (el.pType === 'man') { A = max(num(el.A, 50), 0.01); I = max(num(el.I, 500), 0.01); lbl = 'A ' + f2(A, 1) + ' cm²'; } else { const T = tubeAI(el); A = T.A; I = T.I; lbl = 'Pipe ' + f2(T.D0, 1) + ' × ' + f2(T.tw, 1); }
+      const r = c.st('r = √(I/A)', '', sqrt(I / A), 'cm');
+      const den = 1 - 0.42 * lc / (r * sqrt(k));
+      const Ac = c.st('Ac = 0,82 bc hc S k/(1 − 0,42 lc/(r √k))', 'bc ' + f2(num(el.bc, 3)) + ', hc ' + f2(num(el.hc, 10)) + ', S ' + f2(num(el.Sg, 3)), den > 0 ? 0.82 * num(el.bc, 3) * num(el.hc, 10) * num(el.Sg, 3) * k / den : Infinity, 'cm²');
+      c.notes.push('End connections: weld area to be at least the required cross tie area; brackets as Table 6.3.3 note.');
+      return { spec: 1, req: Ac, off: A, u: 'cm²', reqTxt: f2(Ac, 1) + ' cm²', offTxt: f2(A, 1) + ' cm²', label: lbl, title: 'Cross tie' };
+    }
+  });
+
+  /* =================== element calculation =================== */
+  const isFor = (it, rules) => it.r === 'all' || it.r === rules;
+  function itemsFor(rules) { return Object.keys(ITEMS).filter(k => isFor(ITEMS[k], rules)); }
+  function effB(S, el, cat) {
+    const tp = num(el.tp, 8);
+    if (cat === 'stiff') return min(sOf(el), max(600, 40 * tp));
+    const b = num(el.S, 2) * 1000, l = lOf(el), f = min(0.3 * pow(l / max(b / 1000, 0.01), 2 / 3), 1); return b * f;
+  }
+  function calcElement(S, el) {
+    const it = ITEMS[el.item];
+    if (!it || !isFor(it, S.rules)) return { status: 'na', error: 'Item not available for this unit type', steps: [], checks: [], notes: [], warn: [], util: NaN };
+    const c = ctx(S, el); let o;
+    try { o = it.calc(c) || {}; } catch (e) { return { status: 'na', error: String(e && e.message || e), steps: c.steps, checks: [], notes: [], warn: [], util: NaN }; }
+    const R = { item: it, steps: c.steps, checks: c.checks, notes: c.notes, warn: c.warn, cat: it.cat };
+    if (it.cat === 'spec') { Object.assign(R, o); R.reqV = o.req; R.offV = o.off; }
+    else if (it.cat === 'plate') {
+      const mg = has(el.margin) ? +el.margin : S.margin;
+      R.treq = o.t; R.tmg = o.t + mg; R.treqR = r05(R.tmg); R.margin = mg; R.toff = num(el.t, NaN);
+      R.reqV = R.treqR; R.offV = R.toff; R.u = 'mm';
+      R.reqTxt = isFinite(R.treqR) ? f2(R.treqR, 1) + ' mm' : '–'; R.offTxt = has(el.t) ? f2(+el.t, 1) + ' mm' : '–'; R.label = has(el.t) ? 'PL ' + el.t : '–';
+    } else {
+      R.SMreq = o.SM; const pr = profile(el.prof), tp = num(el.tp, 8), be = effB(S, el, it.cat);
+      R.prof = pr; R.beff = be; R.tp = tp;
+      if (el.prof && el.prof.type === 'DIR') { R.SMoff = num(el.prof.Z, NaN); R.label = 'Z ' + f2(R.SMoff, 1) + ' cm³ (entered)'; }
+      else if (pr.depth > 0 && pr.tw > 0) { R.sec = withPlate(pr, be, tp); R.SMoff = R.sec.Z; R.label = pr.label + ' / PL ' + f2(be, 0) + '×' + f2(tp, 1); }
+      else { R.SMoff = NaN; R.label = '–'; }
+      if (o.Ireq > 0 && R.sec) { const Ir = o.Ireq * R.SMreq; R.Ireq = Ir; c.checks.push({ lbl: 'Moment of inertia I (= factor × le × Z)', req: Ir, off: R.sec.I, u: 'cm⁴' }); }
+      R.reqV = R.SMreq; R.offV = R.SMoff; R.u = 'cm³';
+      R.reqTxt = isFinite(R.SMreq) ? f2(R.SMreq, 1) + ' cm³' : '–'; R.offTxt = isFinite(R.SMoff) ? f2(R.SMoff, 1) + ' cm³' : '–';
+    }
+    let u = (isFinite(R.reqV) && R.offV > 0) ? R.reqV / R.offV : NaN, bad = isFinite(u) && u > 1 + 1e-9;
+    for (const ch of R.checks) { if (!(ch.off > 0)) { ch.ok = false; ch.soft = 1; ch.na = 1; continue; } const uu = ch.inv ? ch.off / ch.req : ch.req / max(ch.off, 1e-9); ch.ok = uu <= 1 + 1e-9; if (!ch.ok && !ch.soft) bad = true; if (!ch.soft && isFinite(uu) && (!isFinite(u) || uu > u)) u = uu; }
+    R.util = u;
+    R.status = (!isFinite(R.reqV) || !(R.offV > 0)) ? 'na' : bad ? 'bad' : R.warn.length ? 'warn' : 'ok';
+    return R;
+  }
+  return { GRADES, gradeOf, RULES, TYPES, ITEMS, itemsFor, deriveShip, calcElement, profile, withPlate, has, num, f2, r05, effB, alphaOf };
+})();
+
+</script>
+<script>
+(function () {
+'use strict';
+const A = window.OU, $ = (s, r) => (r || document).querySelector(s), has = A.has, num = A.num;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fx = (v, d) => (v == null || !isFinite(v)) ? '–' : Number(v).toFixed(d == null ? 2 : d);
+const KEY = 'lr-offshore-scantlings-v1';
+const CATS = { plate: 'Plating', stiff: 'Stiffener', psm: 'Primary member', spec: 'Special item' };
+const CATP = { plate: 'Plating', stiff: 'Ordinary stiffeners', psm: 'Primary supporting members', spec: 'Special items' };
+
+/* ---------- examples ---------- */
+const META0 = () => ({ project: '', vessel: '', doc: '', by: '' });
+const T = (hw, tw, bf, tf) => ({ type: 'T', hw, tw, bf, tf }), Lp = (hw, bf, tw) => ({ type: 'L', hw, bf, tw, tf: tw }), HP = (hw, tw) => ({ type: 'HP', hw, tw });
+function exSemi() {
+  const e = [];
+  const P = (name, item, o) => e.push(Object.assign({ id: e.length + 1, name, item, grade: 'AH36' }, o));
+  P('Pontoon bottom shell', 'cs_shell', { zone: 'low', s: 650, l: 2.6, Sp: 2.6, t: 15, x: 20, z: 0 });
+  P('Pontoon side shell', 'cs_shell', { zone: 'low', s: 650, l: 2.6, Sp: 2.6, hp: 2, t: 14, x: 20, z: 2 });
+  P('Column shell at waterline', 'cs_shell', { zone: 'low', s: 650, l: 2.6, Sp: 2.6, hp: 2.6, t: 13.5, x: 10, z: 20 });
+  P('Upper hull bottom between columns', 'cs_shell', { zone: 'uhb', s: 650, l: 2.6, Sp: 2.6, t: 10.5, x: 40, z: 30 });
+  P('Main deck plating', 'deck', { loc: 'str', s: 650, l: 2.6, Sp: 2.6, t: 11.5, x: 40, z: 38 });
+  P('Ballast tank bulkhead in pontoon', 'bhd', { bht: 'tank', s: 650, l: 2.6, Sp: 2.6, hp: 2, t: 12, x: 25, z: 0.5, zTop: 10, hov: 2, rho: 1.025 });
+  P('Accommodation deckhouse front, tier 1', 'house', { wall: 'uf', tier: 1, wave: false, b1: 40, B1: 70, s: 600, l: 2.8, t: 8, x: 70, z: 41 });
+  P('Helideck plating', 'heli', { Ph: 12.8, gear: 'w', u: 300, v: 300, man: true, s: 500, l: 2.4, t: 13, x: 75, z: 48, grade: 'A' });
+  P('Pontoon shell longitudinal', 'cs_stf', { zone: 'low', s: 650, l: 2.6, x: 20, z: 1, prof: { type: 'T', hw: 350, tw: 11, bf: 120, tf: 15 }, tp: 15 });
+  P('Column shell stiffener', 'cs_stf', { zone: 'low', s: 650, l: 2.6, x: 10, z: 20, prof: { type: 'HP', hw: 220, tw: 10 }, tp: 13.5 });
+  P('Main deck longitudinal (storage)', 'dstf', { area: 'st', s: 650, l: 2.6, x: 40, z: 38, prof: { type: 'HP', hw: 160, tw: 9 }, tp: 11.5 });
+  P('Tank bulkhead stiffener', 'bhdstf', { bht: 'tank', w1: '1', w2: '1', s: 650, l: 3.2, x: 25, z: 3, zTop: 10, hov: 2, rho: 1.025, prof: { type: 'HP', hw: 280, tw: 11 }, tp: 12 });
+  P('Helideck stiffener', 'helistf', { Ph: 12.8, gear: 'w', man: true, resp: 1.3, s: 500, l: 2.4, x: 75, z: 48, grade: 'A', prof: { type: 'T', hw: 250, tw: 8, bf: 100, tf: 12 }, tp: 10 });
+  P('Pontoon ring frame web', 'cs_web', { zone: 'low', S: 2.6, l: 4.5, x: 20, z: 5, prof: { type: 'T', hw: 950, tw: 14, bf: 250, tf: 25 }, tp: 14 });
+  P('Main deck transverse', 'dgird', { mem: 'g', area: 'st', S: 2.6, l: 6, x: 40, z: 38, prof: { type: 'T', hw: 600, tw: 11, bf: 200, tf: 20 }, tp: 11.5 });
+  P('Pontoon cross tie', 'xtie', { pType: 'pipe', OD: 406.4, tw: 12.7, bc: 3, Sg: 2.6, hc: 20, l: 6, x: 20, z: 5 });
+  P('Deck pillar', 'pillar', { pType: 'pipe', OD: 273, tw: 10, l: 4.5, Sg: 6, lp: 5.2, Hg: 2.0, x: 40, z: 36 });
+  return { meta: { project: '', vessel: '80 m column-stabilised semi-submersible', doc: '', by: 'Ansal Faris' }, ship: { rules: 'csu', type: 'semi', L: 80, B: 70, D: 38, T0: 21, TT: 8, Cb: 0.8, zUH: 30, zBD: 38, zDWL: 26, margin: 0, gHull: 'AH36' }, els: e, sel: 1, tab: 'all' };
+}
+function exJack() {
+  const e = [];
+  const P = (name, item, o) => e.push(Object.assign({ id: e.length + 1, name, item, grade: 'AH36' }, o));
+  P('Bottom shell plating', 'j_shell', { loc: 'bot', s: 610, l: 2.4, t: 13, x: 30, z: 0 });
+  P('Side shell above D/2', 'j_shell', { loc: 'sideU', s: 610, l: 2.4, t: 11, x: 30, z: 5 });
+  P('Main deck plating', 'deck', { loc: 'str', s: 610, l: 2.4, Sp: 2.4, pL: 25, t: 12, x: 30, z: 7.6 });
+  P('Inner bottom plating', 'j_db', { mem: 'ib', s: 610, l: 2.4, t: 10, x: 30, z: 1.2 });
+  P('Centre girder', 'j_db', { mem: 'cg', dA: 1900, s: 610, l: 2.4, t: 16, x: 30, z: 0.6 });
+  P('Preload tank bulkhead', 'bhd', { bht: 'tank', s: 610, l: 2.4, Sp: 2.4, hp: 3.8, t: 10, x: 25, z: 0, zTop: 7.6, hov: 1, rho: 1.025 });
+  P('Deckhouse front, tier 1', 'house', { wall: 'uf', tier: 1, b1: 30, B1: 52, s: 600, l: 2.8, t: 9, x: 52, z: 9 });
+  P('Bottom longitudinal', 'j_stf', { loc: 'bot', s: 610, l: 2.4, x: 30, z: 0, prof: { type: 'HP', hw: 240, tw: 11 }, tp: 13 });
+  P('Side longitudinal', 'j_stf', { loc: 'side', s: 610, l: 2.4, x: 30, z: 4.5, prof: { type: 'HP', hw: 180, tw: 9 }, tp: 11 });
+  P('Main deck longitudinal', 'dstf', { area: 'st', pL: 25, s: 610, l: 2.4, x: 30, z: 7.6, prof: { type: 'HP', hw: 200, tw: 10 }, tp: 12 });
+  P('Tank bulkhead stiffener', 'bhdstf', { bht: 'tank', w1: '1', w2: '1', s: 610, l: 3.6, x: 25, z: 2, zTop: 7.6, hov: 1, rho: 1.025, prof: { type: 'HP', hw: 240, tw: 11 }, tp: 10 });
+  P('Bottom transverse web', 'j_web', { loc: 'bot', S: 2.4, l: 5, x: 30, z: 0.6, prof: { type: 'T', hw: 1000, tw: 12, bf: 200, tf: 20 }, tp: 13 });
+  P('Deck transverse', 'dgird', { mem: 'g', area: 'st', Hg: 3.6, trl: true, S: 2.4, l: 6, x: 30, z: 7.6, prof: { type: 'T', hw: 650, tw: 11, bf: 200, tf: 20 }, tp: 12 });
+  P('Deck pillar', 'pillar', { pType: 'pipe', OD: 273, tw: 10, l: 6.4, Sg: 6, lp: 4.8, Hg: 3.6, x: 30, z: 4 });
+  return { meta: { project: '', vessel: '60 m self-elevating unit', doc: '', by: 'Ansal Faris' }, ship: { rules: 'seu', type: 'jackup', L: 60, B: 52, D: 7.6, T0: 4.6, TT: 4.6, Cb: 0.85, zBD: 7.6, zDWL: 6.5, margin: 0, gHull: 'AH36', paW: 25 }, els: e, sel: 1, tab: 'all' };
+}
+function exBuoy() {
+  const e = [];
+  const P = (name, item, o) => e.push(Object.assign({ id: e.length + 1, name, item, grade: 'A' }, o));
+  P('Buoy shell plating', 'b_shell', { s: 600, l: 1.8, Sp: 1.8, hp: 1.8, t: 12, x: 6, z: 0 });
+  P('Buoy bottom plating', 'b_shell', { s: 600, l: 1.8, Sp: 1.8, t: 12, x: 6, z: 0 });
+  P('Buoy deck plating', 'deck', { loc: 'str', s: 600, l: 1.8, Sp: 1.8, t: 10, x: 6, z: 5.5 });
+  P('Radial watertight bulkhead', 'bhd', { bht: 'wt', s: 600, l: 1.8, Sp: 1.8, hp: 5.5, t: 8, x: 6, z: 0 });
+  P('Shell stiffener', 'b_stf', { s: 600, l: 1.8, x: 6, z: 1.5, prof: { type: 'L', hw: 150, bf: 90, tw: 10, tf: 10 }, tp: 12 });
+  P('Deck stiffener (work area)', 'dstf', { area: 'wk', s: 600, l: 1.8, x: 6, z: 5.5, prof: { type: 'L', hw: 100, bf: 75, tw: 8, tf: 8 }, tp: 10 });
+  P('Bulkhead stiffener', 'bhdstf', { bht: 'wt', w1: '0', w2: '0', s: 600, l: 2.6, x: 6, z: 1.5, prof: { type: 'L', hw: 125, bf: 75, tw: 8, tf: 8 }, tp: 8 });
+  P('Shell web frame', 'b_web', { S: 1.8, l: 2.8, x: 6, z: 2.5, prof: { type: 'T', hw: 400, tw: 10, bf: 150, tf: 15 }, tp: 12 });
+  return { meta: { project: '', vessel: '14 m CALM buoy', doc: '', by: 'Ansal Faris' }, ship: { rules: 'buoy', type: 'buoy', L: 14, B: 14, D: 5.5, T0: 3.0, TT: 3.0, Cb: 0.8, zWave: 8, zBD: 5.5, zDWL: 4.0, margin: 0, gHull: 'A' }, els: e, sel: 1, tab: 'all' };
+}
+const DEFSHIP = { csu: { rules: 'csu', type: 'semi', L: 80, B: 70, D: 38, T0: 21, TT: 8, zUH: 30, margin: 0 }, seu: { rules: 'seu', type: 'jackup', L: 60, B: 52, D: 7.6, T0: 4.6, TT: 4.6, margin: 0 }, buoy: { rules: 'buoy', type: 'buoy', L: 14, B: 14, D: 5.5, T0: 3, TT: 3, zWave: 8, margin: 0 } };
+function blank(rules) { return { meta: META0(), ship: JSON.parse(JSON.stringify(DEFSHIP[rules] || DEFSHIP.csu)), els: [], sel: null, tab: 'all' }; }
+
+/* ---------- state ---------- */
+let state = load() || norm(exSemi());
+function norm(s) {
+  s.meta = Object.assign(META0(), s.meta || {}); s.ship = s.ship || {}; s.els = Array.isArray(s.els) ? s.els : [];
+  if (!A.RULES[s.ship.rules]) s.ship.rules = (A.TYPES[s.ship.type] || {}).r || 'csu';
+  if (!A.TYPES[s.ship.type] || A.TYPES[s.ship.type].r !== s.ship.rules) s.ship.type = DEFSHIP[s.ship.rules].type;
+  s.tab = ['all', 'plate', 'stiff', 'psm', 'spec'].includes(s.tab) ? s.tab : 'all';
+  s.els.forEach(fixEl);
+  if (!s.els.some(e => e.id === s.sel)) s.sel = (s.els[0] || {}).id;
+  return s;
+}
+function load() { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.ship && Array.isArray(s.els)) return norm(s); } catch (e) { } return null; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { } }
+const selEl = () => state.els.find(e => e.id === state.sel) || state.els[0];
+const itemOf = el => A.ITEMS[el.item] || A.ITEMS.deck;
+function refOf(it) { return it.ref; }
+function fixEl(el) {
+  const it = A.ITEMS[el.item];
+  if (!it) el.item = 'deck';
+  const cat = A.ITEMS[el.item].cat;
+  if (cat === 'stiff' && !el.prof) el.prof = { type: 'HP', hw: 160, tw: 8 };
+  if (cat === 'psm' && !el.prof) el.prof = { type: 'T', hw: 400, tw: 10, bf: 120, tf: 12 };
+  if ((cat === 'stiff' || cat === 'psm') && el.tp == null) el.tp = 10;
+  if (!el.grade) el.grade = 'A';
+}
+
+/* ---------- form helpers ---------- */
+const rootOf = k => k === 'ship' ? state.ship : k === 'meta' ? state.meta : selEl();
+function getPath(p) { const a = p.split('.'); let o = rootOf(a[0]); for (let i = 1; i < a.length; i++) { if (o == null) return undefined; o = o[a[i]]; } return o; }
+function setPath(p, v) { const a = p.split('.'); let o = rootOf(a[0]); for (let i = 1; i < a.length - 1; i++) { if (o[a[i]] == null) o[a[i]] = {}; o = o[a[i]]; } o[a[a.length - 1]] = v; }
+function F(label, path, o) {
+  o = o || {}; const v = getPath(path), id = 'f_' + path.replace(/\./g, '_');
+  const cls = 'f' + (o.span ? ' span2' : ''), rr = o.rr ? ' data-rr="1"' : '';
+  const lab = '<label for="' + id + '"><span>' + esc(label) + '</span>' + (o.unit ? '<i>' + esc(o.unit) + '</i>' : '') + '</label>';
+  if (o.chk) return '<div class="f chk' + (o.span ? ' span2' : '') + '"><input type="checkbox" id="' + id + '" data-k="' + path + '" data-t="bool"' + rr + (v ? ' checked' : '') + '><label for="' + id + '"><span>' + esc(label) + '</span></label></div>';
+  if (o.opts) {
+    let h = '<select id="' + id + '" data-k="' + path + '" data-t="' + (o.numeric ? 'num' : 'str') + '"' + rr + '>';
+    const cur = v == null || v === '' ? (o.def == null ? (o.opts[0] && !o.opts[0].grp ? o.opts[0][0] : '') : o.def) : v;
+    for (const op of o.opts) {
+      if (op.grp) { h += '<optgroup label="' + esc(op.grp) + '">'; for (const q of op.items) h += '<option value="' + esc(q[0]) + '"' + (String(q[0]) === String(cur) ? ' selected' : '') + '>' + esc(q[1]) + '</option>'; h += '</optgroup>'; }
+      else h += '<option value="' + esc(op[0]) + '"' + (String(op[0]) === String(cur) ? ' selected' : '') + '>' + esc(op[1]) + '</option>';
+    }
+    return '<div class="' + cls + '">' + lab + h + '</select></div>';
+  }
+  if (o.text) return '<div class="' + cls + '">' + lab + '<input type="text" id="' + id + '" data-k="' + path + '" data-t="str" value="' + esc(v == null ? '' : v) + '"></div>';
+  return '<div class="' + cls + '">' + lab + '<input type="number" step="any" inputmode="decimal" id="' + id + '" data-k="' + path + '" data-t="num" value="' + esc(v == null ? '' : v) + '"' + (o.ph != null ? ' placeholder="' + esc(o.ph) + '"' : '') + '></div>';
+}
+const SEC = (t, s) => '<div class="fsec"><h3>' + esc(t) + '</h3>' + (s ? '<small>' + s + '</small>' : '') + '</div>';
+const GRADEOPTS = Object.keys(A.GRADES).map(k => [k, A.GRADES[k].label + ' (k ' + Math.max(235 / A.GRADES[k].so, 0.66).toFixed(2) + ')']);
+
+/* ---------- ship tab ---------- */
+let SH = null, RES = {};
+function renderShip() {
+  const S = A.deriveShip(state.ship), r = S.rules;
+  const DESC = { csu: 'Semi-submersibles, tension leg platforms and sea bed-stabilised units: pontoons, columns, upper hull (Pt 4 Ch 4 Sec 2, 6, 8)', seu: 'Jack-ups and lift boats: hull bottom, side, double bottom and preload tanks (Pt 4 Ch 4 Sec 3)', buoy: 'CALM / mooring / production buoys, deep draught caissons and spars (Pt 4 Ch 4 Sec 5, 7)' };
+  $('#ruleSel').innerHTML = Object.keys(A.RULES).map(k => '<div class="' + (k === r ? 'on' : '') + '" data-rules="' + k + '" role="button" tabindex="0" style="cursor:pointer"><b>' + esc(A.RULES[k].label) + '</b>' + DESC[k] + '</div>').join('');
+  $('#ruleSel').style.gridTemplateColumns = 'repeat(auto-fit,minmax(200px,1fr))';
+  const types = Object.keys(A.TYPES).filter(k => A.TYPES[k].r === r).map(k => [k, A.TYPES[k].label]);
+  let h = '<div class="fields">' + F('Unit type', 'ship.type', { opts: types, rr: 1, span: 1 }) +
+    F(r === 'buoy' ? 'Length / diameter L' : 'Length of unit L', 'ship.L', { unit: 'm' }) + F(r === 'buoy' ? 'Breadth / diameter B' : 'Breadth B', 'ship.B', { unit: 'm' }) + F(r === 'csu' ? 'Depth to upper deck D (from keel)' : 'Moulded depth D', 'ship.D', { unit: 'm' }) +
+    F('Maximum operating draught To', 'ship.T0', { unit: 'm' }) + F('Maximum transit draught TT', 'ship.TT', { unit: 'm', ph: fx(S.TT, 2) }) + F('Block coefficient Cb (erections β)', 'ship.Cb', { ph: '0,8' });
+  if (r === 'csu') h += F('Underside of upper hull above keel', 'ship.zUH', { unit: 'm', ph: fx(S.zUH, 2) });
+  if (r === 'buoy') h += F('Top of highest predicted wave above keel', 'ship.zWave', { unit: 'm', ph: fx(S.zWave, 2) }) + F('Uppermost deck above keel', 'ship.zDeck', { unit: 'm', ph: fx(S.zDeck, 2) });
+  if (r === 'seu') h += F('Breadth for dDB (B, if different)', 'ship.B1', { unit: 'm', ph: fx(S.B, 2) }) + F('Double bottom depth offered', 'ship.hDB', { unit: 'mm', ph: 'check dDB' });
+  h += SEC('Watertight boundaries', 'head h4 for bulkheads and boundaries (Table 6.7.1)') + F('Bulkhead deck above keel', 'ship.zBD', { unit: 'm', ph: fx(S.zBD, 2) }) + F('Worst damage waterline above keel', 'ship.zDWL', { unit: 'm', ph: '0' });
+  h += SEC('Owner\'s margin', 'added to every plate before rounding') + F('Extra thickness on all plating', 'ship.margin', { unit: 'mm', ph: '0' }) + '</div><div class="alerts" id="shipAlerts"></div>';
+  $('#shipForm').innerHTML = h;
+  $('#shipRef').textContent = 'Pt 4 Ch 1 5 definitions';
+  $('#hgRef').textContent = 'Pt 4 Ch 6 Table 6.2.1';
+  const g = F('Weather deck specified load pa', 'ship.paW', { unit: 'kN/m²', ph: '9,0 min.' }) + F('Work area load', 'ship.pWork', { unit: 'kN/m²', ph: '9,0' }) + F('Storage area load', 'ship.pStore', { unit: 'kN/m²', ph: '14,13' }) + F('Accommodation load', 'ship.pAcc', { unit: 'kN/m²', ph: '8,5' }) + F('Steel for permissible stresses', 'ship.gHull', { opts: GRADEOPTS });
+  $('#hgForm').innerHTML = '<div class="fields">' + g + '</div>';
+}
+function renderShipResults() {
+  const S = SH;
+  $('#shipAlerts').innerHTML = S.notes.map(n => '<div class="alert info">' + esc(n) + '</div>').join('');
+  $('#ruleAlerts').innerHTML = state.els.some(e => !RES[e.id] || RES[e.id].error) ? '<div class="alert">Some members use items of another unit type: open them and choose an item for ' + esc(A.RULES[S.rules].label.toLowerCase()) + '.</div>' : '';
+  const st = (l, v, u) => '<div class="stat"><span>' + l + '</span><b>' + v + (u ? ' <small>' + u + '</small>' : '') + '</b></div>';
+  let h = '<div class="stats" style="margin:-12px -16px 12px">' + st('E (platform height)', fx(S.E, 4)) + st('h1 weather', fx(S.h1, 2), 'm') + st('sb', fx(S.sb, 0), 'mm') + (S.rules === 'csu' ? st('ho level', fx(S.hoCS, 2), 'm') : S.rules === 'buoy' ? st('ho level', fx(S.hoB, 2), 'm') : st('dDB', fx(S.dDB, 0), 'mm')) + '</div>';
+  h += '<table><tbody>' + S.hgSteps.map(q => '<tr><td>' + esc(q[0]) + '</td><td class="n">' + esc(q[1]) + '</td></tr>').join('') + '</tbody></table>';
+  if (S.hgChecks.length) h += '<div class="checks" style="margin-top:10px">' + S.hgChecks.map(c => { const ok = c.off >= c.req * 0.999; return '<div class="chk-row ' + (ok ? 'ok' : 'bad') + '"><span class="ic">' + (ok ? '✓' : '✕') + '</span><span>' + esc(c.lbl) + '</span><span class="num">required ' + fx(c.req, c.d) + ' · offered ' + fx(c.off, c.d) + ' ' + c.u + '</span></div>'; }).join('') + '</div>';
+  h += '<h4 style="margin:14px 0 6px">Permissible stresses for direct calculation – Pt 4 Ch 5 2.1.1, σo = ' + S.so + ' N/mm²</h4><table><tr><th>Load case</th><th class="n">Tension / bending</th><th class="n">Shear</th><th class="n">Comparative</th></tr>' + S.perm.map(p => '<tr><td>' + esc(p.lc) + '</td><td class="n">' + fx(p.fb, 0) + ' <small>(FoS ' + fx(p.sfb, 2) + ')</small></td><td class="n">' + fx(p.fs, 0) + ' <small>(' + fx(p.sfs, 2) + ')</small></td><td class="n">' + fx(p.fc, 0) + ' <small>(' + fx(p.sfc, 2) + ')</small></td></tr>').join('') + '</table><p class="ref">Compression: same factor on the lesser of the buckling stress and σo; shear buckling 1,67 / 1,25 / 1,0. Comparative stress σc = √(σx² + σy² − σx σy + 3 τ²).</p>';
+  $('#hgRes').innerHTML = h;
+  $('#sbRegime').innerHTML = '<b>' + esc(A.RULES[S.rules].short) + '</b>' + esc(A.TYPES[S.type].label) + ', L = ' + fx(S.L, 2) + ' m';
+}
+
+/* ---------- member form ---------- */
+function itemOpts(cat) {
+  const g = {};
+  for (const k of A.itemsFor(state.ship.rules)) { const it = A.ITEMS[k]; if (cat && it.cat !== cat) continue; (g[it.grp] = g[it.grp] || []).push([k, it.label + ' – ' + refOf(it)]); }
+  return Object.keys(g).map(n => ({ grp: n, items: g[n] }));
+}
+function profFields(cat) {
+  const el = selEl(), t = (el.prof || {}).type || 'HP';
+  const types = cat === 'psm' ? [['T', 'T (web + face plate)'], ['L', 'Angle L'], ['FB', 'Flat bar'], ['DIR', 'Enter SM directly']] : [['HP', 'Bulb flat HP'], ['L', 'Angle L'], ['FB', 'Flat bar'], ['T', 'T (web + face plate)'], ['DIR', 'Enter SM directly']];
+  let h = SEC('Section offered', cat === 'psm' ? 'attached plating f b, f = 0,3 (ℓ/b)^⅔ ≤ 1 (Table 3.3.1)' : 'attached plating max(600 ; 40 tp) ≤ s (Ch 3 3.2.3)') + F('Profile', 'el.prof.type', { opts: types, rr: 1 });
+  if (t === 'DIR') return h + F('Section modulus incl. plating', 'el.prof.Z', { unit: 'cm³' });
+  h += F(t === 'L' ? 'Height h' : t === 'HP' ? 'Height h' : 'Web height hw', 'el.prof.hw', { unit: 'mm' }) + F('Web thickness tw', 'el.prof.tw', { unit: 'mm' });
+  if (t === 'L' || t === 'T') h += F(t === 'L' ? 'Flange width b' : 'Face plate width bf', 'el.prof.bf', { unit: 'mm' }) + F('Flange thickness tf', 'el.prof.tf', { unit: 'mm', ph: t === 'L' ? 'tw' : '' });
+  return h + F('Attached plate thickness', 'el.tp', { unit: 'mm' });
+}
+function renderElForm() {
+  const el = selEl();
+  if (!el) { $('#elForm').innerHTML = '<p class="muted">No members yet. Use the buttons on the members tab to add one.</p>'; $('#elTitle').textContent = 'Member'; return; }
+  const it = itemOf(el), cat = it.cat, ok = it.r === 'all' || it.r === state.ship.rules;
+  $('#elTitle').textContent = CATS[cat] + ': ' + el.name;
+  let h = '<div class="fields">' + F('Name', 'el.name', { text: 1, span: 1 }) + F('Rule item', 'el.item', { opts: itemOpts(cat).length ? (ok ? itemOpts(cat) : [[el.item, '(other rule set) ' + it.label]].concat(itemOpts(cat))) : [], rr: 1, span: 1 }) +
+    F('Material', 'el.grade', { opts: GRADEOPTS }) + F('x from aft end / reference', 'el.x', { unit: 'm' }) + F(cat === 'plate' ? 'z – plate lower edge above keel' : 'z – mid-span above keel', 'el.z', { unit: 'm' });
+  if (cat === 'plate') h += SEC('Plate panel', refOf(it)) + F('Stiffener spacing s', 'el.s', { unit: 'mm' }) + F('Panel length (longer edge)', 'el.l', { unit: 'm' }) + F('Offered thickness t', 'el.t', { unit: 'mm' }) + F('Owner\'s margin (blank = ship value)', 'el.margin', { unit: 'mm', ph: fx(SH.margin, 1) });
+  else if (cat === 'stiff') h += SEC('Stiffener', refOf(it)) + F('Spacing s', 'el.s', { unit: 'mm' }) + F('Span ℓ', 'el.l', { unit: 'm' });
+  else if (cat === 'psm') h += SEC('Primary member', refOf(it)) + F('Spacing / breadth supported s, b', 'el.S', { unit: 'm' }) + F('Span ℓ', 'el.l', { unit: 'm' });
+  else h += SEC('Item', refOf(it));
+  const fl = it.fields ? it.fields(SH, el) : [];
+  if (fl.length) { if (cat !== 'spec') h += SEC('Rule options', ''); for (const f of fl) { if (cat === 'spec' && f[0] === 'l') { h += F(f[1], 'el.l', { unit: 'm' }); continue; } if (f[0] === 'z' || f[0] === 'x') continue; h += F(f[1], 'el.' + f[0], Object.assign({ rr: f[2] && (f[2].opts || f[2].chk) ? 1 : 0 }, f[2] || {})); } }
+  if (cat === 'stiff' || cat === 'psm') h += profFields(cat);
+  h += '</div>';
+  $('#elForm').innerHTML = h;
+}
+
+/* ---------- results ---------- */
+function compute() { SH = A.deriveShip(state.ship); RES = {}; for (const e of state.els) RES[e.id] = A.calcElement(SH, e); }
+const pill = s => '<span class="pill ' + s + '">' + ({ ok: 'OK', bad: 'Not OK', warn: 'Check', na: 'No values' }[s]) + '</span>';
+function ubar(u, st) { if (u == null || !isFinite(u)) return ''; return '<span class="ub ' + (st === 'bad' ? 'bad' : u > 0.9 ? 'warn' : '') + '"><i style="width:' + Math.min(100, u * 100).toFixed(0) + '%"></i></span>' + (u * 100).toFixed(0) + ' %'; }
+const ORDER = ['plate', 'stiff', 'psm', 'spec'];
+function geomTxt(e, it) { return it.cat === 'plate' ? (has(e.s) ? fx(+e.s, 0) + ' mm' : '–') : it.cat === 'stiff' ? fx(num(e.s, 0), 0) + ' mm / ' + fx(num(e.l, 0), 2) + ' m' : it.cat === 'psm' ? fx(num(e.S, 0), 2) + ' / ' + fx(num(e.l, 0), 2) + ' m' : '–'; }
+function renderTable() {
+  const tab = state.tab || 'all'; let h = '', cnt = { ok: 0, bad: 0, warn: 0, na: 0 };
+  for (const e of state.els) cnt[RES[e.id].status] = (cnt[RES[e.id].status] || 0) + 1;
+  const head = '<tr><th>Member</th><th>Rule item</th><th>Ref.</th><th class="n">x / z (m)</th><th class="n">s / ℓ</th><th>Section offered</th><th class="n">Required</th><th class="n">Offered</th><th>Utilisation</th><th>Status</th></tr>';
+  for (const cat of ORDER) {
+    if (tab !== 'all' && tab !== cat) continue;
+    const list = state.els.filter(e => itemOf(e).cat === cat);
+    if (!list.length && tab === 'all') continue;
+    h += '<tr class="grp"><td colspan="10">' + CATP[cat] + '<span>' + list.length + (list.length === 1 ? ' member' : ' members') + '</span></td></tr>' + head;
+    if (!list.length) h += '<tr><td colspan="10" class="muted">None yet.</td></tr>';
+    for (const e of list) {
+      const R = RES[e.id], it = itemOf(e);
+      h += '<tr class="row' + (e.id === state.sel ? ' sel' : '') + '" data-id="' + e.id + '" tabindex="0"><td>' + esc(e.name) + '</td><td class="muted">' + esc(it.label) + '</td><td class="muted" style="white-space:nowrap">' + esc(refOf(it)) + '</td><td class="n">' + fx(num(e.x, 0), 1) + ' / ' + fx(num(e.z, 0), 2) + '</td><td class="n">' + geomTxt(e, it) + '</td><td class="mono" style="white-space:nowrap">' + esc(R.label || '–') + '</td><td class="n">' + (R.error ? 'item n/a' : R.reqTxt || '–') + '</td><td class="n">' + (R.offTxt || '–') + '</td><td style="white-space:nowrap">' + ubar(R.util, R.status) + '</td><td>' + pill(R.status) + '</td></tr>';
+    }
+  }
+  $('#tbody').innerHTML = h || '<tr><td class="muted">No members.</td></tr>';
+  $('#summary').innerHTML = '<span><b>' + state.els.length + '</b> members</span><span class="pill ok">' + (cnt.ok || 0) + ' OK</span>' + (cnt.warn ? '<span class="pill warn">' + cnt.warn + ' to check</span>' : '') + (cnt.bad ? '<span class="pill bad">' + cnt.bad + ' not OK</span>' : '') + (cnt.na ? '<span class="pill na">' + cnt.na + ' without values</span>' : '');
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.v === tab));
+}
+const kv = a => '<div class="kvl">' + a.filter(Boolean).map(x => '<div><span>' + x[0] + '</span><b>' + x[1] + '</b></div>').join('') + '</div>';
+function sheetHtml(el, R) {
+  const it = itemOf(el);
+  if (R.error) return '<p class="alert">' + esc(R.error) + ' – choose an item of the ' + esc(A.RULES[SH.rules].label) + '.</p>';
+  let h = '<div class="sheet"><h4>' + esc(it.label) + ' – ' + esc(refOf(it)) + '</h4>';
+  h += '<div class="tblwrap"><table><tr><th>Step</th><th>Values</th><th class="n">Result</th></tr>' + R.steps.map(s => '<tr><td>' + esc(s.d) + '</td><td class="mono" style="font-size:11.5px">' + esc(s.f) + '</td><td class="n">' + (typeof s.v === 'number' ? fx(s.v, Math.abs(s.v) >= 1000 ? 0 : 3) : esc(s.v)) + (s.u ? ' ' + s.u : '') + '</td></tr>').join('') + '</table></div>';
+  if (it.cat === 'plate') {
+    h += '<div class="res"><div><span>Rule thickness</span><b>' + fx(R.treq, 2) + ' <small>mm</small></b></div>' + (R.margin ? '<div><span>+ owner\'s margin</span><b>' + fx(R.margin, 1) + ' <small>mm</small></b></div>' : '') + '<div class="key"><span>Required (nearest 0,5)</span><b>' + fx(R.treqR, 1) + ' <small>mm</small></b></div><div><span>Offered</span><b>' + fx(R.toff, 1) + ' <small>mm</small></b></div></div>';
+  } else if (it.cat === 'spec') {
+    h += '<div class="res"><div class="key"><span>Required</span><b>' + esc(R.reqTxt || '–') + '</b></div><div><span>Offered</span><b>' + esc(R.offTxt || '–') + '</b></div></div>';
+  } else {
+    h += '<div class="res"><div class="key"><span>Required SM</span><b>' + fx(R.SMreq, 1) + ' <small>cm³</small></b></div><div><span>Offered SM</span><b>' + fx(R.SMoff, 1) + ' <small>cm³</small></b></div>' + (R.sec ? '<div><span>Area / I</span><b>' + fx(R.sec.A, 1) + ' <small>cm²</small> / ' + fx(R.sec.I, 0) + ' <small>cm⁴</small></b></div><div><span>Attached plate</span><b>' + fx(R.beff, 0) + ' × ' + fx(R.tp, 1) + '</b></div>' : '') + '</div>';
+  }
+  if (R.checks.length) h += '<h4>Checks</h4><div class="checks">' + R.checks.map(c => '<div class="chk-row ' + (c.ok ? 'ok' : 'bad') + '"><span class="ic">' + (c.ok ? '✓' : '✕') + '</span><span>' + esc(c.lbl) + '</span><span class="num">' + (c.inv ? 'limit ' + fx(c.req, 1) + ' · actual ' + fx(c.off, 1) : 'required ' + fx(c.req, 2) + ' · offered ' + fx(c.off, 2)) + ' ' + c.u + '</span></div>').join('') + '</div>';
+  const nt = R.warn.map(w => '<div class="alert">' + esc(w) + '</div>').join('') + R.notes.map(n => '<div class="alert info">' + esc(n) + '</div>').join('');
+  if (nt) h += '<div class="alerts">' + nt + '</div>';
+  h += '<p style="margin-top:12px">' + pill(R.status) + (isFinite(R.util) ? ' <span class="ref">utilisation ' + (R.util * 100).toFixed(0) + ' %</span>' : '') + '</p></div>';
+  return h;
+}
+function renderSheet() { const el = selEl(); $('#sheet').innerHTML = el ? sheetHtml(el, RES[el.id]) : '<p class="muted">Add a member to start.</p>'; $('#sheetRef').textContent = el ? refOf(itemOf(el)) : ''; }
+function renderMemSel() {
+  $('#memSel').innerHTML = ORDER.map(c => { const l = state.els.filter(e => itemOf(e).cat === c); return l.length ? '<optgroup label="' + CATP[c] + '">' + l.map(e => '<option value="' + e.id + '"' + (e.id === state.sel ? ' selected' : '') + '>' + esc(e.name) + '</option>').join('') + '</optgroup>' : ''; }).join('');
+}
+
+/* ---------- figures ---------- */
+const stCol = s => ({ ok: 'var(--ok)', bad: 'var(--no)', warn: 'var(--warn)', na: 'var(--mut)' }[s] || 'var(--mut)');
+function marker(cat, cx, cy, c) { const r = v => v.toFixed(1); return cat === 'plate' ? '<rect x="' + r(cx - 6) + '" y="' + r(cy - 2.2) + '" width="12" height="4.4" fill="' + c + '"/>' : cat === 'stiff' ? '<circle cx="' + r(cx) + '" cy="' + r(cy) + '" r="3.6" fill="' + c + '"/>' : cat === 'psm' ? '<path d="M' + r(cx) + ' ' + r(cy - 5.5) + ' l5.5 5.5 l-5.5 5.5 l-5.5 -5.5 Z" fill="' + c + '"/>' : '<path d="M' + r(cx) + ' ' + r(cy - 6) + ' l5.5 10 h-11 Z" fill="' + c + '"/>'; }
+function drawProfile() {
+  const S = SH, L = S.L, D = S.D, W = 760, mL = 34, mR = 46, mT = 26, mB = 46;
+  const zTop = Math.max(D * 1.25, S.zWave || 0, ...state.els.map(e => num(e.z, 0) + 0.6)) * (S.rules === 'seu' ? 1.6 : 1.05);
+  const sx = (W - mL - mR) / (L * 1.06), sz = Math.min(sx * 3, 230 / zTop), H = mT + mB + zTop * sz;
+  const X = x => mL + (x + 0.03 * L) * sx, Y = z => mT + (zTop - z) * sz, r = v => v.toFixed(1);
+  const box = (x0, x1, z0, z1, f) => '<rect x="' + r(X(x0)) + '" y="' + r(Y(z1)) + '" width="' + r((x1 - x0) * sx) + '" height="' + r((z1 - z0) * sz) + '" fill="' + (f || 'var(--accbg)') + '" stroke="var(--ink)" stroke-width="1.6"/>';
+  let s = '<svg viewBox="0 0 ' + W + ' ' + r(H) + '" role="img" aria-label="Unit elevation with member positions">';
+  if (S.rules === 'csu') { const zp = Math.min(0.2 * S.zUH, 10); s += box(0, L, 0, zp) + box(0.04 * L, 0.2 * L, zp, S.zUH) + box(0.8 * L, 0.96 * L, zp, S.zUH) + box(0, L, S.zUH, D); }
+  else if (S.rules === 'seu') { s += box(0, L, 0, D); for (const fx0 of [0.1, 0.85]) s += '<rect x="' + r(X(fx0 * L)) + '" y="' + r(Y(zTop * 0.98)) + '" width="' + r(0.05 * L * sx) + '" height="' + r((zTop * 0.98 + 0.05 * D) * sz) + '" fill="none" stroke="var(--mut)" stroke-dasharray="4 3"/>'; }
+  else { s += box(0.1 * L, 0.9 * L, 0, D); if (S.zWave > D) s += '<line x1="' + r(X(-0.03 * L)) + '" x2="' + r(X(1.03 * L)) + '" y1="' + r(Y(S.zWave)) + '" y2="' + r(Y(S.zWave)) + '" stroke="var(--wave)" stroke-dasharray="3 3"/><text x="' + r(X(1.03 * L) + 4) + '" y="' + r(Y(S.zWave) + 4) + '">wave</text>'; }
+  const wl = (z, l, d) => { s += '<line x1="' + r(X(-0.03 * L)) + '" x2="' + r(X(1.03 * L)) + '" y1="' + r(Y(z)) + '" y2="' + r(Y(z)) + '" stroke="var(--sea)" stroke-dasharray="' + d + '"/><text x="' + r(X(1.03 * L) + 4) + '" y="' + r(Y(z) + 4) + '">' + l + '</text>'; };
+  wl(S.T0, 'To ' + fx(S.T0, 1), '6 4'); if (Math.abs(S.TT - S.T0) > 0.05) wl(S.TT, 'TT ' + fx(S.TT, 1), '2 3');
+  const by = Y(0) + 30;
+  for (const t of [0, 0.25, 0.5, 0.75, 1]) s += '<line x1="' + r(X(t * L)) + '" x2="' + r(X(t * L)) + '" y1="' + r(by - 4) + '" y2="' + r(by) + '" stroke="var(--mut)"/><text x="' + r(X(t * L)) + '" y="' + r(by + 12) + '" text-anchor="middle">' + fx(t * L, 1) + ' m</text>';
+  s += '<line x1="' + r(X(0)) + '" x2="' + r(X(L)) + '" y1="' + r(by - 4) + '" y2="' + r(by - 4) + '" stroke="var(--mut)"/><text x="' + r(X(-0.03 * L) - 4) + '" y="' + r(Y(D) + 4) + '" text-anchor="end">D</text>';
+  for (const e of state.els) {
+    const R = RES[e.id], cat = itemOf(e).cat, cx = X(Math.max(-0.03 * L, Math.min(1.03 * L, num(e.x, L / 2)))), cy = Y(Math.max(0, Math.min(zTop, num(e.z, 0)))), on = e.id === state.sel;
+    s += '<g data-id="' + e.id + '" style="cursor:pointer"><title>' + esc(e.name) + ' – ' + ({ ok: 'OK', bad: 'not OK', warn: 'check', na: 'no values' }[R.status]) + '</title>' + (on ? '<circle cx="' + r(cx) + '" cy="' + r(cy) + '" r="10" fill="none" stroke="var(--acc)" stroke-width="2"/>' : '') + marker(cat, cx, cy, stCol(R.status)) + '</g>';
+  }
+  $('#figProfile').innerHTML = s + '</svg>';
+}
+function memberSvg(el, R) {
+  const W = 340, H = 220, Tx = (x, y, t, a) => '<text class="lbl" x="' + x + '" y="' + y + '" text-anchor="' + (a || 'middle') + '">' + esc(t) + '</text>', it = itemOf(el);
+  let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Sketch of the selected member" style="min-width:260px">';
+  if (it.cat === 'plate') {
+    let a = num(el.s, 600) / 1000, b = num(el.l, 2); if (b < a) { const t = a; a = b; b = t; } const rr = Math.min(b / Math.max(a, 1e-6), 4.5), pw = 220, ph = pw / rr, x0 = 92, y0 = (H - ph) / 2;
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + pw + '" height="' + ph.toFixed(1) + '" fill="var(--accbg)" stroke="var(--acc)" stroke-width="1.5"/><line x1="' + (x0 - 14) + '" x2="' + (x0 + pw + 14) + '" y1="' + y0 + '" y2="' + y0 + '" stroke="var(--ink)" stroke-width="3"/><line x1="' + (x0 - 14) + '" x2="' + (x0 + pw + 14) + '" y1="' + (y0 + ph) + '" y2="' + (y0 + ph) + '" stroke="var(--ink)" stroke-width="3"/>';
+    s += Tx(x0 + pw / 2, y0 + ph + 22, 'panel ' + fx(b * 1000, 0) + ' mm') + Tx(x0 - 18, y0 + ph / 2 + 4, 's = ' + fx(a * 1000, 0), 'end') + Tx(x0 + pw / 2, y0 + ph / 2 + 4, 't = ' + fx(num(el.t, 0), 1) + ' mm (req. ' + fx(R.treqR, 1) + ')');
+    s += Tx(W / 2, 16, it.label);
+  } else if (it.cat === 'spec') {
+    s += Tx(170, 100, it.label) + Tx(170, 122, R.label || '') + Tx(170, 144, (R.reqTxt || '') + ' vs ' + (R.offTxt || ''));
+  } else if (R.sec) {
+    const np = R.prof, tp = Math.max(R.tp, 1), bp = Math.min(R.beff, Math.max(np.bf * 3, 300)), tot = tp + np.hw + (np.flanged ? np.tf : 0);
+    const sc = Math.min((H - 60) / tot, (W - 110) / bp), cx = W / 2 - 20, yb = H - 34, Yy = v => yb - v * sc, tw = Math.max(np.tw * sc, 2);
+    s += '<rect x="' + (cx - bp * sc / 2) + '" y="' + Yy(tp) + '" width="' + (bp * sc) + '" height="' + Math.max(tp * sc, 2) + '" fill="var(--mut)"/><rect x="' + (cx - tw / 2) + '" y="' + Yy(tp + np.hw) + '" width="' + tw + '" height="' + (np.hw * sc) + '" fill="var(--acc)"/>';
+    if (np.flanged) { const fw = np.bf * sc, fxx = np.type === 'T' ? cx - fw / 2 : cx - tw / 2; s += '<rect x="' + fxx + '" y="' + Yy(tot) + '" width="' + fw + '" height="' + Math.max(np.tf * sc, 2) + '" fill="var(--acc)"/>'; }
+    s += '<line x1="' + (cx - bp * sc / 2 - 8) + '" x2="' + (cx + bp * sc / 2 + 8) + '" y1="' + Yy(R.sec.yna) + '" y2="' + Yy(R.sec.yna) + '" stroke="var(--no)" stroke-dasharray="5 3"/><text x="' + (cx + bp * sc / 2 + 12) + '" y="' + (Yy(R.sec.yna) + 4) + '">N.A.</text>';
+    s += Tx(cx, yb + 16, 'plate ' + fx(R.beff, 0) + ' × ' + fx(tp, 1) + (R.beff > bp ? ' (clipped)' : '')) + Tx(cx + Math.max(np.bf * sc, 20) / 2 + 14, Yy(tp + np.hw / 2), np.label, 'start');
+    s += '<text x="8" y="14">gross section, mm' + (np.type === 'HP' ? ' – bulb as equivalent angle' : '') + '</text>';
+  } else s += Tx(170, 110, R.label || 'enter the section');
+  return s + '</svg>';
+}
+function drawMember() { const el = selEl(); $('#figMember').innerHTML = el ? memberSvg(el, RES[el.id]) : ''; }
+
+/* ---------- key results ---------- */
+function renderKey() {
+  const S = SH, cnt = { ok: 0, bad: 0, warn: 0, na: 0 }; let worst = null;
+  for (const e of state.els) { const R = RES[e.id]; cnt[R.status] = (cnt[R.status] || 0) + 1; if (R.status !== 'na' && isFinite(R.util) && (!worst || R.util > worst.u)) worst = { e, u: R.util, st: R.status }; }
+  const hgOk = S.hgChecks.every(c => c.off >= c.req * 0.999), hgN = S.hgChecks.length;
+  const k = (t, v, s, c) => '<div><div class="k">' + t + '</div><div class="kv"' + (c ? ' style="color:var(--' + c + ')"' : '') + '>' + v + '</div>' + (s ? '<div class="ks">' + s + '</div>' : '') + '</div>';
+  $('#kr').innerHTML = k('Rules applied', esc(A.RULES[S.rules].short), esc(A.TYPES[S.type].label)) + k('Length of unit L', fx(S.L, 2) + ' <small>m</small>', 'B ' + fx(S.B, 2) + ' · D ' + fx(S.D, 2) + ' · To ' + fx(S.T0, 2) + ' m') + k('Members', state.els.length, (cnt.ok || 0) + ' OK · ' + (cnt.warn || 0) + ' check · ' + (cnt.bad || 0) + ' not OK') +
+    k('Overall', cnt.bad ? '✗ NOT OK' : cnt.warn ? '! CHECK' : state.els.length ? '✓ ALL OK' : '–', cnt.na ? cnt.na + ' without offered values' : '', cnt.bad ? 'no' : cnt.warn ? 'warn' : 'ok') +
+    k('Highest utilisation', worst ? (worst.u * 100).toFixed(0) + ' <small>%</small>' : '–', worst ? esc(worst.e.name) : '', worst ? (worst.st === 'bad' ? 'no' : worst.st === 'warn' ? 'warn' : 'ok') : '') +
+    k('Weather deck head h1', fx(S.h1, 2) + ' <small>m</small>', 'E = ' + fx(S.E, 4) + (hgN ? (hgOk ? ' · dDB OK' : ' · dDB not OK') : ''), hgN ? (hgOk ? 'ok' : 'no') : '');
+  const m = state.meta, d = new Date(), ds = d.getDate().toString().padStart(2, '0') + '.' + (d.getMonth() + 1).toString().padStart(2, '0') + '.' + d.getFullYear();
+  const c = (a, b) => '<td>' + a + '</td><td><b>' + esc(b || '–') + '</b></td>';
+  $('#pp').innerHTML = '<tr>' + c('Project', m.project) + c('Unit', m.vessel) + c('Doc. no.', m.doc) + '</tr><tr>' + c('Prepared', m.by) + c('Date', ds) + c('Rules', 'LR Offshore Units 2016, Pt 4') + '</tr><tr>' + c('Unit type', A.TYPES[S.type].label) + c('L × B × D', fx(S.L, 2) + ' × ' + fx(S.B, 2) + ' × ' + fx(S.D, 2) + ' m') + c('To / TT', fx(S.T0, 2) + ' / ' + fx(S.TT, 2) + ' m') + '</tr>';
+  $('#pfL').textContent = 'LR offshore structural scantlings' + (m.vessel ? ' – ' + m.vessel : '') + (m.doc ? ' – ' + m.doc : '');
+  for (const f of ['project', 'vessel', 'doc', 'by']) { const n = $('#m_' + f); if (n && document.activeElement !== n) n.value = m[f] || ''; }
+}
+function inputSummary(el, R) {
+  const it = itemOf(el), g = A.GRADES[el.grade] || A.GRADES.A;
+  return '<div class="kvl">' + [['Rule item', esc(it.label)], ['Reference', esc(refOf(it))], ['x / z', fx(num(el.x, 0), 2) + ' / ' + fx(num(el.z, 0), 2) + ' m'], ['Material', esc(g.label)], it.cat === 'plate' ? ['s × panel', fx(num(el.s, 0), 0) + ' mm × ' + fx(num(el.l, 0), 2) + ' m'] : it.cat === 'stiff' ? ['s × ℓ', fx(num(el.s, 0), 0) + ' mm × ' + fx(num(el.l, 0), 2) + ' m'] : it.cat === 'psm' ? ['s × ℓ', fx(num(el.S, 0), 2) + ' m × ' + fx(num(el.l, 0), 2) + ' m'] : null, ['Offered', esc(R.label || '–')]].filter(Boolean).map(x => '<div><span>' + x[0] + '</span><b>' + x[1] + '</b></div>').join('') + '</div>';
+}
+function renderAllSheets() {
+  let h = '', n = 0;
+  for (const c of ORDER) for (const e of state.els.filter(q => itemOf(q).cat === c)) {
+    const R = RES[e.id]; n++;
+    h += '<div class="msheet"><h3><span>3.' + n + ' · ' + esc(e.name) + ' <span style="font-weight:400;font-family:var(--f-body)">(' + CATS[c].toLowerCase() + ')</span></span>' + pill(R.status) + '</h3><div class="mbody"><div><div class="sheet blk"><h4>Input</h4>' + inputSummary(e, R) + '</div>' + sheetHtml(e, R) + '</div><div class="mfig">' + memberSvg(e, R) + '</div></div></div>';
+  }
+  $('#allSheets').innerHTML = h || '<p class="muted">No members.</p>';
+}
+function renderResults() { compute(); renderShipResults(); renderTable(); renderSheet(); drawProfile(); drawMember(); renderKey(); renderMemSel(); }
+function renderAll() { compute(); renderShip(); renderElForm(); renderResults(); }
+
+/* ---------- events ---------- */
+function toast(t) { const d = $('#toast'); d.textContent = t; d.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => { d.style.display = 'none'; }, 2400); }
+function showText(title, note, text) { $('#dlgTitle').textContent = title; $('#dlgNote').textContent = note; $('#dlgText').value = text; $('#dlg').classList.add('on'); $('#dlgText').select(); }
+function copy(text, okMsg) { const fb = () => showText('Copy table', 'Select all and copy, then paste into Excel.', text); try { navigator.clipboard.writeText(text).then(() => toast(okMsg), fb); } catch (e) { fb(); } }
+function tsv() {
+  const S = SH, m = state.meta, rows = [['Project', m.project, 'Vessel', m.vessel, 'Doc. no.', m.doc, 'Prepared', m.by], ['Rules', A.RULES[S.rules].ref], ['Type', A.TYPES[S.type].label, 'L', S.L, 'B', S.B, 'D', S.D, 'To', S.T0, 'TT', S.TT], ['E', fx(S.E, 4), 'h1 (m)', fx(S.h1, 3)], [], ['Category', 'Member', 'Rule item', 'Reference', 'x (m)', 'z (m)', 's', 'l (m)', 'Section offered', 'Required', 'Offered', 'Utilisation', 'Status']];
+  for (const e of state.els) { const R = RES[e.id], it = itemOf(e); rows.push([CATS[it.cat], e.name, it.label, it.ref, e.x, e.z, it.cat === 'psm' ? e.S : e.s, e.l, R.label, R.reqTxt, R.offTxt, isFinite(R.util) ? fx(R.util, 2) : '', R.status]); }
+  rows.push([], ['Developed by Ansal Faris - Naval Architect']);
+  return rows.map(r => r.map(v => v == null ? '' : v).join('\t')).join('\n');
+}
+const DEFITEM = { csu: { plate: 'cs_shell', stiff: 'cs_stf', psm: 'cs_web', spec: 'pillar' }, seu: { plate: 'j_shell', stiff: 'j_stf', psm: 'j_web', spec: 'pillar' }, buoy: { plate: 'b_shell', stiff: 'b_stf', psm: 'b_web', spec: 'pillar' } };
+function newEl(cat) {
+  const cur = selEl() || {}, id = state.els.reduce((m, e) => Math.max(m, e.id), 0) + 1, r = state.ship.rules;
+  const curIt = cur.item && A.ITEMS[cur.item], item = curIt && curIt.cat === cat && (curIt.r === 'all' || curIt.r === r) ? cur.item : DEFITEM[r][cat];
+  const base = { id, name: cat === 'plate' ? 'New plate' : cat === 'stiff' ? 'New stiffener' : cat === 'psm' ? 'New primary member' : 'New item', item, grade: cur.grade || 'A', x: has(cur.x) ? cur.x : +(SH.L / 2).toFixed(1), z: has(cur.z) ? cur.z : 0, s: has(cur.s) ? cur.s : 600, l: cat === 'psm' ? 4 : 2.4, S: 2.4 };
+  if (cat === 'plate') base.t = 10;
+  fixEl(base); state.els.push(base); state.sel = id;
+}
+function openMember(id) { state.sel = id; save(); renderElForm(); renderResults(); if (location.hash !== '#member') location.hash = 'member'; else scrollTo(0, 0); }
+function setRules(r) {
+  if (state.ship.rules === r) return;
+  state.ship.rules = r; state.ship.type = DEFSHIP[r].type;
+  save(); renderAll(); toast('Unit type: ' + A.RULES[r].label);
+}
+document.addEventListener('input', e => {
+  const t = e.target; if (!t.dataset || !t.dataset.k) return;
+  let v; if (t.dataset.t === 'bool') v = t.checked; else if (t.dataset.t === 'num') v = t.value === '' ? '' : parseFloat(t.value); else v = t.value;
+  if (t.dataset.t === 'num' && v !== '' && !isFinite(v)) return;
+  setPath(t.dataset.k, v);
+  if (t.dataset.k === 'el.item' || t.dataset.k === 'el.prof.type') fixEl(selEl());
+  save();
+  if (t.dataset.k.indexOf('meta.') === 0) { renderKey(); return; }
+  if (t.dataset.rr || (t.tagName === 'SELECT' && t.dataset.k.indexOf('ship.') === 0)) { renderAll(); const n = document.getElementById(t.id); if (n) n.focus(); }
+  else { renderResults(); if (t.dataset.k === 'el.name') $('#elTitle').textContent = $('#elTitle').textContent.split(':')[0] + ': ' + v; }
+});
+$('#memSel').addEventListener('change', e => { state.sel = +e.target.value; save(); renderElForm(); renderResults(); });
+document.addEventListener('click', e => {
+  const cl = e.target.closest('[data-close]'); if (cl) { $('#' + cl.dataset.close).classList.remove('on'); return; }
+  const rs = e.target.closest('[data-rules]'); if (rs) { setRules(rs.dataset.rules); return; }
+  const row = e.target.closest('[data-id]'); if (row && !e.target.closest('button') && row.closest('#t-members')) { openMember(+row.dataset.id); return; }
+  const b = e.target.closest('button[data-act]'); if (!b) return; const a = b.dataset.act;
+  if (a === 'tab') { state.tab = b.dataset.v; save(); renderTable(); }
+  else if (a === 'add') { newEl(b.dataset.v); save(); openMember(state.sel); }
+  else if (a === 'dup') { const el = selEl(); if (!el) return; const c = JSON.parse(JSON.stringify(el)); c.id = state.els.reduce((m, q) => Math.max(m, q.id), 0) + 1; c.name = el.name + ' (copy)'; state.els.splice(state.els.indexOf(el) + 1, 0, c); state.sel = c.id; save(); renderElForm(); renderResults(); toast('Member duplicated'); }
+  else if (a === 'del') { if (b.dataset.arm !== '1') { b.dataset.arm = '1'; b.textContent = 'Confirm delete?'; setTimeout(() => { b.dataset.arm = ''; b.textContent = 'Delete'; }, 3000); return; } const el = selEl(); if (!el) return; const i = state.els.indexOf(el); state.els.splice(i, 1); state.sel = (state.els[Math.min(i, state.els.length - 1)] || {}).id; b.dataset.arm = ''; b.textContent = 'Delete'; save(); renderElForm(); renderResults(); }
+  else if (a === 'tsv') copy(tsv(), 'Table copied – paste into Excel');
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && (e.target.classList.contains('row') || e.target.dataset.rules)) { e.preventDefault(); e.target.click(); }
+  if (e.key === 'Escape') document.querySelectorAll('.mod.on').forEach(m => m.classList.remove('on'));
+});
+document.querySelectorAll('.mod').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('on'); }));
+$('#figProfile').addEventListener('click', e => { const g = e.target.closest('g[data-id]'); if (g) openMember(+g.dataset.id); });
+
+/* ---------- project file ---------- */
+function setState(s) { state = norm(s); save(); renderAll(); }
+let dl = null; try { window.claude && window.claude.use && window.claude.use('downloads').then(d => { dl = d; }).catch(() => { }); } catch (e) { }
+async function saveFile(name, text) {
+  if (dl) { try { await dl.save({ filename: name, data: text }); toast('Saved ' + name); } catch (e) { if (!e || e.code !== 'declined') showText('Copy ' + name, 'Saving is not available in this view. Copy the text below instead.', text); } return; }
+  if (!window.claude) { try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text])); a.download = name; document.body.appendChild(a); a.click(); a.remove(); toast('Saved ' + name); return; } catch (e) { } }
+  showText('Copy ' + name, 'Saving is not available in this view. Copy the text below instead.', text);
+}
+const fslug = () => ((state.meta.project ? state.meta.project + '_' : '') + (state.meta.vessel || 'vessel')).replace(/[^A-Za-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 50) || 'vessel';
+$('#bSave').onclick = () => saveFile(fslug() + '_LR_offshore_scantlings.json', JSON.stringify({ app: 'lr-offshore-scantlings', meta: state.meta, ship: state.ship, els: state.els }, null, 1));
+$('#bOpen').onclick = () => $('#fileIn').click();
+$('#fileIn').onchange = async ev => { const f = ev.target.files[0]; if (!f) return; try { const s = JSON.parse(await f.text()); if (!s.ship || !Array.isArray(s.els) || s.app !== 'lr-offshore-scantlings') throw 0; setState({ meta: s.meta, ship: s.ship, els: s.els, sel: (s.els[0] || {}).id, tab: 'all' }); toast('Opened ' + f.name); } catch (e) { toast('That file is not a saved LR offshore scantling project (.json).'); } ev.target.value = ''; };
+function arm(btn, label, fn) { if (Date.now() - (btn._arm || 0) < 4000) { btn._arm = 0; btn.textContent = label; fn(); } else { btn._arm = Date.now(); btn.textContent = 'Confirm?'; setTimeout(() => { btn.textContent = label; }, 4000); } }
+$('#bEx40').onclick = function () { arm(this, 'Ex: 80 m semi', () => { setState(exSemi()); toast('Example loaded: 80 m column-stabilised semi-submersible'); }); };
+$('#bEx62').onclick = function () { arm(this, 'Ex: 60 m jack-up', () => { setState(exJack()); toast('Example loaded: 60 m self-elevating unit'); }); };
+$('#bEx130').onclick = function () { arm(this, 'Ex: 14 m buoy', () => { setState(exBuoy()); toast('Example loaded: 14 m CALM buoy'); }); };
+$('#bClear').onclick = function () { arm(this, 'New', () => { setState(blank(state.ship.rules)); location.hash = 'ship'; toast('New project – choose the unit type and enter the particulars, then add members'); }); };
+$('#bRef').onclick = () => $('#ref').classList.add('on');
+
+/* ---------- print ---------- */
+let printed = false;
+addEventListener('beforeprint', () => { printed = true; renderAllSheets(); });
+$('#bPrint').onclick = () => { printed = false; renderAllSheets(); try { window.print(); } catch (e) { } setTimeout(() => { if (!printed) $('#pdlg').classList.add('on'); }, 700); };
+function buildReport() {
+  renderAllSheets();
+  const live = [...document.querySelectorAll('main input, main select, main textarea')], d = document.documentElement.cloneNode(true), cl = [...d.querySelectorAll('main input, main select, main textarea')];
+  cl.forEach((el, i) => { const L = live[i]; if (!L) return; const s = document.createElement('span'); s.className = 'pv';
+    s.textContent = L.tagName === 'SELECT' ? ((L.selectedOptions[0] || {}).text || '') : L.type === 'checkbox' ? (L.checked ? 'Yes' : 'No') : (L.value || L.placeholder || '');
+    if (L.type === 'checkbox') { const w = el.closest('.f'); if (w) { w.innerHTML = '<label>' + esc((w.querySelector('label') || {}).textContent || '') + '</label><span class="pv">' + (L.checked ? 'Yes' : 'No') + '</span>'; w.classList.remove('chk'); return; } }
+    el.replaceWith(s); });
+  d.querySelectorAll('script,#sb,.mod,.toast,.noprint').forEach(e => e.remove());
+  d.querySelector('#pcss').setAttribute('media', 'all'); d.setAttribute('data-theme', 'light');
+  const b = d.querySelector('body'); b.setAttribute('style', 'display:block;max-width:190mm;margin:0 auto;padding:8px');
+  const sc = document.createElement('script'); sc.textContent = 'addEventListener("load",function(){setTimeout(function(){window.print()},400)})'; b.appendChild(sc);
+  d.querySelector('title').textContent = 'LR Offshore Structural Scantlings – ' + (state.meta.vessel || 'report');
+  return '<!DOCTYPE html>\n' + d.outerHTML;
+}
+$('#bPrintCopy').onclick = () => { $('#pdlg').classList.remove('on'); saveFile(fslug() + '_LR_offshore_scantlings_print.html', buildReport()); };
+
+/* ---------- tabs ---------- */
+const TABS = ['ship', 'members', 'member', 'basis'];
+function showTab() { const h = location.hash.slice(1), t = TABS.includes(h) ? h : 'members'; TABS.forEach(k => $('#t-' + k).classList.toggle('on', k === t)); document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + t)); }
+addEventListener('hashchange', () => { showTab(); scrollTo(0, 0); });
+renderAll(); showTab();
+})();
+
+</script>
+</body>
+</html>
